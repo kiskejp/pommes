@@ -1,0 +1,14 @@
+[
+  { "id": 1,  "jp": "私は学生です。",                  "de": "Ich bin Student.",                        "hint": "主語 + bin + 職業名詞",        "level": "A1", "category": "sein動詞" },
+  { "id": 2,  "jp": "彼女は先生です。",                 "de": "Sie ist Lehrerin.",                       "hint": "sie + ist + 女性形",           "level": "A1", "category": "sein動詞" },
+  { "id": 3,  "jp": "今日は月曜日です。",               "de": "Heute ist Montag.",                       "hint": "Heute + ist + 曜日",           "level": "A1", "category": "sein動詞" },
+  { "id": 4,  "jp": "私はベルリンに住んでいます。",     "de": "Ich wohne in Berlin.",                    "hint": "wohnen in + 都市名",           "level": "A1", "category": "現在形" },
+  { "id": 5,  "jp": "私はコーヒーが好きです。",         "de": "Ich mag Kaffee.",                         "hint": "mögen の活用",                 "level": "A1", "category": "現在形" },
+  { "id": 6,  "jp": "彼女はドイツ語を話します。",       "de": "Sie spricht Deutsch.",                    "hint": "sprechen → spricht (語幹変化)", "level": "A1", "category": "現在形" },
+  { "id": 7,  "jp": "私は毎朝コーヒーを飲みます。",     "de": "Ich trinke jeden Morgen Kaffee.",         "hint": "jeden Morgen = 毎朝",          "level": "A2", "category": "副詞" },
+  { "id": 8,  "jp": "明日は雨が降ります。",             "de": "Morgen wird es regnen.",                  "hint": "werden + 不定詞（未来形）",    "level": "A2", "category": "未来形" },
+  { "id": 9,  "jp": "あなたはどこ出身ですか？",         "de": "Woher kommen Sie?",                       "hint": "Woher + kommen + Sie",         "level": "A2", "category": "疑問文" },
+  { "id": 10, "jp": "私は昨日映画を見ました。",         "de": "Ich habe gestern einen Film gesehen.",    "hint": "haben + 過去分詞（現在完了）", "level": "A2", "category": "現在完了" },
+  { "id": 11, "jp": "彼女が来たら電話します。",         "de": "Wenn sie kommt, rufe ich an.",            "hint": "wenn節 + 動詞後置",            "level": "B1", "category": "接続詞" },
+  { "id": 12, "jp": "もっとゆっくり話してもらえますか？", "de": "Könnten Sie bitte langsamer sprechen?", "hint": "Konjunktiv II の丁寧表現",     "level": "B1", "category": "接続法" }
+]
