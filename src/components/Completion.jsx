@@ -1,44 +1,58 @@
 // components/Completion.jsx
+import { PotatoMascot } from './PotatoMascot'
+
 export function Completion({ ok, total, onReset }) {
   const pct = total ? Math.round(ok / total * 100) : 0
   const msg = pct === 100 ? 'Perfekt. 完璧です。' : pct >= 70 ? 'Gut gemacht. よくできました。' : 'Nochmal. もう一度。'
 
   return (
-    <div style={{
+    <div className="completion" style={{
       textAlign: 'center', padding: '72px 20px',
       display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16,
     }}>
-      <div style={{
+      <div className="completion-mascot" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div className="speech-bubble" style={{
+          background: 'var(--surface)', color: 'var(--text)',
+          fontFamily: "'Paytone One', sans-serif",
+          fontSize: 14, padding: '7px 16px',
+          borderRadius: 50, marginBottom: 10,
+          whiteSpace: 'nowrap', position: 'relative',
+        }}>
+          {msg}
+          <span className="speech-bubble__tail" style={{
+            position: 'absolute', bottom: -7, left: '50%',
+            transform: 'translateX(-50%)',
+            width: 0, height: 0,
+            borderLeft: '6px solid transparent',
+            borderRight: '6px solid transparent',
+            borderTop: '7px solid var(--surface)',
+          }} />
+        </div>
+        <PotatoMascot size={96} variant={pct === 100 ? 'happy' : 'normal'} />
+      </div>
+
+      <div className="completion-title" style={{
         fontFamily: "'DM Serif Display', serif",
-        fontSize: 56, color: '#000000', letterSpacing: '-1.72px',
+        fontSize: 56, color: 'var(--text)', letterSpacing: '-1.72px',
         fontStyle: 'italic',
       }}>
         Fertig.
       </div>
-      <div style={{
+      <div className="completion-score" style={{
         fontFamily: "'IBM Plex Mono', monospace",
-        fontSize: 48, fontWeight: 600, color: '#000000',
+        fontSize: 48, fontWeight: 600, color: 'var(--text)',
         letterSpacing: '-0.4px',
       }}>
         {ok} / {total}
       </div>
-      <div style={{
-        fontSize: 14, color: '#999999', letterSpacing: '-0.14px',
-        fontFamily: "'Barlow', sans-serif",
+      <button className="btn-retry" onClick={onReset} style={{
+        marginTop: 12,
+        background: 'var(--solid-bg)', border: 'none', color: 'var(--solid-text)',
+        fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
+        fontSize: 12, padding: '14px 36px', cursor: 'pointer',
+        textTransform: 'uppercase', letterSpacing: '0.54px',
+        borderRadius: 50,
       }}>
-        {msg}
-      </div>
-      <button
-        onClick={onReset}
-        style={{
-          marginTop: 28,
-          background: '#000000', border: 'none', color: '#ffffff',
-          fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
-          fontSize: 12, padding: '14px 36px', cursor: 'pointer',
-          textTransform: 'uppercase', letterSpacing: '0.54px',
-          borderRadius: 50,
-        }}
-      >
         もう一度
       </button>
     </div>

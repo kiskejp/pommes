@@ -35,45 +35,42 @@ function StudySession({ sentences, onExit }) {
   }
 
   return (
-    <div style={{
-      background: '#ffffff', color: '#000000', minHeight: '100vh',
+    <div className="app" style={{
+      background: 'var(--bg)', color: 'var(--text)', minHeight: '100vh',
       display: 'flex', flexDirection: 'column', alignItems: 'center',
       fontFamily: "'Barlow', sans-serif",
     }}>
 
       {/* ── Header ── */}
-      <header style={{
-        width: '100%', borderBottom: '1px solid #e8e8e8',
+      <header className="app-header" style={{
+        width: '100%',
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         padding: '16px 28px',
       }}>
-        <button
-          onClick={handleReset}
-          style={{
-            background: 'none', border: 'none', cursor: 'pointer', padding: 0,
-            fontFamily: "'DM Serif Display', serif",
-            fontSize: 18, letterSpacing: '-0.4px', color: '#000000',
-            fontStyle: 'italic',
-          }}
-        >
+        <button className="logo-btn" onClick={handleReset} style={{
+          background: 'none', border: 'none', cursor: 'pointer', padding: 0,
+          fontFamily: "'Paytone One', sans-serif",
+          fontSize: 18, letterSpacing: '-0.3px', color: 'var(--text)',
+        }}>
           Pommes
         </button>
 
-        <div style={{
-          display: 'flex', background: '#f0f0f0',
+        <div className="mode-tabs" style={{
+          display: 'flex', background: 'var(--tab-bg)',
           borderRadius: 50, padding: 3, gap: 2,
         }}>
           {[['card', 'カード'], ['input', '入力']].map(([m, label]) => (
-            <button key={m} onClick={() => setMode(m)} style={{
-              background: mode === m ? '#000000' : 'transparent',
-              border: 'none',
-              color: mode === m ? '#ffffff' : '#666666',
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: 11, fontWeight: mode === m ? 600 : 400,
-              padding: '6px 18px', cursor: 'pointer',
-              borderRadius: 50, letterSpacing: '0.54px',
-              textTransform: 'uppercase', transition: 'all .15s',
-            }}>
+            <button key={m} className={`mode-tab ${mode === m ? 'mode-tab--active' : ''}`}
+              onClick={() => setMode(m)} style={{
+                background: mode === m ? 'var(--solid-bg)' : 'transparent',
+                border: 'none',
+                color: mode === m ? 'var(--solid-text)' : 'var(--text-sub)',
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontSize: 11, fontWeight: mode === m ? 600 : 400,
+                padding: '6px 18px', cursor: 'pointer',
+                borderRadius: 50, letterSpacing: '0.54px',
+                textTransform: 'uppercase', transition: 'all .15s',
+              }}>
               {label}
             </button>
           ))}
@@ -81,23 +78,23 @@ function StudySession({ sentences, onExit }) {
       </header>
 
       {/* ── Progress bar ── */}
-      <div style={{ width: '100%', height: 1, background: '#f0f0f0' }}>
-        <div style={{
-          height: 1, width: `${progress}%`, background: '#000000',
+      <div className="progress-track" style={{ width: '100%', height: 5, background: 'var(--surface)' }}>
+        <div className="progress-fill" style={{
+          height: 5, width: `${progress}%`, background: 'var(--solid-bg)',
           transition: 'width .4s ease',
         }} />
       </div>
 
       {/* ── Main ── */}
-      <main style={{
+      <main className="app-main" style={{
         width: '100%', maxWidth: 640, padding: '32px 24px 80px',
         display: 'flex', flexDirection: 'column', gap: 20,
       }}>
 
         {!hasJpVoice && !hasDeVoice && (
-          <div style={{
+          <div className="voice-warning" style={{
             fontFamily: "'IBM Plex Mono', monospace", fontSize: 11,
-            color: '#999999', border: '1px dashed #e0e0e0',
+            color: 'var(--text-muted)', border: '1px dashed var(--border)',
             padding: '8px 16px', textAlign: 'center', borderRadius: 4,
           }}>
             音声が利用できません。Chrome を推奨します。
@@ -110,20 +107,20 @@ function StudySession({ sentences, onExit }) {
           <Completion ok={ok} total={ok + ng} onReset={handleReset} />
         ) : (
           <>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{
+            <div className="session-meta" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span className="meta-badge" style={{
                 fontFamily: "'IBM Plex Mono', monospace", fontSize: 10,
                 textTransform: 'uppercase', letterSpacing: '1.5px',
-                border: '1px solid #e8e8e8', padding: '3px 12px', color: '#999999',
-                borderRadius: 50,
+                border: '1px solid var(--border)', padding: '3px 12px',
+                color: 'var(--text-sub)', borderRadius: 50,
               }}>
                 {session.current?.level} · {session.current?.category}
               </span>
-              <span style={{
+              <span className="meta-counter" style={{
                 fontFamily: "'IBM Plex Mono', monospace", fontSize: 12,
-                color: '#999999', letterSpacing: '-0.14px',
+                color: 'var(--text-sub)', letterSpacing: '-0.14px',
               }}>
-                <b style={{ color: '#000000', fontWeight: 600 }}>{session.idx + 1}</b>
+                <b style={{ color: 'var(--text)', fontWeight: 600 }}>{session.idx + 1}</b>
                 {' '}/ {sentences.length}
               </span>
             </div>

@@ -49,9 +49,12 @@ export function useSession(sentences) {
     setShowHint(false); setFeedback(null)
   }
 
+  const normalize = (s) =>
+    s.trim().toLowerCase().replace(/[.!?。！？]+$/, '').trim()
+
   const submitInput = (userText) => {
     if (checked || !current) return null
-    const correct = userText.trim() === current.de
+    const correct = normalize(userText) === normalize(current.de)
     setFeedback(correct ? 'ok' : 'ng')
     if (correct) setOk(n => n + 1); else setNg(n => n + 1)
     setChecked(true)
