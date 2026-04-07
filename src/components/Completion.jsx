@@ -1,9 +1,11 @@
 // components/Completion.jsx
 import { PotatoMascot } from './PotatoMascot'
 
-export function Completion({ ok, total, onReset }) {
+export function Completion({ ok, total, onReset, isWeakMode }) {
   const pct = total ? Math.round(ok / total * 100) : 0
-  const msg = pct === 100 ? 'Perfekt!' : pct >= 70 ? 'Gut gemacht. よくできました。' : 'Nochmal. もう一度。'
+  const msg = isWeakMode
+    ? '苦手問題を全部クリア！Alle Schwächen behoben!'
+    : pct === 100 ? 'Perfekt!' : pct >= 70 ? 'Gut gemacht. よくできました。' : 'Nochmal. もう一度。'
 
   return (
     <div className="completion" style={{

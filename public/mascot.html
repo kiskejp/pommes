@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mascot Dev — Pommes</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #fffdf7;
+      font-family: 'IBM Plex Mono', monospace, sans-serif;
+      padding: 48px 32px;
+    }
+    h1 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #8b6f47;
+      margin-bottom: 40px;
+    }
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+      align-items: flex-end;
+    }
+    .item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #8b6f47;
+    }
+    .size-label {
+      font-size: 10px;
+      color: #c4a882;
+    }
+
+    /* ─── Dark bg swatch ─── */
+    .swatch-dark { background: #3d2a0e; padding: 16px; border-radius: 12px; }
+  </style>
+</head>
+<body>
+
+<h1>Pommes — Mascot Dev</h1>
+
+<div class="grid">
+
+  <!-- normal / 96px -->
+  <div class="item">
+    <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/>
+      <rect x="3" y="4" width="10" height="7" fill="#d4a96a"/>
+      <rect x="4" y="4" width="8" height="7" fill="#e0bc85"/>
+      <rect x="4" y="10" width="8" height="2" fill="#b8904f"/>
+      <rect x="3" y="9"  width="1" height="2" fill="#b8904f"/>
+      <rect x="12" y="9" width="1" height="2" fill="#b8904f"/>
+      <rect x="6" y="6" width="1" height="2" fill="#000000"/>
+      <rect x="9" y="6" width="1" height="2" fill="#000000"/>
+      <rect x="6" y="9" width="4" height="1" fill="#000000"/>
+      <rect x="7" y="9" width="2" height="1" fill="#000000"/>
+      <rect x="7"  y="1" width="2" height="2" fill="#6db56d"/>
+      <rect x="6"  y="2" width="1" height="1" fill="#6db56d"/>
+      <rect x="9"  y="2" width="1" height="1" fill="#6db56d"/>
+      <rect x="2"  y="6" width="1" height="2" fill="#d4a96a"/>
+      <rect x="13" y="6" width="1" height="2" fill="#d4a96a"/>
+      <rect x="5"  y="12" width="2" height="1" fill="#b8904f"/>
+      <rect x="9"  y="12" width="2" height="1" fill="#b8904f"/>
+    </svg>
+    <span class="label">normal</span>
+    <span class="size-label">96px</span>
+  </div>
+
+  <!-- happy / 96px -->
+  <div class="item">
+    <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/>
+      <rect x="3" y="4" width="10" height="7" fill="#d4a96a"/>
+      <rect x="4" y="4" width="8" height="7" fill="#e0bc85"/>
+      <rect x="4" y="10" width="8" height="2" fill="#b8904f"/>
+      <rect x="3" y="9"  width="1" height="2" fill="#b8904f"/>
+      <rect x="12" y="9" width="1" height="2" fill="#b8904f"/>
+      <!-- eyes ^ -->
+      <rect x="4"  y="6" width="1" height="1" fill="#000000"/>
+      <rect x="5"  y="5" width="1" height="1" fill="#000000"/>
+      <rect x="6"  y="6" width="1" height="1" fill="#000000"/>
+      <rect x="9"  y="6" width="1" height="1" fill="#000000"/>
+      <rect x="10" y="5" width="1" height="1" fill="#000000"/>
+      <rect x="11" y="6" width="1" height="1" fill="#000000"/>
+      <!-- mouth smile -->
+      <rect x="6" y="8" width="1" height="1" fill="#000000"/>
+      <rect x="7" y="9" width="2" height="1" fill="#000000"/>
+      <rect x="9" y="8" width="1" height="1" fill="#000000"/>
+      <rect x="7"  y="1" width="2" height="2" fill="#6db56d"/>
+      <rect x="6"  y="2" width="1" height="1" fill="#6db56d"/>
+      <rect x="9"  y="2" width="1" height="1" fill="#6db56d"/>
+      <!-- arms raised -->
+      <rect x="2"  y="5" width="1" height="2" fill="#d4a96a"/>
+      <rect x="13" y="5" width="1" height="2" fill="#d4a96a"/>
+      <rect x="5"  y="12" width="2" height="1" fill="#b8904f"/>
+      <rect x="9"  y="12" width="2" height="1" fill="#b8904f"/>
+    </svg>
+    <span class="label">happy</span>
+    <span class="size-label">96px</span>
+  </div>
+
+  <!-- normal / 48px -->
+  <div class="item">
+    <svg width="48" height="48" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/>
+      <rect x="3" y="4" width="10" height="7" fill="#d4a96a"/>
+      <rect x="4" y="4" width="8" height="7" fill="#e0bc85"/>
+      <rect x="4" y="10" width="8" height="2" fill="#b8904f"/>
+      <rect x="3" y="9"  width="1" height="2" fill="#b8904f"/>
+      <rect x="12" y="9" width="1" height="2" fill="#b8904f"/>
+      <rect x="6" y="6" width="1" height="2" fill="#000000"/>
+      <rect x="9" y="6" width="1" height="2" fill="#000000"/>
+      <rect x="6" y="9" width="4" height="1" fill="#000000"/>
+      <rect x="7" y="9" width="2" height="1" fill="#000000"/>
+      <rect x="7"  y="1" width="2" height="2" fill="#6db56d"/>
+      <rect x="6"  y="2" width="1" height="1" fill="#6db56d"/>
+      <rect x="9"  y="2" width="1" height="1" fill="#6db56d"/>
+      <rect x="2"  y="6" width="1" height="2" fill="#d4a96a"/>
+      <rect x="13" y="6" width="1" height="2" fill="#d4a96a"/>
+      <rect x="5"  y="12" width="2" height="1" fill="#b8904f"/>
+      <rect x="9"  y="12" width="2" height="1" fill="#b8904f"/>
+    </svg>
+    <span class="label">normal</span>
+    <span class="size-label">48px</span>
+  </div>
+
+  <!-- happy / 48px -->
+  <div class="item">
+    <svg width="48" height="48" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/>
+      <rect x="3" y="4" width="10" height="7" fill="#d4a96a"/>
+      <rect x="4" y="4" width="8" height="7" fill="#e0bc85"/>
+      <rect x="4" y="10" width="8" height="2" fill="#b8904f"/>
+      <rect x="3" y="9"  width="1" height="2" fill="#b8904f"/>
+      <rect x="12" y="9" width="1" height="2" fill="#b8904f"/>
+      <rect x="4"  y="6" width="1" height="1" fill="#000000"/>
+      <rect x="5"  y="5" width="1" height="1" fill="#000000"/>
+      <rect x="6"  y="6" width="1" height="1" fill="#000000"/>
+      <rect x="9"  y="6" width="1" height="1" fill="#000000"/>
+      <rect x="10" y="5" width="1" height="1" fill="#000000"/>
+      <rect x="11" y="6" width="1" height="1" fill="#000000"/>
+      <rect x="6" y="8" width="1" height="1" fill="#000000"/>
+      <rect x="7" y="9" width="2" height="1" fill="#000000"/>
+      <rect x="9" y="8" width="1" height="1" fill="#000000"/>
+      <rect x="7"  y="1" width="2" height="2" fill="#6db56d"/>
+      <rect x="6"  y="2" width="1" height="1" fill="#6db56d"/>
+      <rect x="9"  y="2" width="1" height="1" fill="#6db56d"/>
+      <rect x="2"  y="5" width="1" height="2" fill="#d4a96a"/>
+      <rect x="13" y="5" width="1" height="2" fill="#d4a96a"/>
+      <rect x="5"  y="12" width="2" height="1" fill="#b8904f"/>
+      <rect x="9"  y="12" width="2" height="1" fill="#b8904f"/>
+    </svg>
+    <span class="label">happy</span>
+    <span class="size-label">48px</span>
+  </div>
+
+  <!-- normal / no mouth / 96px -->
+  <div class="item">
+    <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/>
+      <rect x="3" y="4" width="10" height="7" fill="#d4a96a"/>
+      <rect x="4" y="4" width="8" height="7" fill="#e0bc85"/>
+      <rect x="4" y="10" width="8" height="2" fill="#b8904f"/>
+      <rect x="3" y="9"  width="1" height="2" fill="#b8904f"/>
+      <rect x="12" y="9" width="1" height="2" fill="#b8904f"/>
+      <rect x="6" y="6" width="1" height="2" fill="#000000"/>
+      <rect x="9" y="6" width="1" height="2" fill="#000000"/>
+      <rect x="7"  y="1" width="2" height="2" fill="#6db56d"/>
+      <rect x="6"  y="2" width="1" height="1" fill="#6db56d"/>
+      <rect x="9"  y="2" width="1" height="1" fill="#6db56d"/>
+      <rect x="2"  y="6" width="1" height="2" fill="#d4a96a"/>
+      <rect x="13" y="6" width="1" height="2" fill="#d4a96a"/>
+      <rect x="5"  y="12" width="2" height="1" fill="#b8904f"/>
+      <rect x="9"  y="12" width="2" height="1" fill="#b8904f"/>
+    </svg>
+    <span class="label">normal / no mouth</span>
+    <span class="size-label">96px</span>
+  </div>
+
+  <!-- happy / no mouth / 96px -->
+  <div class="item">
+    <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/>
+      <rect x="3" y="4" width="10" height="7" fill="#d4a96a"/>
+      <rect x="4" y="4" width="8" height="7" fill="#e0bc85"/>
+      <rect x="4" y="10" width="8" height="2" fill="#b8904f"/>
+      <rect x="3" y="9"  width="1" height="2" fill="#b8904f"/>
+      <rect x="12" y="9" width="1" height="2" fill="#b8904f"/>
+      <rect x="4"  y="6" width="1" height="1" fill="#000000"/>
+      <rect x="5"  y="5" width="1" height="1" fill="#000000"/>
+      <rect x="6"  y="6" width="1" height="1" fill="#000000"/>
+      <rect x="9"  y="6" width="1" height="1" fill="#000000"/>
+      <rect x="10" y="5" width="1" height="1" fill="#000000"/>
+      <rect x="11" y="6" width="1" height="1" fill="#000000"/>
+      <rect x="7"  y="1" width="2" height="2" fill="#6db56d"/>
+      <rect x="6"  y="2" width="1" height="1" fill="#6db56d"/>
+      <rect x="9"  y="2" width="1" height="1" fill="#6db56d"/>
+      <rect x="2"  y="5" width="1" height="2" fill="#d4a96a"/>
+      <rect x="13" y="5" width="1" height="2" fill="#d4a96a"/>
+      <rect x="5"  y="12" width="2" height="1" fill="#b8904f"/>
+      <rect x="9"  y="12" width="2" height="1" fill="#b8904f"/>
+    </svg>
+    <span class="label">happy / no mouth</span>
+    <span class="size-label">96px</span>
+  </div>
+
+  <!-- dark bg -->
+  <div class="item">
+    <div class="swatch-dark">
+      <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/>
+        <rect x="3" y="4" width="10" height="7" fill="#d4a96a"/>
+        <rect x="4" y="4" width="8" height="7" fill="#e0bc85"/>
+        <rect x="4" y="10" width="8" height="2" fill="#b8904f"/>
+        <rect x="3" y="9"  width="1" height="2" fill="#b8904f"/>
+        <rect x="12" y="9" width="1" height="2" fill="#b8904f"/>
+        <rect x="6" y="6" width="1" height="2" fill="#000000"/>
+        <rect x="9" y="6" width="1" height="2" fill="#000000"/>
+        <rect x="6" y="9" width="4" height="1" fill="#000000"/>
+        <rect x="7" y="9" width="2" height="1" fill="#000000"/>
+        <rect x="7"  y="1" width="2" height="2" fill="#6db56d"/>
+        <rect x="6"  y="2" width="1" height="1" fill="#6db56d"/>
+        <rect x="9"  y="2" width="1" height="1" fill="#6db56d"/>
+        <rect x="2"  y="6" width="1" height="2" fill="#d4a96a"/>
+        <rect x="13" y="6" width="1" height="2" fill="#d4a96a"/>
+        <rect x="5"  y="12" width="2" height="1" fill="#b8904f"/>
+        <rect x="9"  y="12" width="2" height="1" fill="#b8904f"/>
+      </svg>
+    </div>
+    <span class="label">dark bg</span>
+    <span class="size-label">96px</span>
+  </div>
+
+</div>
+
+</body>
+</html>

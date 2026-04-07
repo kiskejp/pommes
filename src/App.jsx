@@ -5,6 +5,7 @@ import { useTTS }            from './hooks/useTTS'
 import { useSession }        from './hooks/useSession'
 import { useAudioSettings }  from './hooks/useAudioSettings'
 import { useAutoPlay }       from './hooks/useAutoPlay'
+import { useWeakIds }        from './hooks/useWeakIds'
 import { TitleScreen }       from './pages/TitleScreen'
 import { ScoreBar }          from './components/ScoreBar'
 import { CardMode }          from './components/CardMode'
@@ -13,20 +14,34 @@ import { Completion }        from './components/Completion'
 
 export default function App() {
   const [filteredSentences, setFilteredSentences] = useState(null)
+  const [isWeakMode, setIsWeakMode] = useState(false)
+  const weakIds = useWeakIds()
+
+  const handleStart = useCallback((sentences, weak = false) => {
+    setFilteredSentences(sentences)
+    setIsWeakMode(weak)
+  }, [])
+
+  const handleExit = useCallback(() => {
+    setFilteredSentences(null)
+    setIsWeakMode(false)
+  }, [])
 
   if (!filteredSentences) {
-    return <TitleScreen onStart={setFilteredSentences} />
+    return <TitleScreen onStart={handleStart} weakIds={weakIds} />
   }
 
   return (
     <StudySession
       sentences={filteredSentences}
-      onExit={() => setFilteredSentences(null)}
+      onExit={handleExit}
+      weakIds={weakIds}
+      isWeakMode={isWeakMode}
     />
   )
 }
 
-function StudySession({ sentences, onExit }) {
+function StudySession({ sentences, onExit, weakIds, isWeakMode }) {
   const [mode, setMode] = useState('card')
   const { speak, speaking, hasJpVoice, hasDeVoice } = useTTS()
   const session = useSession(sentences)
@@ -154,7 +169,7 @@ function StudySession({ sentences, onExit }) {
         <ScoreBar ok={ok} ng={ng} />
 
         {done ? (
-          <Completion ok={ok} total={ok + ng} onReset={handleReset} />
+          <Completion ok={ok} total={ok + ng} onReset={handleReset} isWeakMode={isWeakMode} />
         ) : (
           <>
             <div className="session-meta" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -183,6 +198,7 @@ function StudySession({ sentences, onExit }) {
                   autoPlay={autoPlay}
                   pauseDuration={pauseDuration}
                   onPauseDurationChange={d => update({ pauseDuration: d })}
+                  weakIds={weakIds}
                 />
               : <InputMode session={session} speak={smartSpeak} speaking={speaking} />
             }

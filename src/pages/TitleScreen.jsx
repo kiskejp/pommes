@@ -9,9 +9,10 @@ const LEVELS = ['A1', 'A2', 'B1']
 const CATEGORIES = [...new Set(sentences.map(s => s.category))]
 const SCENES = [...new Set(sentences.filter(s => s.scene).map(s => s.scene))]
 
-export function TitleScreen({ onStart }) {
+export function TitleScreen({ onStart, weakIds }) {
   const [expanded, setExpanded] = useState(null)
   const { themeId, setTheme } = useTheme()
+  const weakCount = weakIds?.weakIds.length ?? 0
 
   const toggle = (key) => setExpanded(prev => prev === key ? null : key)
 
@@ -27,6 +28,12 @@ export function TitleScreen({ onStart }) {
       filtered = sentences.filter(s => s.scene === filter.scene)
     }
     onStart(filtered)
+  }
+
+  const startWeak = () => {
+    const weak = sentences.filter(s => weakIds.weakIds.includes(s.id))
+    if (weak.length === 0) return
+    onStart(weak, true)
   }
 
   return (
@@ -67,6 +74,22 @@ export function TitleScreen({ onStart }) {
 
           <button onClick={() => start(null)} style={solidBtn}>
             すぐはじめる
+          </button>
+
+          <button
+            onClick={startWeak}
+            disabled={weakCount === 0}
+            style={{
+              ...ghostBtn,
+              opacity: weakCount === 0 ? 0.4 : 1,
+              cursor: weakCount === 0 ? 'default' : 'pointer',
+              justifyContent: 'space-between',
+            }}
+          >
+            <span>苦手問題を復習</span>
+            <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: 'var(--text-sub)' }}>
+              {weakCount}問
+            </span>
           </button>
 
           <div>

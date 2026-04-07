@@ -1,11 +1,12 @@
 // components/CardMode.jsx
 import { useEffect } from 'react'
-import { RotateCcw, Lightbulb, Play, Pause } from 'lucide-react'
+import { RotateCcw, Lightbulb, Play, Pause, Bookmark } from 'lucide-react'
 import { AudioButton } from './AudioButton'
 
-export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, onPauseDurationChange }) {
+export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, onPauseDurationChange, weakIds }) {
   const { current, revealed, showHint, revealAnswer, toggleHint, advance, reset } = session
   const playing = autoPlay?.isPlaying ?? false
+  const isWeak = weakIds?.isWeak(current.id) ?? false
 
   useEffect(() => {
     if (current && !playing) {
@@ -24,7 +25,19 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
 
       {/* ── JP card ── */}
       <div className="card" style={cardStyle}>
-        <Label>日本語</Label>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+          <Label noMargin>日本語</Label>
+          {weakIds && (
+            <button
+              className="btn-bookmark"
+              onClick={() => weakIds.toggle(current.id)}
+              title={isWeak ? '苦手から外す' : '苦手に登録'}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, color: 'var(--text)', lineHeight: 0 }}
+            >
+              <Bookmark size={18} strokeWidth={1.8} fill={isWeak ? 'currentColor' : 'none'} />
+            </button>
+          )}
+        </div>
         <div className="card-jp" style={jpStyle}>{current.jp}</div>
         {showHint && <div className="card-hint" style={hintStyle}>{current.hint}</div>}
         {!playing && (
@@ -109,8 +122,8 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
         /* Revealed: rate buttons */
         <>
           <div className="rate-buttons" style={{ display: 'flex', gap: 8 }}>
-            <RateBtn variant="ghost" onClick={() => advance('ng')}>わからなかった</RateBtn>
-            <RateBtn variant="solid" onClick={() => advance('ok')}>わかった</RateBtn>
+            <RateBtn variant="ghost" onClick={() => { weakIds?.add(current.id); advance('ng') }}>わからなかった</RateBtn>
+            <RateBtn variant="solid" onClick={() => { weakIds?.remove(current.id); advance('ok') }}>わかった</RateBtn>
           </div>
           <Nav onReset={reset} />
         </>
@@ -121,12 +134,12 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
 
 /* ── Sub-components ── */
 
-function Label({ children }) {
+function Label({ children, noMargin }) {
   return (
     <div className="card-label" style={{
       fontFamily: "'IBM Plex Mono', monospace", fontSize: 10,
       textTransform: 'uppercase', letterSpacing: '1.5px',
-      color: 'var(--text-sub)', marginBottom: 12,
+      color: 'var(--text-sub)', marginBottom: noMargin ? 0 : 12,
     }}>
       {children}
     </div>
