@@ -3,7 +3,7 @@ import { PotatoMascot } from './PotatoMascot'
 
 export function Completion({ ok, total, onReset }) {
   const pct = total ? Math.round(ok / total * 100) : 0
-  const msg = pct === 100 ? 'Perfekt. 完璧です。' : pct >= 70 ? 'Gut gemacht. よくできました。' : 'Nochmal. もう一度。'
+  const msg = pct === 100 ? 'Perfekt!' : pct >= 70 ? 'Gut gemacht. よくできました。' : 'Nochmal. もう一度。'
 
   return (
     <div className="completion" style={{
@@ -13,8 +13,8 @@ export function Completion({ ok, total, onReset }) {
       <div className="completion-mascot" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div className="speech-bubble" style={{
           background: 'var(--surface)', color: 'var(--text)',
-          fontFamily: "'Paytone One', sans-serif",
-          fontSize: 14, padding: '7px 16px',
+          fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
+          fontSize: 13, padding: '7px 16px',
           borderRadius: 50, marginBottom: 10,
           whiteSpace: 'nowrap', position: 'relative',
         }}>

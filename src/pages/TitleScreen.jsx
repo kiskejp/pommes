@@ -194,7 +194,10 @@ function MascotWithBubble() {
     timerRef.current = setInterval(() => {
       setVisible(false)
       setTimeout(() => {
-        setText(GREETINGS[Math.floor(Math.random() * GREETINGS.length)])
+        setText(prev => {
+          const options = GREETINGS.filter(g => g !== prev)
+          return options[Math.floor(Math.random() * options.length)]
+        })
         setVisible(true)
       }, 400)
     }, 5000)
@@ -207,8 +210,8 @@ function MascotWithBubble() {
         opacity: visible ? 1 : 0,
         transition: 'opacity .25s ease',
         background: 'var(--surface)', color: 'var(--text)',
-        fontFamily: "'Paytone One', sans-serif",
-        fontSize: 14, padding: '7px 16px',
+        fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
+        fontSize: 13, padding: '7px 16px',
         borderRadius: 50, marginBottom: 10,
         whiteSpace: 'nowrap', position: 'relative',
       }}>

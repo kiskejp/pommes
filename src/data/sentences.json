@@ -103,7 +103,7 @@
   { "id": 94, "jp": "私は東京出身です。",                "de": "Ich komme aus Tokio.",                    "hint": "aus + Dativ（出身・起点）",               "level": "A2", "category": "前置詞",    "scene": "自己紹介" },
   { "id": 95, "jp": "彼女はオフィスへ向かっています。",  "de": "Sie geht ins Büro.",                      "hint": "in + Akkusativ（方向）：ins = in das",    "level": "A2", "category": "前置詞",    "scene": "仕事・職場" },
   { "id": 96, "jp": "私たちはバスで市内を通ります。",    "de": "Wir fahren mit dem Bus durch die Stadt.", "hint": "durch + Akkusativ（通過）・mit + Dativ（手段）", "level": "A2", "category": "前置詞",    "scene": "交通・移動" },
-  { "id": 97, "jp": "会議室は3階にあります。",           "de": "Der Konferenzraum ist im dritten Stock.", "hint": "in + Dativ（場所）：im = in dem・序数",   "level": "A2", "category": "前置詞",    "scene": "仕事・職場" },
+  { "id": 97, "jp": "会議室は3階にあります。", "jp_yomi": "かいぎしつはさんかいにあります。",           "de": "Der Konferenzraum ist im dritten Stock.", "hint": "in + Dativ（場所）：im = in dem・序数",   "level": "A2", "category": "前置詞",    "scene": "仕事・職場" },
   { "id": 98, "jp": "スーパーは角を曲がったところにあります。", "de": "Der Supermarkt ist um die Ecke.",  "hint": "um + Akkusativ（〜を回ったところ）",      "level": "A2", "category": "前置詞",    "scene": "買い物" },
 
   { "id": 99,  "jp": "疲れているので、早く寝ます。",            "de": "Ich gehe früh schlafen, weil ich müde bin.",          "hint": "weil 節：動詞は文末へ",                              "level": "A2", "category": "従属接続詞", "scene": "日常生活" },

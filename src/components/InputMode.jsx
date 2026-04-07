@@ -1,5 +1,6 @@
 // components/InputMode.jsx
 import { useEffect, useRef } from 'react'
+import { RotateCcw, Lightbulb } from 'lucide-react'
 import { AudioButton } from './AudioButton'
 
 const UMLAUTS = ['ä', 'ö', 'ü', 'Ä', 'Ö', 'Ü', 'ß']
@@ -60,7 +61,13 @@ export function InputMode({ session, speak, speaking }) {
             {current.hint}
           </div>
         )}
-        <AudioButton speaking={speaking} onClick={() => speak(current.jp_yomi ?? current.jp, 'ja')} label="音声を聞く" />
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 14 }}>
+          <AudioButton speaking={speaking} onClick={() => speak(current.jp_yomi ?? current.jp, 'ja')} label="音声を聞く" style={{ marginTop: 0 }} />
+          <button className={`btn-hint ${showHint ? 'btn-hint--active' : ''}`} onClick={toggleHint} style={{ ...subBtn, color: showHint ? 'var(--text)' : 'var(--text-sub)' }}>
+            <Lightbulb size={12} strokeWidth={2} />
+            {showHint ? 'ヒントを隠す' : 'ヒントを見る'}
+          </button>
+        </div>
       </div>
 
       <div className="input-area" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -148,21 +155,24 @@ export function InputMode({ session, speak, speaking }) {
       </div>
 
       <div className="input-nav" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <button className="btn-reset" onClick={reset} style={ghostBtn}>最初から</button>
-        {checked
-          ? <button className="btn-next" onClick={() => advance(feedback)} style={solidBtn}>次へ →</button>
-          : <button className={`btn-hint ${showHint ? 'btn-hint--active' : ''}`} onClick={toggleHint} style={ghostBtn}>{showHint ? 'ヒントを隠す' : 'ヒントを見る'}</button>
-        }
+        <button className="btn-reset" onClick={reset} style={subBtn}>
+          <RotateCcw size={12} strokeWidth={2} />
+          最初から
+        </button>
+        {checked && (
+          <button className="btn-next" onClick={() => advance(feedback)} style={solidBtn}>次へ →</button>
+        )}
       </div>
     </div>
   )
 }
 
-const ghostBtn = {
-  background: 'none', border: '2px solid var(--border)', color: 'var(--text-sub)',
+const subBtn = {
+  background: 'none', border: 'none', color: 'var(--text-sub)',
   fontFamily: "'IBM Plex Mono', monospace", fontSize: 11,
-  padding: '8px 16px', cursor: 'pointer',
-  textTransform: 'uppercase', letterSpacing: '0.54px', borderRadius: 50,
+  padding: '4px 8px', cursor: 'pointer',
+  textTransform: 'uppercase', letterSpacing: '0.54px',
+  display: 'inline-flex', alignItems: 'center', gap: 5,
 }
 const solidBtn = {
   background: 'var(--solid-bg)', border: 'none', color: 'var(--solid-text)',

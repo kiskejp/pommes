@@ -1,12 +1,15 @@
 // App.jsx
-import { useState } from 'react'
-import { useTTS }        from './hooks/useTTS'
-import { useSession }    from './hooks/useSession'
-import { TitleScreen }   from './pages/TitleScreen'
-import { ScoreBar }      from './components/ScoreBar'
-import { CardMode }      from './components/CardMode'
-import { InputMode }     from './components/InputMode'
-import { Completion }    from './components/Completion'
+import { useState, useCallback } from 'react'
+import { Volume2, VolumeX } from 'lucide-react'
+import { useTTS }            from './hooks/useTTS'
+import { useSession }        from './hooks/useSession'
+import { useAudioSettings }  from './hooks/useAudioSettings'
+import { useAutoPlay }       from './hooks/useAutoPlay'
+import { TitleScreen }       from './pages/TitleScreen'
+import { ScoreBar }          from './components/ScoreBar'
+import { CardMode }          from './components/CardMode'
+import { InputMode }         from './components/InputMode'
+import { Completion }        from './components/Completion'
 
 export default function App() {
   const [filteredSentences, setFilteredSentences] = useState(null)
@@ -28,8 +31,25 @@ function StudySession({ sentences, onExit }) {
   const { speak, speaking, hasJpVoice, hasDeVoice } = useTTS()
   const session = useSession(sentences)
   const { ok, ng, done, progress, reset } = session
+  const { jpEnabled, deEnabled, pauseDuration, update } = useAudioSettings()
+
+  // speak() wrapper that respects jp/de on/off toggles.
+  // When disabled, onEnd fires immediately so auto-play flow continues.
+  const smartSpeak = useCallback((text, lang, onEnd) => {
+    if (lang === 'ja' && !jpEnabled) { onEnd?.(); return }
+    if (lang === 'de' && !deEnabled) { onEnd?.(); return }
+    speak(text, lang, onEnd)
+  }, [speak, jpEnabled, deEnabled])
+
+  const autoPlay = useAutoPlay({ session, speak: smartSpeak, pauseDuration })
+
+  const switchMode = (m) => {
+    autoPlay.stop()
+    setMode(m)
+  }
 
   const handleReset = () => {
+    autoPlay.stop()
     reset()
     onExit()
   }
@@ -45,7 +65,7 @@ function StudySession({ sentences, onExit }) {
       <header className="app-header" style={{
         width: '100%',
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        padding: '16px 28px',
+        padding: '16px clamp(16px, 4vw, 28px)',
       }}>
         <button className="logo-btn" onClick={handleReset} style={{
           background: 'none', border: 'none', cursor: 'pointer', padding: 0,
@@ -61,7 +81,7 @@ function StudySession({ sentences, onExit }) {
         }}>
           {[['card', 'カード'], ['input', '入力']].map(([m, label]) => (
             <button key={m} className={`mode-tab ${mode === m ? 'mode-tab--active' : ''}`}
-              onClick={() => setMode(m)} style={{
+              onClick={() => switchMode(m)} style={{
                 background: mode === m ? 'var(--solid-bg)' : 'transparent',
                 border: 'none',
                 color: mode === m ? 'var(--solid-text)' : 'var(--text-sub)',
@@ -85,9 +105,39 @@ function StudySession({ sentences, onExit }) {
         }} />
       </div>
 
+      {/* ── Audio settings row ── */}
+      <div className="audio-settings" style={{
+        width: '100%', maxWidth: 640,
+        display: 'flex', justifyContent: 'flex-end', gap: 6,
+        padding: '10px 24px 0',
+      }}>
+        {[['jp', 'JP', jpEnabled], ['de', 'DE', deEnabled]].map(([key, label, enabled]) => (
+          <button
+            key={key}
+            className={`audio-toggle audio-toggle--${key}`}
+            onClick={() => update({ [`${key}Enabled`]: !enabled })}
+            title={`${label}音声 ${enabled ? 'OFF' : 'ON'}にする`}
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: 5,
+              background: enabled ? 'var(--solid-bg)' : 'var(--surface)',
+              color: enabled ? 'var(--solid-text)' : 'var(--text-muted)',
+              border: '2px solid var(--border)',
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: 10, padding: '3px 10px',
+              borderRadius: 50, cursor: 'pointer',
+              textTransform: 'uppercase', letterSpacing: '0.54px',
+              transition: 'all .15s',
+            }}
+          >
+            {enabled ? <Volume2 size={12} strokeWidth={2} /> : <VolumeX size={12} strokeWidth={2} />}
+            {label}
+          </button>
+        ))}
+      </div>
+
       {/* ── Main ── */}
       <main className="app-main" style={{
-        width: '100%', maxWidth: 640, padding: '32px 24px 80px',
+        width: '100%', maxWidth: 640, padding: '24px 24px 80px',
         display: 'flex', flexDirection: 'column', gap: 20,
       }}>
 
@@ -126,8 +176,15 @@ function StudySession({ sentences, onExit }) {
             </div>
 
             {mode === 'card'
-              ? <CardMode  session={session} speak={speak} speaking={speaking} />
-              : <InputMode session={session} speak={speak} speaking={speaking} />
+              ? <CardMode
+                  session={session}
+                  speak={smartSpeak}
+                  speaking={speaking}
+                  autoPlay={autoPlay}
+                  pauseDuration={pauseDuration}
+                  onPauseDurationChange={d => update({ pauseDuration: d })}
+                />
+              : <InputMode session={session} speak={smartSpeak} speaking={speaking} />
             }
           </>
         )}
@@ -135,3 +192,4 @@ function StudySession({ sentences, onExit }) {
     </div>
   )
 }
+
