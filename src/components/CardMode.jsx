@@ -1,13 +1,41 @@
 // components/CardMode.jsx
-import { useEffect } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
 import { RotateCcw, Lightbulb, Play, Pause, Bookmark } from 'lucide-react'
 import { AudioButton } from './AudioButton'
+import { Mascot } from './Mascot'
+
+const MILESTONES = {
+  10: 'Gut gemacht!',
+  20: 'Weiter so!',
+  30: 'Super!',
+  50: 'Fantastisch!',
+  100: 'Unglaublich!',
+}
 
 export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, onPauseDurationChange, weakIds }) {
-  const { current, revealed, showHint, revealAnswer, toggleHint, advance, reset } = session
+  const { current, revealed, showHint, revealAnswer, toggleHint, advance, reset, ok } = session
   const playing = autoPlay?.isPlaying ?? false
   const isWeak = weakIds?.isWeak(current.id) ?? false
 
+  const [toast, setToast] = useState(null) // { msg, variant, phase: 'enter'|'exit' }
+  const toastTimers = useRef([])
+  const prevOkRef   = useRef(ok)
+
+  const showToast = useCallback((msg, variant) => {
+    toastTimers.current.forEach(fn => typeof fn === 'function' ? fn() : clearTimeout(fn))
+    setToast({ msg, variant, phase: 'exit' })
+    const rafId = { current: null }
+    rafId.current = requestAnimationFrame(() =>
+      requestAnimationFrame(() =>
+        setToast(t => t ? { ...t, phase: 'enter' } : null)
+      )
+    )
+    const t2 = setTimeout(() => setToast(t => t ? { ...t, phase: 'exit' } : null), 2500)
+    const t3 = setTimeout(() => setToast(null), 2900)
+    toastTimers.current = [t2, t3, () => cancelAnimationFrame(rafId.current)]
+  }, [])
+
+  // JP audio on card change
   useEffect(() => {
     if (current && !playing) {
       const t = setTimeout(() => speak(current.jp_yomi ?? current.jp, 'ja'), 250)
@@ -15,9 +43,28 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
     }
   }, [current?.id]) // eslint-disable-line
 
+  // Milestone toast
+  useEffect(() => {
+    if (ok === prevOkRef.current) return
+    prevOkRef.current = ok
+    const msg = MILESTONES[ok]
+    if (msg) showToast(msg, 'happy')
+  }, [ok, showToast])
+
+  // Cleanup on unmount
+  useEffect(() => () => {
+    toastTimers.current.forEach(fn => typeof fn === 'function' ? fn() : clearTimeout(fn))
+  }, [])
+
   const onReveal = () => {
     revealAnswer()
     setTimeout(() => speak(current.de, 'de'), 300)
+  }
+
+  const onWrong = () => {
+    weakIds?.add(current.id)
+    advance('ng')
+    showToast('Schade...', 'thinking')
   }
 
   return (
@@ -65,7 +112,7 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
         )}
       </div>
 
-      {/* ── Countdown bar (auto-play pause indicator) ── */}
+      {/* ── Countdown bar ── */}
       <div className="countdown-track" style={{
         height: 3, background: 'var(--surface)', borderRadius: 2,
         overflow: 'hidden',
@@ -82,7 +129,6 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
 
       {/* ── Controls ── */}
       {playing ? (
-        /* Auto-playing: show only stop button */
         <button
           className="btn-stop"
           onClick={autoPlay.stop}
@@ -92,12 +138,9 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
           停止
         </button>
       ) : !revealed ? (
-        /* Not revealed */
         <>
-          {/* 1段目: メインアクション */}
           <button className="btn-reveal" style={revealBtnStyle} onClick={onReveal}>ドイツ語を見る</button>
 
-          {/* 2段目: 自動再生（中央寄せ） */}
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: 8 }}>
             <button className="btn-autoplay" onClick={autoPlay?.start} style={{ ...secondaryBtn, display: 'inline-flex', alignItems: 'center', gap: 8 }}>
               <Play size={13} strokeWidth={2} />
@@ -105,12 +148,10 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
             </button>
           </div>
 
-          {/* 3段目: ポーズ設定（中央寄せ） */}
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <PauseStepper value={pauseDuration} onChange={onPauseDurationChange} />
           </div>
 
-          {/* 4段目: 最初から（左） */}
           <div>
             <button className="btn-reset" onClick={reset} style={{ ...subBtn, display: 'inline-flex', alignItems: 'center' }}>
               <RotateCcw size={12} strokeWidth={2} style={{ marginRight: 5 }} />
@@ -119,15 +160,44 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
           </div>
         </>
       ) : (
-        /* Revealed: rate buttons */
         <>
           <div className="rate-buttons" style={{ display: 'flex', gap: 8 }}>
-            <RateBtn variant="ghost" onClick={() => { weakIds?.add(current.id); advance('ng') }}>わからなかった</RateBtn>
+            <RateBtn variant="ghost" onClick={onWrong}>わからなかった</RateBtn>
             <RateBtn variant="solid" onClick={() => { weakIds?.remove(current.id); advance('ok') }}>わかった</RateBtn>
           </div>
           <Nav onReset={reset} />
         </>
       )}
+
+      {/* ── Milestone toast ── */}
+      {toast && (
+        <div style={{
+          position: 'fixed',
+          bottom: 32,
+          left: '50%',
+          transform: `translateX(-50%) translateY(${toast.phase === 'enter' ? 0 : 100}px)`,
+          opacity: toast.phase === 'enter' ? 1 : 0,
+          transition: 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease',
+          background: 'var(--surface)',
+          border: '2px solid var(--border)',
+          borderRadius: 50,
+          padding: '8px 20px 8px 10px',
+          display: 'flex', alignItems: 'center', gap: 8,
+          boxShadow: '0 4px 20px rgba(0,0,0,0.12)',
+          zIndex: 1000,
+          whiteSpace: 'nowrap',
+        }}>
+          <Mascot variant={toast.variant} animation={toast.variant === 'happy' ? 'bounce' : 'none'} size={48} />
+          <span style={{
+            fontFamily: "'IBM Plex Mono', monospace",
+            fontWeight: 600, fontSize: 13,
+            color: 'var(--text)', letterSpacing: '0.54px',
+          }}>
+            {toast.msg}
+          </span>
+        </div>
+      )}
+
     </div>
   )
 }
