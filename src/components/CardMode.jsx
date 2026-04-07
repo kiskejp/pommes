@@ -18,8 +18,9 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
   const isWeak = weakIds?.isWeak(current.id) ?? false
 
   const [toast, setToast] = useState(null) // { msg, variant, phase: 'enter'|'exit' }
-  const toastTimers = useRef([])
-  const prevOkRef   = useRef(ok)
+  const toastTimers    = useRef([])
+  const prevOkRef      = useRef(ok)
+  const prevWasWrong   = useRef(false)
 
   const showToast = useCallback((msg, variant) => {
     toastTimers.current.forEach(fn => typeof fn === 'function' ? fn() : clearTimeout(fn))
@@ -64,7 +65,8 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
   const onWrong = () => {
     weakIds?.add(current.id)
     advance('ng')
-    showToast('Schade...', 'thinking')
+    if (!prevWasWrong.current) showToast('Schade...', 'thinking')
+    prevWasWrong.current = true
   }
 
   return (
@@ -163,7 +165,7 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
         <>
           <div className="rate-buttons" style={{ display: 'flex', gap: 8 }}>
             <RateBtn variant="ghost" onClick={onWrong}>わからなかった</RateBtn>
-            <RateBtn variant="solid" onClick={() => { weakIds?.remove(current.id); advance('ok') }}>わかった</RateBtn>
+            <RateBtn variant="solid" onClick={() => { weakIds?.remove(current.id); advance('ok'); prevWasWrong.current = false }}>わかった</RateBtn>
           </div>
           <Nav onReset={reset} />
         </>

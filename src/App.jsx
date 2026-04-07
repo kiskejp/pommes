@@ -169,7 +169,7 @@ function StudySession({ sentences, onExit, weakIds, isWeakMode }) {
         <ScoreBar ok={ok} ng={ng} />
 
         {done ? (
-          <Completion ok={ok} total={ok + ng} onReset={handleReset} isWeakMode={isWeakMode} />
+          <Completion ok={ok} total={ok + ng} onReset={handleReset} isWeakMode={isWeakMode} ngByCategory={session.ngByCategory} />
         ) : (
           <>
             <div className="session-meta" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

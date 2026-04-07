@@ -1,11 +1,15 @@
 // components/Completion.jsx
 import { PotatoMascot } from './PotatoMascot'
 
-export function Completion({ ok, total, onReset, isWeakMode }) {
+export function Completion({ ok, total, onReset, isWeakMode, ngByCategory }) {
   const pct = total ? Math.round(ok / total * 100) : 0
   const msg = isWeakMode
     ? '苦手問題を全部クリア！Alle Schwächen behoben!'
     : pct === 100 ? 'Perfekt!' : pct >= 70 ? 'Gut gemacht. よくできました。' : 'Nochmal. もう一度。'
+
+  const worstCat = ngByCategory && Object.keys(ngByCategory).length > 1
+    ? Object.entries(ngByCategory).sort((a, b) => b[1] - a[1])[0][0]
+    : null
 
   return (
     <div className="completion" style={{
@@ -47,6 +51,15 @@ export function Completion({ ok, total, onReset, isWeakMode }) {
       }}>
         {ok} / {total}
       </div>
+      {worstCat && (
+        <div className="completion-worst" style={{
+          fontFamily: "'IBM Plex Mono', monospace",
+          fontSize: 11, color: 'var(--text-sub)',
+          textTransform: 'uppercase', letterSpacing: '0.54px',
+        }}>
+          要復習: {worstCat}
+        </div>
+      )}
       <button className="btn-retry" onClick={onReset} style={{
         marginTop: 12,
         background: 'var(--solid-bg)', border: 'none', color: 'var(--solid-text)',
