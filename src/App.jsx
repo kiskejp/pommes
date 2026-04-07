@@ -1,6 +1,6 @@
 // App.jsx
 import { useState, useCallback } from 'react'
-import { Volume2, VolumeX } from 'lucide-react'
+import { Volume2, VolumeX, X } from 'lucide-react'
 import { useTTS }            from './hooks/useTTS'
 import { useSession }        from './hooks/useSession'
 import { useAudioSettings }  from './hooks/useAudioSettings'
@@ -79,16 +79,10 @@ function StudySession({ sentences, onExit, weakIds, isWeakMode }) {
       {/* ── Header ── */}
       <header className="app-header" style={{
         width: '100%',
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+        display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center',
         padding: '16px clamp(16px, 4vw, 28px)',
       }}>
-        <button className="logo-btn" onClick={handleReset} style={{
-          background: 'none', border: 'none', cursor: 'pointer', padding: 0,
-          fontFamily: "'Paytone One', sans-serif",
-          fontSize: 18, letterSpacing: '-0.3px', color: 'var(--text)',
-        }}>
-          Pommes
-        </button>
+        <div />
 
         <div className="mode-tabs" style={{
           display: 'flex', background: 'var(--tab-bg)',
@@ -105,10 +99,27 @@ function StudySession({ sentences, onExit, weakIds, isWeakMode }) {
                 padding: '6px 18px', cursor: 'pointer',
                 borderRadius: 50, letterSpacing: '0.54px',
                 textTransform: 'uppercase', transition: 'all .15s',
+                display: 'inline-flex', alignItems: 'center', gap: 5,
               }}>
+              {autoPlay.isPlaying && m === 'card' && (
+                <span style={{
+                  width: 5, height: 5, borderRadius: '50%',
+                  background: mode === 'card' ? 'var(--solid-text)' : 'var(--text-sub)',
+                  flexShrink: 0,
+                }} />
+              )}
               {label}
             </button>
           ))}
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <button className="btn-exit" onClick={handleReset} style={{
+            background: 'none', border: 'none', cursor: 'pointer', padding: 6,
+            color: 'var(--text-sub)', lineHeight: 0,
+          }}>
+            <X size={20} strokeWidth={2} />
+          </button>
         </div>
       </header>
 

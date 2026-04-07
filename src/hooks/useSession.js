@@ -45,10 +45,13 @@ export function useSession(sentences) {
   const toggleHint   = () => setShowHint(h => !h)
 
   const advance = (result) => {
-    if (result === 'ok') setOk(n => n + 1)
-    if (result === 'ng') {
-      setNg(n => n + 1)
-      if (current) ngByCat.current[current.category] = (ngByCat.current[current.category] ?? 0) + 1
+    if (!checked) {
+      // InputMode では submitInput が既にカウント済みのため、checked=false のときのみカウント
+      if (result === 'ok') setOk(n => n + 1)
+      if (result === 'ng') {
+        setNg(n => n + 1)
+        if (current) ngByCat.current[current.category] = (ngByCat.current[current.category] ?? 0) + 1
+      }
     }
     setIdx(i => i + 1)
     setRevealed(false); setChecked(false)

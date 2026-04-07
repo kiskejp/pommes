@@ -15,7 +15,7 @@ const MILESTONES = {
 export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, onPauseDurationChange, weakIds }) {
   const { current, revealed, showHint, revealAnswer, toggleHint, advance, reset, ok } = session
   const playing = autoPlay?.isPlaying ?? false
-  const isWeak = weakIds?.isWeak(current.id) ?? false
+  const isWeak = weakIds?.isWeak(current?.id) ?? false
 
   const [toast, setToast] = useState(null) // { msg, variant, phase: 'enter'|'exit' }
   const toastTimers    = useRef([])
