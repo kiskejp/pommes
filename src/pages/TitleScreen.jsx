@@ -248,7 +248,7 @@ function MascotWithBubble() {
           borderTop: '7px solid var(--surface)',
         }} />
       </div>
-      <PotatoMascot />
+      <PotatoMascot variant="blink-no-mouth" />
     </div>
   )
 }
