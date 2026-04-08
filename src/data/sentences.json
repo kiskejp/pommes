@@ -204,7 +204,8 @@
     "hint": "Wie + heißen（敬称 Sie）",
     "level": "A1",
     "category": "疑問文",
-    "scene": "自己紹介"
+    "scene": "自己紹介",
+    "jp_yomi": "あなたのなまえはなんですか？"
   },
   {
     "id": 30,
@@ -889,7 +890,8 @@
     "hint": "dass 節：動詞は文末へ",
     "level": "A2",
     "category": "接続詞",
-    "scene": "自己紹介"
+    "scene": "自己紹介",
+    "jp_yomi": "わたしはかれがどいつじんだとおもいます。"
   },
   {
     "id": 102,
@@ -970,7 +972,8 @@
     "hint": "最上級（不規則）：gut → am besten",
     "level": "A2",
     "category": "比較級・最上級",
-    "scene": "自己紹介"
+    "scene": "自己紹介",
+    "jp_yomi": "かのじょはくらすでいちばんじょうずにどいつごをはなします。"
   },
   {
     "id": 111,
@@ -1033,7 +1036,8 @@
     "hint": "damit（〜するために）：動詞は文末・kann は最後",
     "level": "B1",
     "category": "接続詞",
-    "scene": "日常生活"
+    "scene": "日常生活",
+    "jp_yomi": "じょうずにはなせるよう、まいにちれんしゅうしています。"
   },
   {
     "id": 116,
@@ -1691,7 +1695,8 @@
     "hint": "um ... zu不定詞（〜するために）目的を表す",
     "level": "B1",
     "category": "zu不定詞",
-    "scene": "学校・勉強"
+    "scene": "学校・勉強",
+    "jp_yomi": "わたしはどいつごがじょうずになるためにまいにちれんしゅうしています。"
   },
   {
     "id": 189,
@@ -1722,9 +1727,9 @@
   },
   {
     "id": 192,
-    "jp": "彼女はクラスで一番上手にドイツ語を話します。",
-    "de": "Sie spricht in der Klasse am besten Deutsch.",
-    "hint": "最上級 am besten（gut の最上級）・in der Klasse（Dativ）",
+    "jp": "この試験はあの試験より難しいです。",
+    "de": "Diese Prüfung ist schwieriger als jene.",
+    "hint": "比較級：schwierig → schwieriger、als（〜より）",
     "level": "A2",
     "category": "比較級・最上級",
     "scene": "学校・勉強"
@@ -2546,7 +2551,8 @@
     "hint": "einen schönen Tag（4格・形容詞付き）・noch（さらに・まだ）",
     "level": "A1",
     "category": "会話・挨拶表現",
-    "scene": "日常生活"
+    "scene": "日常生活",
+    "jp_yomi": "よいいちにちをおすごしください！"
   },
   {
     "id": 284,
@@ -2600,7 +2606,8 @@
     "hint": "da（〜なので）副文先行→主文が動詞倒置・dolmetschen = 通訳する",
     "level": "B1",
     "category": "接続詞",
-    "scene": "仕事・職場"
+    "scene": "仕事・職場",
+    "jp_yomi": "かれはどいつごがじょうずなのでつうやくができます。"
   },
   {
     "id": 290,
