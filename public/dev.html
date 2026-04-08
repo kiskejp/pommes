@@ -130,8 +130,13 @@
       <span class="btn-desc">weakIds をクリア → アプリを開く</span>
     </button>
 
-    <button class="btn btn--danger" onclick="resetAll()">
+    <button class="btn btn--warning" onclick="resetStudyRecord()">
       <span class="btn-label">学習記録リセット</span>
+      <span class="btn-desc">pommes-study-record を削除（連続日数・累計をリセット）</span>
+    </button>
+
+    <button class="btn btn--danger" onclick="resetAll()">
+      <span class="btn-label">全データリセット</span>
       <span class="btn-desc">localStorage の pommes-* キーをすべて削除</span>
     </button>
 
@@ -356,6 +361,12 @@
   function clearWeakIds() {
     localStorage.removeItem(WEAK_KEY)
     toast('weakIds をクリアしました')
+    renderStorage()
+  }
+
+  function resetStudyRecord() {
+    localStorage.removeItem('pommes-study-record')
+    toast('学習記録をリセットしました')
     renderStorage()
   }
 

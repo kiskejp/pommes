@@ -1,5 +1,5 @@
 // App.jsx
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { Volume2, VolumeX, X, WifiOff } from 'lucide-react'
 import { useTTS }            from './hooks/useTTS'
 import { useSession }        from './hooks/useSession'
@@ -7,6 +7,7 @@ import { useAudioSettings }  from './hooks/useAudioSettings'
 import { useAutoPlay }       from './hooks/useAutoPlay'
 import { useWeakIds }        from './hooks/useWeakIds'
 import { useOnlineStatus }   from './hooks/useOnlineStatus'
+import { useStudyRecord }    from './hooks/useStudyRecord'
 import { TitleScreen }       from './pages/TitleScreen'
 import { ScoreBar }          from './components/ScoreBar'
 import { CardMode }          from './components/CardMode'
@@ -45,6 +46,9 @@ export default function App() {
   const [sessionKey, setSessionKey] = useState(0)
   const weakIds = useWeakIds()
   const online  = useOnlineStatus()
+  const { record, addResult, checkStreak } = useStudyRecord()
+
+  useEffect(() => { checkStreak() }, []) // eslint-disable-line
 
   const handleStart = useCallback((sentences, weak = false) => {
     setFilteredSentences(sentences)
@@ -72,7 +76,7 @@ export default function App() {
   )
 
   if (!filteredSentences) {
-    return <>{offlineBanner}<TitleScreen onStart={handleStart} weakIds={weakIds} /></>
+    return <>{offlineBanner}<TitleScreen onStart={handleStart} weakIds={weakIds} studyRecord={record} /></>
   }
 
   return (
@@ -86,12 +90,13 @@ export default function App() {
         weakIds={weakIds}
         isWeakMode={isWeakMode}
         initialSessionState={debugInit?.sessionState}
+        addResult={addResult}
       />
     </>
   )
 }
 
-function StudySession({ sentences, onExit, onRetryWrong, weakIds, isWeakMode, initialSessionState }) {
+function StudySession({ sentences, onExit, onRetryWrong, weakIds, isWeakMode, initialSessionState, addResult }) {
   const [mode, setMode] = useState('card')
   const { speak, speaking, hasJpVoice, hasDeVoice } = useTTS()
   const session = useSession(sentences, initialSessionState)
@@ -268,8 +273,9 @@ function StudySession({ sentences, onExit, onRetryWrong, weakIds, isWeakMode, in
                   pauseDuration={pauseDuration}
                   onPauseDurationChange={d => update({ pauseDuration: d })}
                   weakIds={weakIds}
+                  addResult={addResult}
                 />
-              : <InputMode session={session} speak={smartSpeak} speaking={speaking} />
+              : <InputMode session={session} speak={smartSpeak} speaking={speaking} addResult={addResult} />
             }
           </>
         )}

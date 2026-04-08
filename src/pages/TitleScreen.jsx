@@ -9,7 +9,7 @@ const LEVELS = ['A1', 'A2', 'B1']
 const CATEGORIES = [...new Set(sentences.map(s => s.category))]
 const SCENES = [...new Set(sentences.filter(s => s.scene).map(s => s.scene))]
 
-export function TitleScreen({ onStart, weakIds }) {
+export function TitleScreen({ onStart, weakIds, studyRecord }) {
   const [expanded, setExpanded] = useState(null)
   const { themeId, setTheme } = useTheme()
   const weakCount = weakIds?.weakIds.length ?? 0
@@ -68,6 +68,9 @@ export function TitleScreen({ onStart, weakIds }) {
             瞬間ドイツ語作文
           </div>
         </div>
+
+        {/* ── Study record ── */}
+        <StudyStats record={studyRecord} />
 
         {/* ── Buttons ── */}
         <div className="start-buttons" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -196,6 +199,47 @@ export function TitleScreen({ onStart, weakIds }) {
           </a>
         </div>
       </div>
+    </div>
+  )
+}
+
+/* ── Study stats ── */
+function StudyStats({ record }) {
+  if (!record?.lastStudyDate) return null
+
+  const mono = { fontFamily: "'IBM Plex Mono', monospace" }
+
+  if (!record.todaySolved) {
+    return (
+      <div style={{
+        ...mono, fontSize: 11, color: 'var(--text-muted)',
+        letterSpacing: '0.3px', textAlign: 'center',
+      }}>
+        今日はまだ学習していません
+      </div>
+    )
+  }
+
+  return (
+    <div style={{
+      width: '100%',
+      background: 'var(--surface)',
+      border: '1px solid var(--border)',
+      borderRadius: 50,
+      padding: '10px 20px',
+      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16,
+    }}>
+      {record.streak > 1 && (
+        <>
+          <span style={{ ...mono, fontSize: 12, color: 'var(--text)', fontWeight: 600 }}>
+            🔥 {record.streak}日連続
+          </span>
+          <span style={{ color: 'var(--border-strong)', fontSize: 12 }}>|</span>
+        </>
+      )}
+      <span style={{ ...mono, fontSize: 12, color: 'var(--text)', fontWeight: 600 }}>
+        累計 {record.totalSolved}問
+      </span>
     </div>
   )
 }

@@ -12,7 +12,7 @@ const MILESTONES = {
   100: 'Unglaublich!',
 }
 
-export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, onPauseDurationChange, weakIds }) {
+export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, onPauseDurationChange, weakIds, addResult }) {
   const { current, revealed, showHint, revealAnswer, toggleHint, advance, reset, ok } = session
   const playing = autoPlay?.isPlaying ?? false
   const isWeak = weakIds?.isWeak(current?.id) ?? false
@@ -44,9 +44,9 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
       if (e.key === ' ') {
         e.preventDefault()
         if (!revealed) onReveal()
-        else { weakIds?.remove(current?.id); advance('ok'); prevWasWrong.current = false }
+        else { weakIds?.remove(current?.id); advance('ok'); addResult?.(true); prevWasWrong.current = false }
       } else if (e.key === 'ArrowRight' && revealed) {
-        weakIds?.remove(current?.id); advance('ok'); prevWasWrong.current = false
+        weakIds?.remove(current?.id); advance('ok'); addResult?.(true); prevWasWrong.current = false
       } else if (e.key === 'ArrowLeft' && revealed) {
         onWrong()
       }
@@ -84,6 +84,7 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
   const onWrong = () => {
     weakIds?.add(current.id)
     advance('ng')
+    addResult?.(false)
     if (!prevWasWrong.current) showToast('Schade...', 'thinking')
     prevWasWrong.current = true
   }
@@ -186,7 +187,7 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
         <>
           <div className="rate-buttons" style={{ display: 'flex', gap: 8 }}>
             <RateBtn variant="ghost" onClick={onWrong}>わからなかった</RateBtn>
-            <RateBtn variant="solid" onClick={() => { weakIds?.remove(current.id); advance('ok'); prevWasWrong.current = false }}>わかった</RateBtn>
+            <RateBtn variant="solid" onClick={() => { weakIds?.remove(current.id); advance('ok'); addResult?.(true); prevWasWrong.current = false }}>わかった</RateBtn>
           </div>
           <Nav onReset={reset} />
           <KeyboardHint keys={[['←', 'わからなかった'], ['Space / →', 'わかった']]} />

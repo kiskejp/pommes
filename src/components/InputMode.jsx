@@ -5,7 +5,7 @@ import { AudioButton } from './AudioButton'
 
 const UMLAUTS = ['ä', 'ö', 'ü', 'Ä', 'Ö', 'Ü', 'ß']
 
-export function InputMode({ session, speak, speaking }) {
+export function InputMode({ session, speak, speaking, addResult }) {
   const { current, checked, feedback, showHint, toggleHint, submitInput, advance, reset } = session
   const inputRef = useRef(null)
 
@@ -23,7 +23,8 @@ export function InputMode({ session, speak, speaking }) {
   const handleSubmit = () => {
     const val = inputRef.current?.value?.trim() ?? ''
     if (!val || checked) return
-    submitInput(val)
+    const correct = submitInput(val)
+    addResult?.(correct)
     setTimeout(() => speak(current.de, 'de'), 200)
   }
 
