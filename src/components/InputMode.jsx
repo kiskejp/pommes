@@ -65,7 +65,7 @@ export function InputMode({ session, speak, speaking }) {
           <AudioButton speaking={speaking} onClick={() => speak(current.jp_yomi ?? current.jp, 'ja')} label="音声を聞く" style={{ marginTop: 0 }} />
           <button className={`btn-hint ${showHint ? 'btn-hint--active' : ''}`} onClick={toggleHint} style={{ ...subBtn, color: showHint ? 'var(--text)' : 'var(--text-sub)' }}>
             <Lightbulb size={12} strokeWidth={2} />
-            {showHint ? 'ヒントを隠す' : 'ヒントを見る'}
+            {showHint ? 'ヒントを隠す' : 'ヒント'}
           </button>
         </div>
       </div>
