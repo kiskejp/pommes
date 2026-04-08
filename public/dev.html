@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dev — Pommes</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #1a1a1a;
+      color: #ccc;
+      font-family: 'IBM Plex Mono', 'Courier New', monospace;
+      font-size: 12px;
+      padding: 32px 24px 80px;
+    }
+
+    /* ── header ── */
+    .dev-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 40px;
+    }
+    .dev-badge {
+      background: #e0bc85; color: #1a1a1a;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 99px;
+    }
+    .dev-title { color: #888; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; }
+
+    /* ── sections ── */
+    .section { margin-bottom: 48px; }
+    .section-title {
+      font-size: 9px; text-transform: uppercase; letter-spacing: 2px;
+      color: #555; margin-bottom: 16px;
+      padding-bottom: 8px; border-bottom: 1px solid #2a2a2a;
+    }
+
+    /* ── buttons ── */
+    .btn-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .btn {
+      background: #252525; border: 1px solid #333;
+      color: #ccc; font-family: inherit; font-size: 11px;
+      padding: 10px 16px; cursor: pointer; border-radius: 6px;
+      letter-spacing: 0.3px; transition: background .1s, border-color .1s;
+      text-align: left;
+    }
+    .btn:hover { background: #2e2e2e; border-color: #555; }
+    .btn:active { background: #333; }
+    .btn .btn-label { display: block; color: #fff; font-weight: 600; margin-bottom: 3px; }
+    .btn .btn-desc { display: block; color: #666; font-size: 10px; }
+    .btn--warning { border-color: #5a3a1a; }
+    .btn--warning:hover { border-color: #c87941; }
+    .btn--danger { border-color: #5a1a1a; }
+    .btn--danger:hover { border-color: #c74141; }
+
+    /* ── toast ── */
+    #toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      background: #333; border: 1px solid #555; color: #fff;
+      font-family: inherit; font-size: 11px;
+      padding: 8px 20px; border-radius: 99px;
+      opacity: 0; transition: opacity .2s;
+      pointer-events: none; white-space: nowrap;
+    }
+    #toast.show { opacity: 1; }
+
+    /* ── note ── */
+    .note {
+      background: #222; border: 1px solid #333; border-left: 3px solid #555;
+      color: #888; font-size: 11px; line-height: 1.8;
+      padding: 12px 16px; border-radius: 4px; margin-top: 12px;
+    }
+    .note code { color: #e0bc85; font-size: 10px; }
+
+    /* ── storage viewer ── */
+    .storage-row {
+      display: flex; gap: 12px; align-items: baseline;
+      padding: 8px 0; border-bottom: 1px solid #222;
+    }
+    .storage-key { color: #e0bc85; min-width: 180px; flex-shrink: 0; }
+    .storage-val { color: #aaa; word-break: break-all; }
+    .storage-empty { color: #444; font-style: italic; }
+
+    /* ── mascot grid ── */
+    .mascot-grid {
+      display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-end;
+    }
+    .mascot-item {
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+    }
+    .mascot-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; color: #666; }
+    .mascot-size  { font-size: 9px; color: #444; }
+    .swatch-dark  { background: #3d2a0e; padding: 12px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+
+<div class="dev-header">
+  <span class="dev-badge">DEV</span>
+  <span class="dev-title">Pommes — 開発確認ページ</span>
+</div>
+
+<!-- ──────────────────────────────────────── -->
+<!-- 1. 画面ショートカット -->
+<!-- ──────────────────────────────────────── -->
+<div class="section">
+  <div class="section-title">1. 画面ショートカット</div>
+  <div class="btn-grid">
+
+    <button class="btn" onclick="setWeakIds([1,2,3,4,5]); openApp()">
+      <span class="btn-label">苦手問題あり状態</span>
+      <span class="btn-desc">weakIds = [1,2,3,4,5] をセット → アプリを開く</span>
+    </button>
+
+    <button class="btn" onclick="clearWeakIds(); openApp()">
+      <span class="btn-label">苦手問題ゼロ状態</span>
+      <span class="btn-desc">weakIds をクリア → アプリを開く</span>
+    </button>
+
+    <button class="btn btn--danger" onclick="resetAll()">
+      <span class="btn-label">学習記録リセット</span>
+      <span class="btn-desc">localStorage の pommes-* キーをすべて削除</span>
+    </button>
+
+    <button class="btn" onclick="openApp()">
+      <span class="btn-label">アプリを開く</span>
+      <span class="btn-desc">localhost:5173 をタブで開く</span>
+    </button>
+
+  </div>
+
+  <div class="note">
+    <strong style="color:#aaa">Completion画面の再現について</strong><br>
+    セッション状態（ok / ng / ngIds）は React のメモリ内 state（<code>useSession</code>）で管理されており、
+    localStorage / sessionStorage 経由では注入できません。<br><br>
+    再現方法：アプリで実際に数問解いて完了画面に進むか、<br>
+    <code>useSession.js</code> の初期値を一時的に書き換えてデバッグしてください。
+  </div>
+
+  <div class="note" style="margin-top:8px">
+    <strong style="color:#aaa">オフライン状態の模擬</strong><br>
+    Chrome DevTools → Network タブ → 「No throttling」 を
+    <code>Offline</code> に切り替えてください。<br>
+    Service Worker がキャッシュから応答し、アプリ上部にオフラインバナーが表示されます。
+  </div>
+</div>
+
+<!-- ──────────────────────────────────────── -->
+<!-- 2. localStorage 現在値 -->
+<!-- ──────────────────────────────────────── -->
+<div class="section">
+  <div class="section-title">2. localStorage 現在値</div>
+  <div id="storage-view"></div>
+  <button class="btn" style="margin-top:12px" onclick="renderStorage()">
+    <span class="btn-label">更新</span>
+    <span class="btn-desc">現在の localStorage を再読み込み</span>
+  </button>
+</div>
+
+<!-- ──────────────────────────────────────── -->
+<!-- 3. マスコット確認 -->
+<!-- ──────────────────────────────────────── -->
+<div class="section">
+  <div class="section-title">3. マスコット確認</div>
+  <div class="mascot-grid">
+
+    <!-- normal / 96px -->
+    <div class="mascot-item">
+      <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/><rect x="3" y="4" width="10" height="7" fill="#d4a96a"/><rect x="4" y="4" width="8" height="7" fill="#e0bc85"/><rect x="4" y="10" width="8" height="2" fill="#b8904f"/><rect x="3" y="9" width="1" height="2" fill="#b8904f"/><rect x="12" y="9" width="1" height="2" fill="#b8904f"/><rect x="6" y="6" width="1" height="2" fill="#000000"/><rect x="9" y="6" width="1" height="2" fill="#000000"/><rect x="6" y="9" width="4" height="1" fill="#000000"/><rect x="7" y="9" width="2" height="1" fill="#000000"/><rect x="7" y="1" width="2" height="2" fill="#6db56d"/><rect x="6" y="2" width="1" height="1" fill="#6db56d"/><rect x="9" y="2" width="1" height="1" fill="#6db56d"/><rect x="2" y="6" width="1" height="2" fill="#d4a96a"/><rect x="13" y="6" width="1" height="2" fill="#d4a96a"/><rect x="5" y="12" width="2" height="1" fill="#b8904f"/><rect x="9" y="12" width="2" height="1" fill="#b8904f"/>
+      </svg>
+      <span class="mascot-label">normal</span><span class="mascot-size">96px</span>
+    </div>
+
+    <!-- happy / 96px -->
+    <div class="mascot-item">
+      <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/><rect x="3" y="4" width="10" height="7" fill="#d4a96a"/><rect x="4" y="4" width="8" height="7" fill="#e0bc85"/><rect x="4" y="10" width="8" height="2" fill="#b8904f"/><rect x="3" y="9" width="1" height="2" fill="#b8904f"/><rect x="12" y="9" width="1" height="2" fill="#b8904f"/><rect x="4" y="6" width="1" height="1" fill="#000000"/><rect x="5" y="5" width="1" height="1" fill="#000000"/><rect x="6" y="6" width="1" height="1" fill="#000000"/><rect x="9" y="6" width="1" height="1" fill="#000000"/><rect x="10" y="5" width="1" height="1" fill="#000000"/><rect x="11" y="6" width="1" height="1" fill="#000000"/><rect x="6" y="8" width="1" height="1" fill="#000000"/><rect x="7" y="9" width="2" height="1" fill="#000000"/><rect x="9" y="8" width="1" height="1" fill="#000000"/><rect x="7" y="1" width="2" height="2" fill="#6db56d"/><rect x="6" y="2" width="1" height="1" fill="#6db56d"/><rect x="9" y="2" width="1" height="1" fill="#6db56d"/><rect x="2" y="5" width="1" height="2" fill="#d4a96a"/><rect x="13" y="5" width="1" height="2" fill="#d4a96a"/><rect x="5" y="12" width="2" height="1" fill="#b8904f"/><rect x="9" y="12" width="2" height="1" fill="#b8904f"/>
+      </svg>
+      <span class="mascot-label">happy</span><span class="mascot-size">96px</span>
+    </div>
+
+    <!-- normal / no mouth / 96px -->
+    <div class="mascot-item">
+      <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/><rect x="3" y="4" width="10" height="7" fill="#d4a96a"/><rect x="4" y="4" width="8" height="7" fill="#e0bc85"/><rect x="4" y="10" width="8" height="2" fill="#b8904f"/><rect x="3" y="9" width="1" height="2" fill="#b8904f"/><rect x="12" y="9" width="1" height="2" fill="#b8904f"/><rect x="6" y="6" width="1" height="2" fill="#000000"/><rect x="9" y="6" width="1" height="2" fill="#000000"/><rect x="7" y="1" width="2" height="2" fill="#6db56d"/><rect x="6" y="2" width="1" height="1" fill="#6db56d"/><rect x="9" y="2" width="1" height="1" fill="#6db56d"/><rect x="2" y="6" width="1" height="2" fill="#d4a96a"/><rect x="13" y="6" width="1" height="2" fill="#d4a96a"/><rect x="5" y="12" width="2" height="1" fill="#b8904f"/><rect x="9" y="12" width="2" height="1" fill="#b8904f"/>
+      </svg>
+      <span class="mascot-label">normal / no mouth</span><span class="mascot-size">96px</span>
+    </div>
+
+    <!-- happy / no mouth / 96px -->
+    <div class="mascot-item">
+      <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/><rect x="3" y="4" width="10" height="7" fill="#d4a96a"/><rect x="4" y="4" width="8" height="7" fill="#e0bc85"/><rect x="4" y="10" width="8" height="2" fill="#b8904f"/><rect x="3" y="9" width="1" height="2" fill="#b8904f"/><rect x="12" y="9" width="1" height="2" fill="#b8904f"/><rect x="4" y="6" width="1" height="1" fill="#000000"/><rect x="5" y="5" width="1" height="1" fill="#000000"/><rect x="6" y="6" width="1" height="1" fill="#000000"/><rect x="9" y="6" width="1" height="1" fill="#000000"/><rect x="10" y="5" width="1" height="1" fill="#000000"/><rect x="11" y="6" width="1" height="1" fill="#000000"/><rect x="7" y="1" width="2" height="2" fill="#6db56d"/><rect x="6" y="2" width="1" height="1" fill="#6db56d"/><rect x="9" y="2" width="1" height="1" fill="#6db56d"/><rect x="2" y="5" width="1" height="2" fill="#d4a96a"/><rect x="13" y="5" width="1" height="2" fill="#d4a96a"/><rect x="5" y="12" width="2" height="1" fill="#b8904f"/><rect x="9" y="12" width="2" height="1" fill="#b8904f"/>
+      </svg>
+      <span class="mascot-label">happy / no mouth</span><span class="mascot-size">96px</span>
+    </div>
+
+    <!-- normal / no mouth / blink -->
+    <div class="mascot-item">
+      <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/><rect x="3" y="4" width="10" height="7" fill="#d4a96a"/><rect x="4" y="4" width="8" height="7" fill="#e0bc85"/><rect x="4" y="10" width="8" height="2" fill="#b8904f"/><rect x="3" y="9" width="1" height="2" fill="#b8904f"/><rect x="12" y="9" width="1" height="2" fill="#b8904f"/>
+        <rect x="6" y="6" width="1" height="2" fill="#000000"><animate attributeName="height" calcMode="discrete" values="2;1;0;1;2" keyTimes="0;0.88;0.92;0.96;1" dur="4s" repeatCount="indefinite"/><animate attributeName="y" calcMode="discrete" values="6;7;7;7;6" keyTimes="0;0.88;0.92;0.96;1" dur="4s" repeatCount="indefinite"/></rect>
+        <rect x="9" y="6" width="1" height="2" fill="#000000"><animate attributeName="height" calcMode="discrete" values="2;1;0;1;2" keyTimes="0;0.88;0.92;0.96;1" dur="4s" repeatCount="indefinite"/><animate attributeName="y" calcMode="discrete" values="6;7;7;7;6" keyTimes="0;0.88;0.92;0.96;1" dur="4s" repeatCount="indefinite"/></rect>
+        <rect x="7" y="1" width="2" height="2" fill="#6db56d"/><rect x="6" y="2" width="1" height="1" fill="#6db56d"/><rect x="9" y="2" width="1" height="1" fill="#6db56d"/><rect x="2" y="6" width="1" height="2" fill="#d4a96a"/><rect x="13" y="6" width="1" height="2" fill="#d4a96a"/><rect x="5" y="12" width="2" height="1" fill="#b8904f"/><rect x="9" y="12" width="2" height="1" fill="#b8904f"/>
+      </svg>
+      <span class="mascot-label">no mouth / blink</span><span class="mascot-size">96px</span>
+    </div>
+
+    <!-- normal / blink -->
+    <div class="mascot-item">
+      <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/><rect x="3" y="4" width="10" height="7" fill="#d4a96a"/><rect x="4" y="4" width="8" height="7" fill="#e0bc85"/><rect x="4" y="10" width="8" height="2" fill="#b8904f"/><rect x="3" y="9" width="1" height="2" fill="#b8904f"/><rect x="12" y="9" width="1" height="2" fill="#b8904f"/>
+        <rect x="6" y="6" width="1" height="2" fill="#000000"><animate attributeName="height" calcMode="discrete" values="2;1;0;1;2" keyTimes="0;0.88;0.92;0.96;1" dur="4s" repeatCount="indefinite"/><animate attributeName="y" calcMode="discrete" values="6;7;7;7;6" keyTimes="0;0.88;0.92;0.96;1" dur="4s" repeatCount="indefinite"/></rect>
+        <rect x="9" y="6" width="1" height="2" fill="#000000"><animate attributeName="height" calcMode="discrete" values="2;1;0;1;2" keyTimes="0;0.88;0.92;0.96;1" dur="4s" repeatCount="indefinite"/><animate attributeName="y" calcMode="discrete" values="6;7;7;7;6" keyTimes="0;0.88;0.92;0.96;1" dur="4s" repeatCount="indefinite"/></rect>
+        <rect x="6" y="9" width="4" height="1" fill="#000000"/><rect x="7" y="9" width="2" height="1" fill="#000000"/>
+        <rect x="7" y="1" width="2" height="2" fill="#6db56d"/><rect x="6" y="2" width="1" height="1" fill="#6db56d"/><rect x="9" y="2" width="1" height="1" fill="#6db56d"/><rect x="2" y="6" width="1" height="2" fill="#d4a96a"/><rect x="13" y="6" width="1" height="2" fill="#d4a96a"/><rect x="5" y="12" width="2" height="1" fill="#b8904f"/><rect x="9" y="12" width="2" height="1" fill="#b8904f"/>
+      </svg>
+      <span class="mascot-label">normal / blink</span><span class="mascot-size">96px</span>
+    </div>
+
+    <!-- normal / blink fast -->
+    <div class="mascot-item">
+      <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/><rect x="3" y="4" width="10" height="7" fill="#d4a96a"/><rect x="4" y="4" width="8" height="7" fill="#e0bc85"/><rect x="4" y="10" width="8" height="2" fill="#b8904f"/><rect x="3" y="9" width="1" height="2" fill="#b8904f"/><rect x="12" y="9" width="1" height="2" fill="#b8904f"/>
+        <rect x="6" y="6" width="1" height="2" fill="#000000"><animate attributeName="height" calcMode="discrete" values="2;1;0;1;2;1;0;1;2;2" keyTimes="0;0.2;0.233;0.267;0.3;0.367;0.4;0.433;0.467;1" dur="3s" repeatCount="indefinite"/><animate attributeName="y" calcMode="discrete" values="6;7;7;7;6;7;7;7;6;6" keyTimes="0;0.2;0.233;0.267;0.3;0.367;0.4;0.433;0.467;1" dur="3s" repeatCount="indefinite"/></rect>
+        <rect x="9" y="6" width="1" height="2" fill="#000000"><animate attributeName="height" calcMode="discrete" values="2;1;0;1;2;1;0;1;2;2" keyTimes="0;0.2;0.233;0.267;0.3;0.367;0.4;0.433;0.467;1" dur="3s" repeatCount="indefinite"/><animate attributeName="y" calcMode="discrete" values="6;7;7;7;6;7;7;7;6;6" keyTimes="0;0.2;0.233;0.267;0.3;0.367;0.4;0.433;0.467;1" dur="3s" repeatCount="indefinite"/></rect>
+        <rect x="6" y="9" width="4" height="1" fill="#000000"/><rect x="7" y="9" width="2" height="1" fill="#000000"/>
+        <rect x="7" y="1" width="2" height="2" fill="#6db56d"/><rect x="6" y="2" width="1" height="1" fill="#6db56d"/><rect x="9" y="2" width="1" height="1" fill="#6db56d"/><rect x="2" y="6" width="1" height="2" fill="#d4a96a"/><rect x="13" y="6" width="1" height="2" fill="#d4a96a"/><rect x="5" y="12" width="2" height="1" fill="#b8904f"/><rect x="9" y="12" width="2" height="1" fill="#b8904f"/>
+      </svg>
+      <span class="mascot-label">normal / blink fast</span><span class="mascot-size">96px</span>
+    </div>
+
+    <!-- normal / flat -->
+    <div class="mascot-item">
+      <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="3" width="8" height="9" fill="#e0bc85"/><rect x="3" y="4" width="10" height="7" fill="#e0bc85"/><rect x="4" y="4" width="8" height="7" fill="#e0bc85"/><rect x="4" y="10" width="8" height="2" fill="#e0bc85"/><rect x="3" y="9" width="1" height="2" fill="#e0bc85"/><rect x="12" y="9" width="1" height="2" fill="#e0bc85"/><rect x="6" y="6" width="1" height="2" fill="#000000"/><rect x="9" y="6" width="1" height="2" fill="#000000"/><rect x="6" y="9" width="4" height="1" fill="#000000"/><rect x="7" y="9" width="2" height="1" fill="#000000"/><rect x="7" y="1" width="2" height="2" fill="#6db56d"/><rect x="6" y="2" width="1" height="1" fill="#6db56d"/><rect x="9" y="2" width="1" height="1" fill="#6db56d"/><rect x="2" y="6" width="1" height="2" fill="#e0bc85"/><rect x="13" y="6" width="1" height="2" fill="#e0bc85"/><rect x="5" y="12" width="2" height="1" fill="#e0bc85"/><rect x="9" y="12" width="2" height="1" fill="#e0bc85"/>
+      </svg>
+      <span class="mascot-label">normal / flat</span><span class="mascot-size">96px</span>
+    </div>
+
+    <!-- normal / wave -->
+    <div class="mascot-item">
+      <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/><rect x="3" y="4" width="10" height="7" fill="#d4a96a"/><rect x="4" y="4" width="8" height="7" fill="#e0bc85"/><rect x="4" y="10" width="8" height="2" fill="#b8904f"/><rect x="3" y="9" width="1" height="2" fill="#b8904f"/><rect x="12" y="9" width="1" height="2" fill="#b8904f"/><rect x="6" y="6" width="1" height="2" fill="#000000"/><rect x="9" y="6" width="1" height="2" fill="#000000"/><rect x="6" y="9" width="4" height="1" fill="#000000"/><rect x="7" y="9" width="2" height="1" fill="#000000"/><rect x="7" y="1" width="2" height="2" fill="#6db56d"/><rect x="6" y="2" width="1" height="1" fill="#6db56d"/><rect x="9" y="2" width="1" height="1" fill="#6db56d"/>
+        <rect x="2" width="1" height="2" fill="#d4a96a"><animate attributeName="y" calcMode="discrete" values="5;6;7;6;5" keyTimes="0;0.25;0.5;0.75;1" dur="1.2s" repeatCount="indefinite"/></rect>
+        <rect x="13" width="1" height="2" fill="#d4a96a"><animate attributeName="y" calcMode="discrete" values="7;6;5;6;7" keyTimes="0;0.25;0.5;0.75;1" dur="1.2s" repeatCount="indefinite"/></rect>
+        <rect x="5" y="12" width="2" height="1" fill="#b8904f"/><rect x="9" y="12" width="2" height="1" fill="#b8904f"/>
+      </svg>
+      <span class="mascot-label">normal / wave</span><span class="mascot-size">96px</span>
+    </div>
+
+    <!-- normal / bounce -->
+    <div class="mascot-item">
+      <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+        <g><animateTransform attributeName="transform" type="translate" values="0,0;0,-1;0,-1;0,0;0,0" keyTimes="0;0.15;0.45;0.6;1" calcMode="discrete" dur="0.9s" repeatCount="indefinite"/>
+          <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/><rect x="3" y="4" width="10" height="7" fill="#d4a96a"/><rect x="4" y="4" width="8" height="7" fill="#e0bc85"/><rect x="4" y="10" width="8" height="2" fill="#b8904f"/><rect x="3" y="9" width="1" height="2" fill="#b8904f"/><rect x="12" y="9" width="1" height="2" fill="#b8904f"/><rect x="6" y="6" width="1" height="2" fill="#000000"/><rect x="9" y="6" width="1" height="2" fill="#000000"/><rect x="6" y="9" width="4" height="1" fill="#000000"/><rect x="7" y="9" width="2" height="1" fill="#000000"/><rect x="7" y="1" width="2" height="2" fill="#6db56d"/><rect x="6" y="2" width="1" height="1" fill="#6db56d"/><rect x="9" y="2" width="1" height="1" fill="#6db56d"/><rect x="2" y="6" width="1" height="2" fill="#d4a96a"/><rect x="13" y="6" width="1" height="2" fill="#d4a96a"/>
+        </g>
+        <rect x="5" y="12" width="2" height="1" fill="#b8904f"><animate attributeName="y" calcMode="discrete" values="12;11;11;12;12" keyTimes="0;0.15;0.45;0.6;1" dur="0.9s" repeatCount="indefinite"/><animate attributeName="height" calcMode="discrete" values="1;2;2;1;1" keyTimes="0;0.15;0.45;0.6;1" dur="0.9s" repeatCount="indefinite"/></rect>
+        <rect x="9" y="12" width="2" height="1" fill="#b8904f"><animate attributeName="y" calcMode="discrete" values="12;11;11;12;12" keyTimes="0;0.15;0.45;0.6;1" dur="0.9s" repeatCount="indefinite"/><animate attributeName="height" calcMode="discrete" values="1;2;2;1;1" keyTimes="0;0.15;0.45;0.6;1" dur="0.9s" repeatCount="indefinite"/></rect>
+      </svg>
+      <span class="mascot-label">normal / bounce</span><span class="mascot-size">96px</span>
+    </div>
+
+    <!-- happy / bounce -->
+    <div class="mascot-item">
+      <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+        <g><animateTransform attributeName="transform" type="translate" values="0,0;0,-1;0,-1;0,0;0,0" keyTimes="0;0.15;0.45;0.6;1" calcMode="discrete" dur="0.9s" repeatCount="indefinite"/>
+          <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/><rect x="3" y="4" width="10" height="7" fill="#d4a96a"/><rect x="4" y="4" width="8" height="7" fill="#e0bc85"/><rect x="4" y="10" width="8" height="2" fill="#b8904f"/><rect x="3" y="9" width="1" height="2" fill="#b8904f"/><rect x="12" y="9" width="1" height="2" fill="#b8904f"/>
+          <rect x="4" y="6" width="1" height="1" fill="#000000"/><rect x="5" y="5" width="1" height="1" fill="#000000"/><rect x="6" y="6" width="1" height="1" fill="#000000"/><rect x="9" y="6" width="1" height="1" fill="#000000"/><rect x="10" y="5" width="1" height="1" fill="#000000"/><rect x="11" y="6" width="1" height="1" fill="#000000"/>
+          <rect x="6" y="8" width="1" height="1" fill="#000000"/><rect x="7" y="9" width="2" height="1" fill="#000000"/><rect x="9" y="8" width="1" height="1" fill="#000000"/>
+          <rect x="7" y="1" width="2" height="2" fill="#6db56d"/><rect x="6" y="2" width="1" height="1" fill="#6db56d"/><rect x="9" y="2" width="1" height="1" fill="#6db56d"/>
+          <rect x="2" y="5" width="1" height="2" fill="#d4a96a"/><rect x="13" y="5" width="1" height="2" fill="#d4a96a"/>
+        </g>
+        <rect x="5" y="12" width="2" height="1" fill="#b8904f"><animate attributeName="y" calcMode="discrete" values="12;11;11;12;12" keyTimes="0;0.15;0.45;0.6;1" dur="0.9s" repeatCount="indefinite"/><animate attributeName="height" calcMode="discrete" values="1;2;2;1;1" keyTimes="0;0.15;0.45;0.6;1" dur="0.9s" repeatCount="indefinite"/></rect>
+        <rect x="9" y="12" width="2" height="1" fill="#b8904f"><animate attributeName="y" calcMode="discrete" values="12;11;11;12;12" keyTimes="0;0.15;0.45;0.6;1" dur="0.9s" repeatCount="indefinite"/><animate attributeName="height" calcMode="discrete" values="1;2;2;1;1" keyTimes="0;0.15;0.45;0.6;1" dur="0.9s" repeatCount="indefinite"/></rect>
+      </svg>
+      <span class="mascot-label">happy / bounce</span><span class="mascot-size">96px</span>
+    </div>
+
+    <!-- (・・) -->
+    <div class="mascot-item">
+      <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/><rect x="3" y="4" width="10" height="7" fill="#d4a96a"/><rect x="4" y="4" width="8" height="7" fill="#e0bc85"/><rect x="4" y="10" width="8" height="2" fill="#b8904f"/><rect x="3" y="9" width="1" height="2" fill="#b8904f"/><rect x="12" y="9" width="1" height="2" fill="#b8904f"/><rect x="6" y="7" width="1" height="1" fill="#000000"/><rect x="9" y="7" width="1" height="1" fill="#000000"/><rect x="6" y="9" width="4" height="1" fill="#000000"/><rect x="7" y="1" width="2" height="2" fill="#6db56d"/><rect x="6" y="2" width="1" height="1" fill="#6db56d"/><rect x="9" y="2" width="1" height="1" fill="#6db56d"/><rect x="2" y="6" width="1" height="2" fill="#d4a96a"/><rect x="13" y="6" width="1" height="2" fill="#d4a96a"/><rect x="5" y="12" width="2" height="1" fill="#b8904f"/><rect x="9" y="12" width="2" height="1" fill="#b8904f"/>
+      </svg>
+      <span class="mascot-label">(・・)</span><span class="mascot-size">96px</span>
+    </div>
+
+    <!-- (- -) -->
+    <div class="mascot-item">
+      <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/><rect x="3" y="4" width="10" height="7" fill="#d4a96a"/><rect x="4" y="4" width="8" height="7" fill="#e0bc85"/><rect x="4" y="10" width="8" height="2" fill="#b8904f"/><rect x="3" y="9" width="1" height="2" fill="#b8904f"/><rect x="12" y="9" width="1" height="2" fill="#b8904f"/><rect x="5" y="7" width="2" height="1" fill="#000000"/><rect x="9" y="7" width="2" height="1" fill="#000000"/><rect x="6" y="9" width="4" height="1" fill="#000000"/><rect x="7" y="1" width="2" height="2" fill="#6db56d"/><rect x="6" y="2" width="1" height="1" fill="#6db56d"/><rect x="9" y="2" width="1" height="1" fill="#6db56d"/><rect x="2" y="6" width="1" height="2" fill="#d4a96a"/><rect x="13" y="6" width="1" height="2" fill="#d4a96a"/><rect x="5" y="12" width="2" height="1" fill="#b8904f"/><rect x="9" y="12" width="2" height="1" fill="#b8904f"/>
+      </svg>
+      <span class="mascot-label">(- -)</span><span class="mascot-size">96px</span>
+    </div>
+
+    <!-- dark bg -->
+    <div class="mascot-item">
+      <div class="swatch-dark">
+        <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/><rect x="3" y="4" width="10" height="7" fill="#d4a96a"/><rect x="4" y="4" width="8" height="7" fill="#e0bc85"/><rect x="4" y="10" width="8" height="2" fill="#b8904f"/><rect x="3" y="9" width="1" height="2" fill="#b8904f"/><rect x="12" y="9" width="1" height="2" fill="#b8904f"/><rect x="6" y="6" width="1" height="2" fill="#000000"/><rect x="9" y="6" width="1" height="2" fill="#000000"/><rect x="6" y="9" width="4" height="1" fill="#000000"/><rect x="7" y="9" width="2" height="1" fill="#000000"/><rect x="7" y="1" width="2" height="2" fill="#6db56d"/><rect x="6" y="2" width="1" height="1" fill="#6db56d"/><rect x="9" y="2" width="1" height="1" fill="#6db56d"/><rect x="2" y="6" width="1" height="2" fill="#d4a96a"/><rect x="13" y="6" width="1" height="2" fill="#d4a96a"/><rect x="5" y="12" width="2" height="1" fill="#b8904f"/><rect x="9" y="12" width="2" height="1" fill="#b8904f"/>
+        </svg>
+      </div>
+      <span class="mascot-label">dark bg</span><span class="mascot-size">96px</span>
+    </div>
+
+    <!-- 48px sizes -->
+    <div class="mascot-item">
+      <svg width="48" height="48" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/><rect x="3" y="4" width="10" height="7" fill="#d4a96a"/><rect x="4" y="4" width="8" height="7" fill="#e0bc85"/><rect x="4" y="10" width="8" height="2" fill="#b8904f"/><rect x="3" y="9" width="1" height="2" fill="#b8904f"/><rect x="12" y="9" width="1" height="2" fill="#b8904f"/><rect x="6" y="6" width="1" height="2" fill="#000000"/><rect x="9" y="6" width="1" height="2" fill="#000000"/><rect x="6" y="9" width="4" height="1" fill="#000000"/><rect x="7" y="9" width="2" height="1" fill="#000000"/><rect x="7" y="1" width="2" height="2" fill="#6db56d"/><rect x="6" y="2" width="1" height="1" fill="#6db56d"/><rect x="9" y="2" width="1" height="1" fill="#6db56d"/><rect x="2" y="6" width="1" height="2" fill="#d4a96a"/><rect x="13" y="6" width="1" height="2" fill="#d4a96a"/><rect x="5" y="12" width="2" height="1" fill="#b8904f"/><rect x="9" y="12" width="2" height="1" fill="#b8904f"/>
+      </svg>
+      <span class="mascot-label">normal</span><span class="mascot-size">48px</span>
+    </div>
+
+    <div class="mascot-item">
+      <svg width="48" height="48" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/><rect x="3" y="4" width="10" height="7" fill="#d4a96a"/><rect x="4" y="4" width="8" height="7" fill="#e0bc85"/><rect x="4" y="10" width="8" height="2" fill="#b8904f"/><rect x="3" y="9" width="1" height="2" fill="#b8904f"/><rect x="12" y="9" width="1" height="2" fill="#b8904f"/><rect x="4" y="6" width="1" height="1" fill="#000000"/><rect x="5" y="5" width="1" height="1" fill="#000000"/><rect x="6" y="6" width="1" height="1" fill="#000000"/><rect x="9" y="6" width="1" height="1" fill="#000000"/><rect x="10" y="5" width="1" height="1" fill="#000000"/><rect x="11" y="6" width="1" height="1" fill="#000000"/><rect x="6" y="8" width="1" height="1" fill="#000000"/><rect x="7" y="9" width="2" height="1" fill="#000000"/><rect x="9" y="8" width="1" height="1" fill="#000000"/><rect x="7" y="1" width="2" height="2" fill="#6db56d"/><rect x="6" y="2" width="1" height="1" fill="#6db56d"/><rect x="9" y="2" width="1" height="1" fill="#6db56d"/><rect x="2" y="5" width="1" height="2" fill="#d4a96a"/><rect x="13" y="5" width="1" height="2" fill="#d4a96a"/><rect x="5" y="12" width="2" height="1" fill="#b8904f"/><rect x="9" y="12" width="2" height="1" fill="#b8904f"/>
+      </svg>
+      <span class="mascot-label">happy</span><span class="mascot-size">48px</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── toast ── -->
+<div id="toast"></div>
+
+<script>
+  // ── helpers ──
+  function toast(msg) {
+    const el = document.getElementById('toast')
+    el.textContent = msg
+    el.classList.add('show')
+    clearTimeout(el._t)
+    el._t = setTimeout(() => el.classList.remove('show'), 2000)
+  }
+
+  function openApp() {
+    window.open('http://localhost:5173/', '_blank')
+  }
+
+  // ── weakIds ──
+  const WEAK_KEY = 'pommes-weak-ids'
+
+  function setWeakIds(ids) {
+    localStorage.setItem(WEAK_KEY, JSON.stringify(ids))
+    toast('weakIds = ' + JSON.stringify(ids) + ' をセットしました')
+    renderStorage()
+  }
+
+  function clearWeakIds() {
+    localStorage.removeItem(WEAK_KEY)
+    toast('weakIds をクリアしました')
+    renderStorage()
+  }
+
+  function resetAll() {
+    const keys = Object.keys(localStorage).filter(k => k.startsWith('pommes-'))
+    keys.forEach(k => localStorage.removeItem(k))
+    toast('pommes-* ' + keys.length + '件をリセットしました')
+    renderStorage()
+  }
+
+  // ── storage viewer ──
+  function renderStorage() {
+    const el = document.getElementById('storage-view')
+    const keys = Object.keys(localStorage).filter(k => k.startsWith('pommes-')).sort()
+    if (keys.length === 0) {
+      el.innerHTML = '<div class="storage-empty">（pommes-* のキーはありません）</div>'
+      return
+    }
+    el.innerHTML = keys.map(k => {
+      const raw = localStorage.getItem(k)
+      let val
+      try { val = JSON.stringify(JSON.parse(raw), null, 2) } catch { val = raw }
+      return `<div class="storage-row">
+        <span class="storage-key">${k}</span>
+        <span class="storage-val">${val}</span>
+      </div>`
+    }).join('')
+  }
+
+  // ── init ──
+  renderStorage()
+</script>
+
+</body>
+</html>
