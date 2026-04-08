@@ -24,31 +24,27 @@ export function useStudyRecord() {
     setRecord(next)
   }
 
-  // アプリ起動時に呼ぶ。連続学習日数を更新する
-  const checkStreak = useCallback(() => {
-    const rec = load()
-    if (!rec?.lastStudyDate) return
-    const t = today()
-    const diff = daysDiff(rec.lastStudyDate, t)
-    if (diff === 0) return // 今日すでに処理済み
-    if (diff === 1) {
-      save({ ...rec, streak: (rec.streak ?? 1) + 1, todaySolved: 0 })
-    } else {
-      save({ ...rec, streak: 1, todaySolved: 0 })
-    }
-  }, []) // eslint-disable-line
-
-  // 回答時に呼ぶ
   const addResult = useCallback((isCorrect) => {
     const rec = load() ?? {}
     const t = today()
-    const streak = rec.lastStudyDate ? (rec.streak ?? 1) : 1
+    const last = rec.lastStudyDate
+
+    let streak
+    if (!last) {
+      streak = 1
+    } else {
+      const diff = daysDiff(last, t)
+      if (diff === 0) streak = rec.streak ?? 1
+      else if (diff === 1) streak = (rec.streak ?? 1) + 1
+      else streak = 1
+    }
+
     save({
       totalSolved:  (rec.totalSolved  ?? 0) + 1,
       totalCorrect: (rec.totalCorrect ?? 0) + (isCorrect ? 1 : 0),
       lastStudyDate: t,
       streak,
-      todaySolved: (rec.todaySolved ?? 0) + 1,
+      todaySolved: last === t ? (rec.todaySolved ?? 0) + 1 : 1,
     })
   }, []) // eslint-disable-line
 
@@ -58,5 +54,5 @@ export function useStudyRecord() {
     setRecord(null)
   }, [])
 
-  return { record, addResult, checkStreak, reset }
+  return { record, addResult, reset }
 }

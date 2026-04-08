@@ -1,5 +1,5 @@
 // App.jsx
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 import { Volume2, VolumeX, X, WifiOff } from 'lucide-react'
 import { useTTS }            from './hooks/useTTS'
 import { useSession }        from './hooks/useSession'
@@ -46,9 +46,7 @@ export default function App() {
   const [sessionKey, setSessionKey] = useState(0)
   const weakIds = useWeakIds()
   const online  = useOnlineStatus()
-  const { record, addResult, checkStreak } = useStudyRecord()
-
-  useEffect(() => { checkStreak() }, []) // eslint-disable-line
+  const { record, addResult } = useStudyRecord()
 
   const handleStart = useCallback((sentences, weak = false) => {
     setFilteredSentences(sentences)
