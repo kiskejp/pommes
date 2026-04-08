@@ -2,6 +2,7 @@
 export function PotatoMascot({ size = 96, variant = 'normal' }) {
   const happy = variant === 'happy'
   const blinkNoMouth = variant === 'blink-no-mouth'
+  const thinking = variant === 'thinking'
 
   return (
     <svg
@@ -26,6 +27,11 @@ export function PotatoMascot({ size = 96, variant = 'normal' }) {
           <rect x="9"  y="6" width="1" height="1" fill="#000000" />
           <rect x="10" y="5" width="1" height="1" fill="#000000" />
           <rect x="11" y="6" width="1" height="1" fill="#000000" />
+        </>
+      ) : thinking ? (
+        <>
+          <rect x="6" y="7" width="1" height="1" fill="#000000" />
+          <rect x="9" y="7" width="1" height="1" fill="#000000" />
         </>
       ) : blinkNoMouth ? (
         <>
@@ -59,7 +65,7 @@ export function PotatoMascot({ size = 96, variant = 'normal' }) {
           <rect x="7" y="9" width="2" height="1" fill="#000000" />
           <rect x="9" y="8" width="1" height="1" fill="#000000" />
         </>
-      ) : blinkNoMouth ? null : (
+      ) : blinkNoMouth || thinking ? null : (
         <>
           <rect x="6" y="9" width="4" height="1" fill="#000000" />
           <rect x="7" y="9" width="2" height="1" fill="#000000" />

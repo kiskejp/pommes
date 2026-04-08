@@ -1,10 +1,8 @@
 // components/Completion.jsx
-import { useState } from 'react'
-import { AlertCircle, RotateCcw, ChevronDown, ChevronUp } from 'lucide-react'
+import { AlertCircle, RotateCcw } from 'lucide-react'
 import { PotatoMascot } from './PotatoMascot'
 
 export function Completion({ ok, total, onReset, isWeakMode, ngByCategory, ngIds, sentences, onRetryWrong }) {
-  const [listOpen, setListOpen] = useState(false)
   const pct = total ? Math.round(ok / total * 100) : 0
   const msg = isWeakMode
     ? '苦手問題を全部クリア！Alle Schwächen behoben!'
@@ -17,10 +15,18 @@ export function Completion({ ok, total, onReset, isWeakMode, ngByCategory, ngIds
   const wrongSentences = sentences && ngIds
     ? sentences.filter(s => ngIds.includes(s.id))
     : []
-  const visibleList  = wrongSentences.slice(0, 5)
-  const hiddenCount  = wrongSentences.length - visibleList.length
+  const visibleList = wrongSentences.slice(0, 5)
+  const hiddenCount = wrongSentences.length - visibleList.length
 
   const handleRetry = () => onRetryWrong(wrongSentences)
+
+  const btnBase = {
+    width: '100%', padding: '15px 24px',
+    fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
+    fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.54px',
+    cursor: 'pointer', borderRadius: 50,
+    display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+  }
 
   return (
     <div className="completion" style={{
@@ -45,7 +51,7 @@ export function Completion({ ok, total, onReset, isWeakMode, ngByCategory, ngIds
             borderTop: '7px solid var(--surface)',
           }} />
         </div>
-        <PotatoMascot size={96} variant={pct === 100 ? 'happy' : 'normal'} />
+        <PotatoMascot size={96} variant={pct >= 80 ? 'happy' : pct >= 50 ? 'normal' : 'thinking'} />
       </div>
 
       <div className="completion-title" style={{
@@ -63,95 +69,69 @@ export function Completion({ ok, total, onReset, isWeakMode, ngByCategory, ngIds
         {ok} / {total}
       </div>
 
+      {/* 要復習：テキスト表示 */}
       {worstCat && (
         <div className="completion-worst" style={{
-          display: 'flex', alignItems: 'center', gap: 8,
-          border: '2px solid var(--border)', borderRadius: 50,
-          padding: '10px 20px',
+          display: 'flex', alignItems: 'center', gap: 6,
+          fontFamily: "'IBM Plex Mono', monospace",
         }}>
-          <AlertCircle size={15} strokeWidth={2} style={{ color: 'var(--text-sub)', flexShrink: 0 }} />
-          <div>
-            <div style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: 10, textTransform: 'uppercase',
-              letterSpacing: '1.5px', color: 'var(--text-sub)',
-            }}>
-              要復習
-            </div>
-            <div style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: 16, fontWeight: 600, color: 'var(--text)',
-              letterSpacing: '-0.2px', marginTop: 1,
-            }}>
-              {worstCat}
-            </div>
+          <AlertCircle size={13} strokeWidth={2} style={{ color: 'var(--text-sub)', flexShrink: 0 }} />
+          <span style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '1.5px', color: 'var(--text-sub)' }}>
+            要復習:
+          </span>
+          <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)' }}>
+            {worstCat}
+          </span>
+        </div>
+      )}
+
+      {/* わからなかった問題一覧（常時表示） */}
+      {wrongSentences.length > 0 && (
+        <div style={{ width: '100%', maxWidth: 400, textAlign: 'left' }}>
+          <div style={{
+            fontFamily: "'IBM Plex Mono', monospace", fontSize: 11,
+            textTransform: 'uppercase', letterSpacing: '0.54px',
+            color: 'var(--text-sub)', marginBottom: 8,
+          }}>
+            わからなかった問題 {wrongSentences.length}件
+          </div>
+          <div style={{ border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden' }}>
+            {visibleList.map((s, i) => (
+              <div key={s.id} style={{
+                padding: '10px 16px',
+                borderBottom: i < visibleList.length - 1 || hiddenCount > 0 ? '1px solid var(--border)' : 'none',
+                fontFamily: "'Barlow', sans-serif", fontSize: 14, color: 'var(--text)',
+              }}>
+                {s.jp}
+              </div>
+            ))}
+            {hiddenCount > 0 && (
+              <div style={{
+                padding: '10px 16px',
+                fontFamily: "'IBM Plex Mono', monospace", fontSize: 11,
+                color: 'var(--text-sub)',
+              }}>
+                他 {hiddenCount} 問
+              </div>
+            )}
           </div>
         </div>
       )}
 
-      {/* 不正解問題一覧（折りたたみ） */}
-      {wrongSentences.length > 0 && (
-        <div style={{ width: '100%', maxWidth: 400, textAlign: 'left' }}>
-          <button
-            onClick={() => setListOpen(o => !o)}
-            style={{
-              width: '100%', background: 'none', border: 'none', cursor: 'pointer',
-              padding: '8px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-              fontFamily: "'IBM Plex Mono', monospace", fontSize: 11,
-              textTransform: 'uppercase', letterSpacing: '0.54px',
-              color: 'var(--text-sub)',
-            }}
-          >
-            <span>間違えた問題 {wrongSentences.length}件</span>
-            {listOpen ? <ChevronUp size={13} strokeWidth={2} /> : <ChevronDown size={13} strokeWidth={2} />}
-          </button>
-          {listOpen && (
-            <div style={{
-              border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden',
-            }}>
-              {visibleList.map((s, i) => (
-                <div key={s.id} style={{
-                  padding: '10px 16px',
-                  borderBottom: i < visibleList.length - 1 || hiddenCount > 0 ? '1px solid var(--border)' : 'none',
-                  fontFamily: "'Barlow', sans-serif", fontSize: 14, color: 'var(--text)',
-                }}>
-                  {s.jp}
-                </div>
-              ))}
-              {hiddenCount > 0 && (
-                <div style={{
-                  padding: '10px 16px',
-                  fontFamily: "'IBM Plex Mono', monospace", fontSize: 11,
-                  color: 'var(--text-sub)',
-                }}>
-                  他 {hiddenCount} 問
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      )}
-
       {/* ボタン群 */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, marginTop: 12 }}>
+      <div style={{ width: '100%', maxWidth: 400, display: 'flex', flexDirection: 'column', gap: 10, marginTop: 12 }}>
         {wrongSentences.length > 0 && (
           <button className="btn-retry-wrong" onClick={handleRetry} style={{
+            ...btnBase,
             background: 'var(--bg)', border: '2px solid var(--border-strong)', color: 'var(--text)',
-            fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
-            fontSize: 12, padding: '14px 36px', cursor: 'pointer',
-            textTransform: 'uppercase', letterSpacing: '0.54px',
-            borderRadius: 50, display: 'inline-flex', alignItems: 'center', gap: 8,
           }}>
             <RotateCcw size={12} strokeWidth={2} />
-            間違えた問題をもう一度
+            わからなかった問題をもう一度
           </button>
         )}
         <button className="btn-retry" onClick={onReset} style={{
-          background: 'var(--solid-bg)', border: 'none', color: 'var(--solid-text)',
-          fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
-          fontSize: 12, padding: '14px 36px', cursor: 'pointer',
-          textTransform: 'uppercase', letterSpacing: '0.54px',
-          borderRadius: 50, display: 'inline-flex', alignItems: 'center', gap: 8,
+          ...btnBase,
+          background: 'var(--solid-bg)', border: '2px solid transparent', color: 'var(--solid-text)',
         }}>
           <RotateCcw size={12} strokeWidth={2} />
           もう一度
