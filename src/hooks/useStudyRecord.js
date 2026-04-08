@@ -16,8 +16,15 @@ function daysDiff(a, b) {
   return Math.round((new Date(b) - new Date(a)) / 86400000)
 }
 
+function loadWithDateCheck() {
+  const rec = load()
+  if (!rec) return null
+  if (rec.lastStudyDate !== today()) return { ...rec, todaySolved: 0 }
+  return rec
+}
+
 export function useStudyRecord() {
-  const [record, setRecord] = useState(load)
+  const [record, setRecord] = useState(loadWithDateCheck)
 
   const save = (next) => {
     localStorage.setItem(KEY, JSON.stringify(next))
