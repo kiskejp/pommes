@@ -474,6 +474,60 @@
     <span class="size-label">96px</span>
   </div>
 
+  <!-- happy / bounce / 96px -->
+  <div class="item">
+    <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+      <!-- body (animated) -->
+      <g>
+        <animateTransform attributeName="transform" type="translate"
+          values="0,0;0,-1;0,-1;0,0;0,0" keyTimes="0;0.15;0.45;0.6;1"
+          calcMode="discrete" dur="0.9s" repeatCount="indefinite"/>
+        <rect x="4" y="3" width="8" height="9" fill="#d4a96a"/>
+        <rect x="3" y="4" width="10" height="7" fill="#d4a96a"/>
+        <rect x="4" y="4" width="8" height="7" fill="#e0bc85"/>
+        <rect x="4" y="10" width="8" height="2" fill="#b8904f"/>
+        <rect x="3" y="9"  width="1" height="2" fill="#b8904f"/>
+        <rect x="12" y="9" width="1" height="2" fill="#b8904f"/>
+        <!-- eyes: happy ^ -->
+        <rect x="4"  y="6" width="1" height="1" fill="#000000"/>
+        <rect x="5"  y="5" width="1" height="1" fill="#000000"/>
+        <rect x="6"  y="6" width="1" height="1" fill="#000000"/>
+        <rect x="9"  y="6" width="1" height="1" fill="#000000"/>
+        <rect x="10" y="5" width="1" height="1" fill="#000000"/>
+        <rect x="11" y="6" width="1" height="1" fill="#000000"/>
+        <!-- mouth: happy curve -->
+        <rect x="6" y="8" width="1" height="1" fill="#000000"/>
+        <rect x="7" y="9" width="2" height="1" fill="#000000"/>
+        <rect x="9" y="8" width="1" height="1" fill="#000000"/>
+        <rect x="7"  y="1" width="2" height="2" fill="#6db56d"/>
+        <rect x="6"  y="2" width="1" height="1" fill="#6db56d"/>
+        <rect x="9"  y="2" width="1" height="1" fill="#6db56d"/>
+        <!-- arms: raised (y=5) -->
+        <rect x="2"  y="5" width="1" height="2" fill="#d4a96a"/>
+        <rect x="13" y="5" width="1" height="2" fill="#d4a96a"/>
+      </g>
+      <!-- feet (stretch to fill gap when body lifts) -->
+      <rect x="5" y="12" width="2" height="1" fill="#b8904f">
+        <animate attributeName="y" calcMode="discrete"
+          values="12;11;11;12;12" keyTimes="0;0.15;0.45;0.6;1"
+          dur="0.9s" repeatCount="indefinite"/>
+        <animate attributeName="height" calcMode="discrete"
+          values="1;2;2;1;1" keyTimes="0;0.15;0.45;0.6;1"
+          dur="0.9s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="9" y="12" width="2" height="1" fill="#b8904f">
+        <animate attributeName="y" calcMode="discrete"
+          values="12;11;11;12;12" keyTimes="0;0.15;0.45;0.6;1"
+          dur="0.9s" repeatCount="indefinite"/>
+        <animate attributeName="height" calcMode="discrete"
+          values="1;2;2;1;1" keyTimes="0;0.15;0.45;0.6;1"
+          dur="0.9s" repeatCount="indefinite"/>
+      </rect>
+    </svg>
+    <span class="label">happy / bounce</span>
+    <span class="size-label">96px</span>
+  </div>
+
   <!-- (・・) / 96px -->
   <div class="item">
     <svg width="96" height="96" viewBox="0 0 16 16" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">

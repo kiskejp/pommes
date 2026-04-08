@@ -1,0 +1,13 @@
+{
+  "name": "Pommes - 瞬間ドイツ語作文",
+  "short_name": "Pommes",
+  "description": "瞬間ドイツ語作文トレーニングアプリ",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fdf8f0",
+  "theme_color": "#e0bc85",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

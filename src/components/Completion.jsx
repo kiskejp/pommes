@@ -1,4 +1,5 @@
 // components/Completion.jsx
+import { AlertCircle, RotateCcw } from 'lucide-react'
 import { PotatoMascot } from './PotatoMascot'
 
 export function Completion({ ok, total, onReset, isWeakMode, ngByCategory }) {
@@ -53,11 +54,27 @@ export function Completion({ ok, total, onReset, isWeakMode, ngByCategory }) {
       </div>
       {worstCat && (
         <div className="completion-worst" style={{
-          fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: 11, color: 'var(--text-sub)',
-          textTransform: 'uppercase', letterSpacing: '0.54px',
+          display: 'flex', alignItems: 'center', gap: 8,
+          border: '2px solid var(--border)', borderRadius: 50,
+          padding: '10px 20px',
         }}>
-          要復習: {worstCat}
+          <AlertCircle size={15} strokeWidth={2} style={{ color: 'var(--text-sub)', flexShrink: 0 }} />
+          <div>
+            <div style={{
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: 10, textTransform: 'uppercase',
+              letterSpacing: '1.5px', color: 'var(--text-sub)',
+            }}>
+              要復習
+            </div>
+            <div style={{
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: 16, fontWeight: 600, color: 'var(--text)',
+              letterSpacing: '-0.2px', marginTop: 1,
+            }}>
+              {worstCat}
+            </div>
+          </div>
         </div>
       )}
       <button className="btn-retry" onClick={onReset} style={{
@@ -66,8 +83,9 @@ export function Completion({ ok, total, onReset, isWeakMode, ngByCategory }) {
         fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
         fontSize: 12, padding: '14px 36px', cursor: 'pointer',
         textTransform: 'uppercase', letterSpacing: '0.54px',
-        borderRadius: 50,
+        borderRadius: 50, display: 'inline-flex', alignItems: 'center', gap: 8,
       }}>
+        <RotateCcw size={12} strokeWidth={2} />
         もう一度
       </button>
     </div>
