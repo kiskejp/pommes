@@ -1,11 +1,12 @@
 // App.jsx
 import { useState, useCallback } from 'react'
-import { Volume2, VolumeX, X } from 'lucide-react'
+import { Volume2, VolumeX, X, WifiOff } from 'lucide-react'
 import { useTTS }            from './hooks/useTTS'
 import { useSession }        from './hooks/useSession'
 import { useAudioSettings }  from './hooks/useAudioSettings'
 import { useAutoPlay }       from './hooks/useAutoPlay'
 import { useWeakIds }        from './hooks/useWeakIds'
+import { useOnlineStatus }   from './hooks/useOnlineStatus'
 import { TitleScreen }       from './pages/TitleScreen'
 import { ScoreBar }          from './components/ScoreBar'
 import { CardMode }          from './components/CardMode'
@@ -16,6 +17,7 @@ export default function App() {
   const [filteredSentences, setFilteredSentences] = useState(null)
   const [isWeakMode, setIsWeakMode] = useState(false)
   const weakIds = useWeakIds()
+  const online  = useOnlineStatus()
 
   const handleStart = useCallback((sentences, weak = false) => {
     setFilteredSentences(sentences)
@@ -27,21 +29,39 @@ export default function App() {
     setIsWeakMode(false)
   }, [])
 
+  const offlineBanner = !online && (
+    <div style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 2000,
+      background: 'var(--surface)', borderBottom: '1px solid var(--border)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+      padding: '10px 16px',
+      fontFamily: "'IBM Plex Mono', monospace", fontSize: 11,
+      color: 'var(--text-sub)', letterSpacing: '0.3px',
+    }}>
+      <WifiOff size={13} strokeWidth={2} />
+      オフラインです。キャッシュされたデータで動作しています。
+    </div>
+  )
+
   if (!filteredSentences) {
-    return <TitleScreen onStart={handleStart} weakIds={weakIds} />
+    return <>{offlineBanner}<TitleScreen onStart={handleStart} weakIds={weakIds} /></>
   }
 
   return (
-    <StudySession
-      sentences={filteredSentences}
-      onExit={handleExit}
-      weakIds={weakIds}
-      isWeakMode={isWeakMode}
-    />
+    <>
+      {offlineBanner}
+      <StudySession
+        sentences={filteredSentences}
+        onExit={handleExit}
+        onRetryWrong={handleStart}
+        weakIds={weakIds}
+        isWeakMode={isWeakMode}
+      />
+    </>
   )
 }
 
-function StudySession({ sentences, onExit, weakIds, isWeakMode }) {
+function StudySession({ sentences, onExit, onRetryWrong, weakIds, isWeakMode }) {
   const [mode, setMode] = useState('card')
   const { speak, speaking, hasJpVoice, hasDeVoice } = useTTS()
   const session = useSession(sentences)
@@ -180,7 +200,15 @@ function StudySession({ sentences, onExit, weakIds, isWeakMode }) {
         <ScoreBar ok={ok} ng={ng} />
 
         {done ? (
-          <Completion ok={ok} total={ok + ng} onReset={handleReset} isWeakMode={isWeakMode} ngByCategory={session.ngByCategory} />
+          <Completion
+            ok={ok} total={ok + ng}
+            onReset={handleReset}
+            isWeakMode={isWeakMode}
+            ngByCategory={session.ngByCategory}
+            ngIds={session.ngIds}
+            sentences={sentences}
+            onRetryWrong={(wrong) => { autoPlay.stop(); onRetryWrong(wrong) }}
+          />
         ) : (
           <>
             <div className="session-meta" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

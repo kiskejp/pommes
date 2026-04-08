@@ -28,6 +28,7 @@ export function useSession(sentences) {
   const [feedback, setFeedback] = useState(null) // 'ok' | 'ng' | null
 
   const ngByCat = useRef({})
+  const ngIds   = useRef([])
 
   const current = idx < sentences.length ? sentences[order[idx]] : null
   const done    = idx >= sentences.length
@@ -39,6 +40,7 @@ export function useSession(sentences) {
     setRevealed(false); setChecked(false)
     setShowHint(false); setFeedback(null)
     ngByCat.current = {}
+    ngIds.current   = []
   }, [makeOrder])
 
   const revealAnswer = () => setRevealed(true)
@@ -50,7 +52,10 @@ export function useSession(sentences) {
       if (result === 'ok') setOk(n => n + 1)
       if (result === 'ng') {
         setNg(n => n + 1)
-        if (current) ngByCat.current[current.category] = (ngByCat.current[current.category] ?? 0) + 1
+        if (current) {
+          ngByCat.current[current.category] = (ngByCat.current[current.category] ?? 0) + 1
+          if (!ngIds.current.includes(current.id)) ngIds.current.push(current.id)
+        }
       }
     }
     setIdx(i => i + 1)
@@ -70,6 +75,7 @@ export function useSession(sentences) {
     } else {
       setNg(n => n + 1)
       ngByCat.current[current.category] = (ngByCat.current[current.category] ?? 0) + 1
+      if (!ngIds.current.includes(current.id)) ngIds.current.push(current.id)
     }
     setChecked(true)
     return correct
@@ -79,6 +85,7 @@ export function useSession(sentences) {
     current, idx, ok, ng, done, progress, revealed, checked,
     showHint, feedback,
     ngByCategory: ngByCat.current,
+    ngIds: ngIds.current,
     revealAnswer, toggleHint, advance, reset, submitInput,
   }
 }

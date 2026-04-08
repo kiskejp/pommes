@@ -80,7 +80,12 @@ export function InputMode({ session, speak, speaking }) {
             disabled={checked}
             autoComplete="off" autoCorrect="off" spellCheck={false}
             placeholder="ドイツ語で入力..."
-            onKeyDown={e => e.key === 'Enter' && handleSubmit()}
+            onKeyDown={e => {
+      if (e.key === 'Enter') {
+        if (checked) advance(feedback)
+        else handleSubmit()
+      }
+    }}
             style={{
               flex: 1,
               background: 'var(--bg)',

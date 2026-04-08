@@ -185,11 +185,15 @@ export function TitleScreen({ onStart, weakIds }) {
 
         {/* ── Footer ── */}
         <div style={{
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
           fontFamily: "'IBM Plex Mono', monospace",
           fontSize: 10, color: 'var(--text-muted)', letterSpacing: '0.54px',
           textTransform: 'uppercase',
         }}>
-          {sentences.length} Sätze · A1–B1
+          <span>{sentences.length} Sätze · A1–B1</span>
+          <a href="/privacy.html" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>
+            プライバシーポリシー
+          </a>
         </div>
       </div>
     </div>

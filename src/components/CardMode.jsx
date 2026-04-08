@@ -36,6 +36,25 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
     toastTimers.current = [t2, t3, () => cancelAnimationFrame(rafId.current)]
   }, [])
 
+  // Keyboard shortcuts (desktop)
+  useEffect(() => {
+    const onKey = (e) => {
+      if (playing) return
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return
+      if (e.key === ' ') {
+        e.preventDefault()
+        if (!revealed) onReveal()
+        else { weakIds?.remove(current?.id); advance('ok'); prevWasWrong.current = false }
+      } else if (e.key === 'ArrowRight' && revealed) {
+        weakIds?.remove(current?.id); advance('ok'); prevWasWrong.current = false
+      } else if (e.key === 'ArrowLeft' && revealed) {
+        onWrong()
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [playing, revealed, current]) // eslint-disable-line
+
   // JP audio on card change
   useEffect(() => {
     if (current && !playing) {
@@ -160,6 +179,8 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
               最初から
             </button>
           </div>
+
+          <KeyboardHint keys={[['Space', '答えを見る']]} />
         </>
       ) : (
         <>
@@ -168,6 +189,7 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
             <RateBtn variant="solid" onClick={() => { weakIds?.remove(current.id); advance('ok'); prevWasWrong.current = false }}>わかった</RateBtn>
           </div>
           <Nav onReset={reset} />
+          <KeyboardHint keys={[['←', 'わからなかった'], ['Space / →', 'わかった']]} />
         </>
       )}
 
@@ -242,6 +264,29 @@ function Nav({ onReset }) {
         <RotateCcw size={12} strokeWidth={2} />
         最初から
       </button>
+    </div>
+  )
+}
+
+function KeyboardHint({ keys }) {
+  // デスクトップ（ポインターデバイス）のみ表示
+  if (typeof window !== 'undefined' && !window.matchMedia('(pointer: fine)').matches) return null
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', gap: 16, flexWrap: 'wrap' }}>
+      {keys.map(([key, label]) => (
+        <span key={key} style={{
+          fontFamily: "'IBM Plex Mono', monospace", fontSize: 10,
+          color: 'var(--text-muted)', letterSpacing: '0.3px',
+          display: 'inline-flex', alignItems: 'center', gap: 5,
+        }}>
+          <kbd style={{
+            background: 'var(--surface)', border: '1px solid var(--border)',
+            borderRadius: 4, padding: '1px 6px', fontSize: 10,
+            fontFamily: 'inherit',
+          }}>{key}</kbd>
+          {label}
+        </span>
+      ))}
     </div>
   )
 }
