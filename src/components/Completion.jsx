@@ -1,6 +1,6 @@
 // components/Completion.jsx
 import { AlertCircle, RotateCcw } from 'lucide-react'
-import { PotatoMascot } from './PotatoMascot'
+import { Mascot } from './Mascot'
 
 export function Completion({ ok, total, onReset, isWeakMode, ngByCategory, ngIds, sentences, onRetryWrong }) {
   const pct = total ? Math.round(ok / total * 100) : 0
@@ -51,7 +51,10 @@ export function Completion({ ok, total, onReset, isWeakMode, ngByCategory, ngIds
             borderTop: '7px solid var(--surface)',
           }} />
         </div>
-        <PotatoMascot size={96} variant={pct >= 80 ? 'happy' : pct >= 50 ? 'normal' : 'thinking'} />
+        <Mascot size={96}
+          variant={pct >= 80 ? 'happy-no-mouth' : pct >= 50 ? 'normal' : 'thinking'}
+          animation={pct >= 80 ? 'bounce' : 'none'}
+        />
       </div>
 
       <div className="completion-title" style={{

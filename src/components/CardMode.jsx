@@ -31,8 +31,8 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
         setToast(t => t ? { ...t, phase: 'enter' } : null)
       )
     )
-    const t2 = setTimeout(() => setToast(t => t ? { ...t, phase: 'exit' } : null), 2500)
-    const t3 = setTimeout(() => setToast(null), 2900)
+    const t2 = setTimeout(() => setToast(t => t ? { ...t, phase: 'exit' } : null), 3500)
+    const t3 = setTimeout(() => setToast(null), 3900)
     toastTimers.current = [t2, t3, () => cancelAnimationFrame(rafId.current)]
   }, [])
 
@@ -212,7 +212,7 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
           zIndex: 1000,
           whiteSpace: 'nowrap',
         }}>
-          <Mascot variant={toast.variant} animation={toast.variant === 'happy' ? 'bounce' : 'none'} size={48} />
+          <Mascot variant={toast.variant === 'happy' ? 'happy-no-mouth' : toast.variant} animation={toast.variant === 'happy' ? 'bounce' : 'none'} size={48} />
           <span style={{
             fontFamily: "'IBM Plex Mono', monospace",
             fontWeight: 600, fontSize: 13,

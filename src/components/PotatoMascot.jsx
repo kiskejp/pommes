@@ -1,6 +1,7 @@
 // components/PotatoMascot.jsx
 export function PotatoMascot({ size = 96, variant = 'normal' }) {
-  const happy = variant === 'happy'
+  const happy = variant === 'happy' || variant === 'happy-no-mouth'
+  const happyNoMouth = variant === 'happy-no-mouth'
   const blinkNoMouth = variant === 'blink-no-mouth'
   const thinking = variant === 'thinking'
 
@@ -59,13 +60,13 @@ export function PotatoMascot({ size = 96, variant = 'normal' }) {
         </>
       )}
       {/* mouth */}
-      {happy ? (
+      {happy && !happyNoMouth ? (
         <>
           <rect x="6" y="8" width="1" height="1" fill="#000000" />
           <rect x="7" y="9" width="2" height="1" fill="#000000" />
           <rect x="9" y="8" width="1" height="1" fill="#000000" />
         </>
-      ) : blinkNoMouth || thinking ? null : (
+      ) : blinkNoMouth || thinking || happyNoMouth ? null : (
         <>
           <rect x="6" y="9" width="4" height="1" fill="#000000" />
           <rect x="7" y="9" width="2" height="1" fill="#000000" />

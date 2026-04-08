@@ -171,7 +171,7 @@ function StudySession({ sentences, onExit, onRetryWrong, weakIds, isWeakMode, in
             background: 'none', border: 'none', cursor: 'pointer', padding: 6,
             color: 'var(--text-sub)', lineHeight: 0,
           }}>
-            <X size={20} strokeWidth={2} />
+            <X size={24} strokeWidth={2} />
           </button>
         </div>
       </header>

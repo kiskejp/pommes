@@ -1,7 +1,8 @@
 // components/Mascot.jsx
 export function Mascot({ variant = 'normal', animation = 'none', size = 96 }) {
-  const happy    = variant === 'happy'
-  const thinking = variant === 'thinking'
+  const happy        = variant === 'happy' || variant === 'happy-no-mouth'
+  const happyNoMouth = variant === 'happy-no-mouth'
+  const thinking     = variant === 'thinking'
   const isBounce = animation === 'bounce'
   const isWave   = animation === 'wave'
 
@@ -28,13 +29,13 @@ export function Mascot({ variant = 'normal', animation = 'none', size = 96 }) {
   )
 
   // ── mouth ──
-  const mouth = happy ? (
+  const mouth = happy && !happyNoMouth ? (
     <>
       <rect x="6" y="8" width="1" height="1" fill="#000000" />
       <rect x="7" y="9" width="2" height="1" fill="#000000" />
       <rect x="9" y="8" width="1" height="1" fill="#000000" />
     </>
-  ) : (
+  ) : happyNoMouth ? null : (
     <>
       <rect x="6" y="9" width="4" height="1" fill="#000000" />
       <rect x="7" y="9" width="2" height="1" fill="#000000" />
