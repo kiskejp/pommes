@@ -31,7 +31,7 @@ export default function App() {
 
   const offlineBanner = !online && (
     <div style={{
-      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 2000,
+      width: '100%',
       background: 'var(--surface)', borderBottom: '1px solid var(--border)',
       display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
       padding: '10px 16px',
