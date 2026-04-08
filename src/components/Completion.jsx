@@ -4,9 +4,9 @@ import { PotatoMascot } from './PotatoMascot'
 
 export function Completion({ ok, total, onReset, isWeakMode, ngByCategory, ngIds, sentences, onRetryWrong }) {
   const pct = total ? Math.round(ok / total * 100) : 0
-  const msg = isWeakMode
+  const msg = isWeakMode && pct === 100
     ? '苦手問題を全部クリア！Alle Schwächen behoben!'
-    : pct === 100 ? 'Perfekt!' : pct >= 70 ? 'Gut gemacht. よくできました。' : 'Nochmal. もう一度。'
+    : pct === 100 ? 'Perfekt! 完璧です。' : pct >= 70 ? 'Gut gemacht. よくできました。' : 'Nochmal. もう一度。'
 
   const worstCat = ngByCategory && Object.keys(ngByCategory).length > 1
     ? Object.entries(ngByCategory).sort((a, b) => b[1] - a[1])[0][0]

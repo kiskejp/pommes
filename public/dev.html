@@ -81,6 +81,33 @@
     .storage-val { color: #aaa; word-break: break-all; }
     .storage-empty { color: #444; font-style: italic; }
 
+    /* ── study stats ── */
+    .pattern-label {
+      font-size: 10px; color: #555; letter-spacing: 0.3px;
+      margin-bottom: 12px;
+    }
+    .study-stats {
+      display: flex; gap: 40px; padding: 8px 0;
+    }
+    .stats-item {
+      text-align: center;
+    }
+    .stats-badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; color: #888;
+      letter-spacing: 0.3px; margin-bottom: 4px;
+    }
+    .stats-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 24px; font-weight: 600; color: #ffffff;
+      letter-spacing: -0.4px;
+    }
+    .stats-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; text-transform: uppercase;
+      letter-spacing: 1.5px; color: #888; margin-top: 4px;
+    }
+
     /* ── mascot grid ── */
     .mascot-grid {
       display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-end;
@@ -168,10 +195,62 @@
 </div>
 
 <!-- ──────────────────────────────────────── -->
-<!-- 3. マスコット確認 -->
+<!-- 3. 学習記録表示 -->
 <!-- ──────────────────────────────────────── -->
 <div class="section">
-  <div class="section-title">3. マスコット確認</div>
+  <div class="section-title">3. 学習記録表示</div>
+  <div style="display:flex; gap:40px; flex-wrap:wrap; align-items:flex-start;">
+
+    <!-- パターン1: 初回（記録なし） -->
+    <div>
+      <div class="pattern-label">① 初回（記録なし）</div>
+      <div class="study-stats" style="min-width:160px; min-height:60px; display:flex; align-items:center; justify-content:center;">
+        <span style="color:#555; font-size:10px;">— 非表示 —</span>
+      </div>
+    </div>
+
+    <!-- パターン2: streak1日目 -->
+    <div>
+      <div class="pattern-label">② streak 1日目（今日6問・累計6問）</div>
+      <div class="study-stats">
+        <div class="stats-item">
+          <div class="stats-badge" style="visibility:hidden;">placeholder</div>
+          <div class="stats-number">6</div>
+          <div class="stats-label">今日</div>
+        </div>
+        <div class="stats-item">
+          <div class="stats-badge" style="visibility:hidden;">placeholder</div>
+          <div class="stats-number">6</div>
+          <div class="stats-label">累計</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- パターン3: streak5日目 -->
+    <div>
+      <div class="pattern-label">③ streak 5日目（今日12問・累計150問）</div>
+      <div class="study-stats">
+        <div class="stats-item">
+          <div class="stats-badge">🔥 5日連続</div>
+          <div class="stats-number">12</div>
+          <div class="stats-label">今日</div>
+        </div>
+        <div class="stats-item">
+          <div class="stats-badge" style="visibility:hidden;">placeholder</div>
+          <div class="stats-number">150</div>
+          <div class="stats-label">累計</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 4. マスコット確認 -->
+<!-- ──────────────────────────────────────── -->
+<!-- ──────────────────────────────────────── -->
+<div class="section">
+  <div class="section-title">4. マスコット確認</div>
   <div class="mascot-grid">
 
     <!-- normal / 96px -->

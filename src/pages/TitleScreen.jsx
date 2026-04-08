@@ -207,39 +207,41 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
 function StudyStats({ record }) {
   if (!record?.lastStudyDate) return null
 
-  const mono = { fontFamily: "'IBM Plex Mono', monospace" }
+  const { streak = 1, todaySolved = 0, totalSolved = 0 } = record
 
-  if (!record.todaySolved) {
-    return (
-      <div style={{
-        ...mono, fontSize: 11, color: 'var(--text-muted)',
-        letterSpacing: '0.3px', textAlign: 'center',
-      }}>
-        今日はまだ学習していません
-      </div>
-    )
-  }
+  const items = [
+    { n: todaySolved, label: '今日', badge: streak > 1 ? `🔥 ${streak}日連続` : null },
+    { n: totalSolved, label: '累計', badge: null },
+  ]
 
   return (
-    <div style={{
-      width: '100%',
-      background: 'var(--surface)',
-      border: '1px solid var(--border)',
-      borderRadius: 50,
-      padding: '10px 20px',
-      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16,
-    }}>
-      {record.streak > 1 && (
-        <>
-          <span style={{ ...mono, fontSize: 12, color: 'var(--text)', fontWeight: 600 }}>
-            🔥 {record.streak}日連続
-          </span>
-          <span style={{ color: 'var(--border-strong)', fontSize: 12 }}>|</span>
-        </>
-      )}
-      <span style={{ ...mono, fontSize: 12, color: 'var(--text)', fontWeight: 600 }}>
-        累計 {record.totalSolved}問
-      </span>
+    <div style={{ display: 'flex', justifyContent: 'center', gap: 40, padding: '8px 0' }}>
+      {items.map(({ n, label, badge }) => (
+        <div key={label} style={{ textAlign: 'center' }}>
+          {badge && (
+            <div style={{
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: 10, color: 'var(--text-sub)',
+              letterSpacing: '0.3px', marginBottom: 4,
+            }}>
+              {badge}
+            </div>
+          )}
+          <div style={{
+            fontFamily: "'IBM Plex Mono', monospace",
+            fontSize: 24, fontWeight: 600, color: 'var(--text)',
+            letterSpacing: '-0.4px',
+          }}>
+            {n}
+          </div>
+          <div style={{
+            fontSize: 10, textTransform: 'uppercase',
+            letterSpacing: '1.5px', color: 'var(--text-sub)', marginTop: 4,
+          }}>
+            {label}
+          </div>
+        </div>
+      ))}
     </div>
   )
 }
