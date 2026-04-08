@@ -42,12 +42,14 @@ const debugInit = computeDebugInit()
 export default function App() {
   const [filteredSentences, setFilteredSentences] = useState(debugInit?.sentences ?? null)
   const [isWeakMode, setIsWeakMode] = useState(false)
+  const [sessionKey, setSessionKey] = useState(0)
   const weakIds = useWeakIds()
   const online  = useOnlineStatus()
 
   const handleStart = useCallback((sentences, weak = false) => {
     setFilteredSentences(sentences)
     setIsWeakMode(weak)
+    setSessionKey(k => k + 1)
   }, [])
 
   const handleExit = useCallback(() => {
@@ -77,6 +79,7 @@ export default function App() {
     <>
       {offlineBanner}
       <StudySession
+        key={sessionKey}
         sentences={filteredSentences}
         onExit={handleExit}
         onRetryWrong={handleStart}
