@@ -12,23 +12,23 @@ function shuffle(arr) {
 /**
  * Manages drill session: shuffled order, score, card state
  */
-export function useSession(sentences) {
+export function useSession(sentences, initialState = {}) {
   const makeOrder = useCallback(
     () => shuffle([...Array(sentences.length).keys()]),
     [sentences]
   )
 
   const [order,    setOrder]    = useState(() => makeOrder())
-  const [idx,      setIdx]      = useState(0)
-  const [ok,       setOk]       = useState(0)
-  const [ng,       setNg]       = useState(0)
+  const [idx,      setIdx]      = useState(initialState.idx  ?? 0)
+  const [ok,       setOk]       = useState(initialState.ok   ?? 0)
+  const [ng,       setNg]       = useState(initialState.ng   ?? 0)
   const [revealed, setRevealed] = useState(false)
   const [checked,  setChecked]  = useState(false)
   const [showHint, setShowHint] = useState(false)
   const [feedback, setFeedback] = useState(null) // 'ok' | 'ng' | null
 
-  const ngByCat = useRef({})
-  const ngIds   = useRef([])
+  const ngByCat = useRef(initialState.ngByCat ?? {})
+  const ngIds   = useRef(initialState.ngIds   ?? [])
 
   const current = idx < sentences.length ? sentences[order[idx]] : null
   const done    = idx >= sentences.length

@@ -42,7 +42,7 @@
       color: #ccc; font-family: inherit; font-size: 11px;
       padding: 10px 16px; cursor: pointer; border-radius: 6px;
       letter-spacing: 0.3px; transition: background .1s, border-color .1s;
-      text-align: left;
+      text-align: left; text-decoration: none; display: block;
     }
     .btn:hover { background: #2e2e2e; border-color: #555; }
     .btn:active { background: #333; }
@@ -105,12 +105,25 @@
 <!-- ──────────────────────────────────────── -->
 <div class="section">
   <div class="section-title">1. 画面ショートカット</div>
+  <p style="color:#666; font-size:11px; margin-bottom:16px;">
+    ボタンをクリックするとデバッグモードで起動します。localhost のみ有効。
+  </p>
   <div class="btn-grid">
 
-    <button class="btn" onclick="setWeakIds([1,2,3,4,5]); openApp()">
+    <a class="btn" href="http://localhost:5173/?debug=completion-pass" target="_blank">
+      <span class="btn-label">Completion（全問正解）</span>
+      <span class="btn-desc">?debug=completion-pass — ok=10, ng=0</span>
+    </a>
+
+    <a class="btn" href="http://localhost:5173/?debug=completion-fail" target="_blank">
+      <span class="btn-label">Completion（不正解あり）</span>
+      <span class="btn-desc">?debug=completion-fail — ok=7, ng=3, ngIds=[先頭3問]</span>
+    </a>
+
+    <a class="btn" href="http://localhost:5173/?debug=weak" target="_blank">
       <span class="btn-label">苦手問題あり状態</span>
-      <span class="btn-desc">weakIds = [1,2,3,4,5] をセット → アプリを開く</span>
-    </button>
+      <span class="btn-desc">?debug=weak — weakIds=[先頭5問] をセット → タイトル画面</span>
+    </a>
 
     <button class="btn" onclick="clearWeakIds(); openApp()">
       <span class="btn-label">苦手問題ゼロ状態</span>
@@ -122,22 +135,14 @@
       <span class="btn-desc">localStorage の pommes-* キーをすべて削除</span>
     </button>
 
-    <button class="btn" onclick="openApp()">
-      <span class="btn-label">アプリを開く</span>
-      <span class="btn-desc">localhost:5173 をタブで開く</span>
-    </button>
+    <a class="btn" href="http://localhost:5173/" target="_blank">
+      <span class="btn-label">アプリを開く（通常）</span>
+      <span class="btn-desc">デバッグなしで起動</span>
+    </a>
 
   </div>
 
-  <div class="note">
-    <strong style="color:#aaa">Completion画面の再現について</strong><br>
-    セッション状態（ok / ng / ngIds）は React のメモリ内 state（<code>useSession</code>）で管理されており、
-    localStorage / sessionStorage 経由では注入できません。<br><br>
-    再現方法：アプリで実際に数問解いて完了画面に進むか、<br>
-    <code>useSession.js</code> の初期値を一時的に書き換えてデバッグしてください。
-  </div>
-
-  <div class="note" style="margin-top:8px">
+  <div class="note" style="margin-top:12px">
     <strong style="color:#aaa">オフライン状態の模擬</strong><br>
     Chrome DevTools → Network タブ → 「No throttling」 を
     <code>Offline</code> に切り替えてください。<br>

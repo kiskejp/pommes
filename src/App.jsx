@@ -12,9 +12,35 @@ import { ScoreBar }          from './components/ScoreBar'
 import { CardMode }          from './components/CardMode'
 import { InputMode }         from './components/InputMode'
 import { Completion }        from './components/Completion'
+import allSentences          from './data/sentences.json'
+
+// ── Debug mode (localhost only) ──
+const isLocalhost = ['localhost', '127.0.0.1'].includes(location.hostname)
+const debugParam  = isLocalhost ? new URLSearchParams(location.search).get('debug') : null
+
+if (debugParam === 'weak') {
+  const ids = allSentences.slice(0, 5).map(s => s.id)
+  localStorage.setItem('pommes-weak-ids', JSON.stringify(ids))
+}
+
+function computeDebugInit() {
+  if (debugParam === 'completion-pass') {
+    const sents = allSentences.slice(0, 10)
+    return { sentences: sents, sessionState: { idx: 10, ok: 10, ng: 0, ngIds: [], ngByCat: {} } }
+  }
+  if (debugParam === 'completion-fail') {
+    const sents = allSentences.slice(0, 10)
+    const ngIds = sents.slice(0, 3).map(s => s.id)
+    const ngByCat = {}
+    sents.slice(0, 3).forEach(s => { ngByCat[s.category] = (ngByCat[s.category] ?? 0) + 1 })
+    return { sentences: sents, sessionState: { idx: 10, ok: 7, ng: 3, ngIds, ngByCat } }
+  }
+  return null
+}
+const debugInit = computeDebugInit()
 
 export default function App() {
-  const [filteredSentences, setFilteredSentences] = useState(null)
+  const [filteredSentences, setFilteredSentences] = useState(debugInit?.sentences ?? null)
   const [isWeakMode, setIsWeakMode] = useState(false)
   const weakIds = useWeakIds()
   const online  = useOnlineStatus()
@@ -56,15 +82,16 @@ export default function App() {
         onRetryWrong={handleStart}
         weakIds={weakIds}
         isWeakMode={isWeakMode}
+        initialSessionState={debugInit?.sessionState}
       />
     </>
   )
 }
 
-function StudySession({ sentences, onExit, onRetryWrong, weakIds, isWeakMode }) {
+function StudySession({ sentences, onExit, onRetryWrong, weakIds, isWeakMode, initialSessionState }) {
   const [mode, setMode] = useState('card')
   const { speak, speaking, hasJpVoice, hasDeVoice } = useTTS()
-  const session = useSession(sentences)
+  const session = useSession(sentences, initialSessionState)
   const { ok, ng, done, progress, reset } = session
   const { jpEnabled, deEnabled, pauseDuration, update } = useAudioSettings()
 
