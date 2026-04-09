@@ -218,15 +218,14 @@ function StudyStats({ record }) {
     <div style={{ display: 'flex', justifyContent: 'center', gap: 40, padding: '8px 0' }}>
       {items.map(({ n, label, badge }) => (
         <div key={label} style={{ textAlign: 'center' }}>
-          {badge && (
-            <div style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: 10, color: 'var(--text-sub)',
-              letterSpacing: '0.3px', marginBottom: 4,
-            }}>
-              {badge}
-            </div>
-          )}
+          <div style={{
+            fontFamily: "'IBM Plex Mono', monospace",
+            fontSize: 10, color: 'var(--text-sub)',
+            letterSpacing: '0.3px', marginBottom: 4,
+            visibility: badge ? 'visible' : 'hidden',
+          }}>
+            {badge ?? 'placeholder'}
+          </div>
           <div style={{
             fontFamily: "'IBM Plex Mono', monospace",
             fontSize: 24, fontWeight: 600, color: 'var(--text)',

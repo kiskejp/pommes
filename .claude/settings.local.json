@@ -16,7 +16,12 @@
       "Bash(python3:*)",
       "Bash(convert --version)",
       "Bash(ffmpeg -version)",
-      "Bash(npm uninstall:*)"
+      "Bash(npm uninstall:*)",
+      "Read(//Volumes/SanDisk/Projects/app/app/**)",
+      "Bash(mkdir -p pommes)",
+      "Bash(mv shunkan:*)",
+      "Bash(mkdir -p pommes/design)",
+      "Bash(touch pommes/design/.gitkeep)"
     ]
   }
 }
