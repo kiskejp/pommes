@@ -18,6 +18,7 @@ pommes/
 - 新機能は `app/` で先に開発・確認してから `expo/` に反映する
 - `sentences.json` は `app/src/data/` がマスター、`expo/src/data/` にコピーして使用
 - git commit は機能単位でこまめに行う
+- **git操作はすべて `pommes/` ディレクトリから行う**（リポジトリルートが `pommes/` のため）
 
 ## ブランド
 
