@@ -194,7 +194,7 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
           textTransform: 'uppercase',
         }}>
           <span>{sentences.length} Sätze · A1–B1</span>
-          <a href="/pommes/privacy.html" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>
+          <a href="privacy.html" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>
             プライバシーポリシー
           </a>
         </div>
