@@ -2,8 +2,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
-export default defineConfig({
-  base: '/pommes/',
+export default defineConfig(({ command }) => ({
+  base: command === 'build' ? '/pommes/' : '/',
   plugins: [
     react(),
     VitePWA({
