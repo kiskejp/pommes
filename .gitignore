@@ -1,4 +1,17 @@
-node_modules
-dist
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+.expo/
+.expo-shared/
+
+# OS
 .DS_Store
-*.local
+
+# Logs
+npm-debug.log*
+
+# Local env
+.env
+.env.local
