@@ -21,7 +21,11 @@
       "Bash(mkdir -p pommes)",
       "Bash(mv shunkan:*)",
       "Bash(mkdir -p pommes/design)",
-      "Bash(touch pommes/design/.gitkeep)"
+      "Bash(touch pommes/design/.gitkeep)",
+      "Bash(npx create-expo-app:*)",
+      "Bash(npx expo:*)",
+      "Bash(mkdir -p /Volumes/SanDisk/Projects/app/app/pommes/expo/src/data /Volumes/SanDisk/Projects/app/app/pommes/expo/src/hooks /Volumes/SanDisk/Projects/app/app/pommes/expo/src/components /Volumes/SanDisk/Projects/app/app/pommes/expo/src/screens)",
+      "Bash(cp /Volumes/SanDisk/Projects/app/app/pommes/app/src/data/sentences.json /Volumes/SanDisk/Projects/app/app/pommes/expo/src/data/sentences.json)"
     ]
   }
 }
