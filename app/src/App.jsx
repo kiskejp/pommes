@@ -185,7 +185,7 @@ function StudySession({ sentences, onExit, onRetryWrong, weakIds, isWeakMode, in
       </div>
 
       {/* ── Audio settings row ── */}
-      <div className="audio-settings" style={{
+      {!done && <div className="audio-settings" style={{
         width: '100%', maxWidth: 640,
         display: 'flex', justifyContent: 'flex-end', gap: 6,
         padding: '10px 24px 0',
@@ -212,7 +212,7 @@ function StudySession({ sentences, onExit, onRetryWrong, weakIds, isWeakMode, in
             {label}
           </button>
         ))}
-      </div>
+      </div>}
 
       {/* ── Main ── */}
       <main className="app-main" style={{
