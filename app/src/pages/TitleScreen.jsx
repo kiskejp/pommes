@@ -1,20 +1,73 @@
 // pages/TitleScreen.jsx
 import { useState, useEffect, useRef } from 'react'
+import {
+  ChevronRight, X,
+  Link2, Pencil, HelpCircle, XCircle, Clock,
+  MessageCircle, SlidersHorizontal, CheckCircle, Scissors,
+  MapPin, Sparkles, BarChart2, GitMerge, Wand2, RefreshCw,
+  Link as LinkIcon, Infinity as InfinityIcon, Zap, BookOpen,
+  Home, ShoppingBag, Briefcase, Plane, Train, UtensilsCrossed,
+  Cross, GraduationCap, User,
+} from 'lucide-react'
 import sentences from '../data/sentences.json'
 import { PotatoMascot } from '../components/PotatoMascot'
 import { useTheme } from '../context/ThemeContext'
 import { themes } from '../themes'
+
+const CATEGORY_ICONS = {
+  'sein動詞':      Link2,
+  '現在形':        Pencil,
+  '疑問文':        HelpCircle,
+  '否定文':        XCircle,
+  '数字と時間':    Clock,
+  '会話・挨拶表現': MessageCircle,
+  '話法の助動詞':  SlidersHorizontal,
+  '現在完了':      CheckCircle,
+  '分離動詞':      Scissors,
+  '前置詞':        MapPin,
+  '未来形':        Sparkles,
+  '比較級・最上級': BarChart2,
+  '接続詞':        GitMerge,
+  '接続法II':      Wand2,
+  '受動態':        RefreshCw,
+  '関係代名詞':    LinkIcon,
+  'zu不定詞':      InfinityIcon,
+  '副詞':          Zap,
+  '慣用表現':      BookOpen,
+}
+
+const SCENE_ICONS = {
+  '日常生活':         Home,
+  '買い物':           ShoppingBag,
+  '仕事・職場':       Briefcase,
+  '観光・旅行':       Plane,
+  '交通・移動':       Train,
+  'レストラン・カフェ': UtensilsCrossed,
+  '病院・緊急':       Cross,
+  '学校・勉強':       GraduationCap,
+  '自己紹介':         User,
+}
+
+const LEVEL_META = {
+  A1: { bg: 'var(--surface)',  label: '初級',   count: sentences.filter(s => s.level === 'A1').length },
+  A2: { bg: 'var(--tab-bg)',   label: '初中級', count: sentences.filter(s => s.level === 'A2').length },
+  B1: { bg: 'var(--border)',   label: '中級',   count: sentences.filter(s => s.level === 'B1').length },
+}
+
+const LEVEL_CATEGORIES = {
+  A1: [...new Set(sentences.filter(s => s.level === 'A1').map(s => s.category))],
+  A2: [...new Set(sentences.filter(s => s.level === 'A2').map(s => s.category))],
+  B1: [...new Set(sentences.filter(s => s.level === 'B1').map(s => s.category))],
+}
 
 const LEVELS = ['A1', 'A2', 'B1']
 const CATEGORIES = [...new Set(sentences.map(s => s.category))]
 const SCENES = [...new Set(sentences.filter(s => s.scene).map(s => s.scene))]
 
 export function TitleScreen({ onStart, weakIds, studyRecord }) {
-  const [expanded, setExpanded] = useState(null)
+  const [modal, setModal] = useState(null) // 'level' | 'category' | 'scene' | null
   const { themeId, setTheme } = useTheme()
   const weakCount = weakIds?.weakIds.length ?? 0
-
-  const toggle = (key) => setExpanded(prev => prev === key ? null : key)
 
   const start = (filter) => {
     let filtered
@@ -34,6 +87,11 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
     const weak = sentences.filter(s => weakIds.weakIds.includes(s.id))
     if (weak.length === 0) return
     onStart(weak, true)
+  }
+
+  const selectAndStart = (filter) => {
+    setModal(null)
+    start(filter)
   }
 
   return (
@@ -62,7 +120,7 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
           </div>
           <div className="logo-subtitle" style={{
             fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: 13, letterSpacing: '1.5px', textTransform: 'uppercase',
+            fontSize: 14, letterSpacing: '1.5px', textTransform: 'uppercase',
             color: 'var(--text-sub)', marginTop: 8,
           }}>
             瞬間ドイツ語作文
@@ -73,7 +131,7 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
         <StudyStats record={studyRecord} />
 
         {/* ── Buttons ── */}
-        <div className="start-buttons" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <div className="start-buttons" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12 }}>
 
           <button onClick={() => start(null)} style={solidBtn}>
             すぐはじめる
@@ -95,64 +153,20 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
             </span>
           </button>
 
-          <div>
-            <button onClick={() => toggle('level')} style={expanded === 'level' ? ghostBtnActive : ghostBtn}>
-              レベルから選ぶ
-              <Chevron open={expanded === 'level'} />
-            </button>
-            {expanded === 'level' && (
-              <div style={subPanelStyle}>
-                {LEVELS.map(lv => (
-                  <button key={lv} onClick={() => start({ level: lv })} style={subItemBtn}>
-                    <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}>{lv}</span>
-                    <span style={{ color: 'var(--text-sub)', fontSize: 11 }}>
-                      {sentences.filter(s => s.level === lv).length}問
-                    </span>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+          <button onClick={() => setModal('level')} style={ghostBtn}>
+            レベルから選ぶ
+            <Chevron />
+          </button>
 
-          <div>
-            <button onClick={() => toggle('category')} style={expanded === 'category' ? ghostBtnActive : ghostBtn}>
-              カテゴリから選ぶ
-              <Chevron open={expanded === 'category'} />
-            </button>
-            {expanded === 'category' && (
-              <div style={subPanelStyle}>
-                {CATEGORIES.map(cat => (
-                  <button key={cat} onClick={() => start({ category: cat })} style={subItemBtn}>
-                    <span>{cat}</span>
-                    <span style={{ color: 'var(--text-sub)', fontSize: 11 }}>
-                      {sentences.filter(s => s.category === cat).length}問
-                    </span>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+          <button onClick={() => setModal('category')} style={ghostBtn}>
+            カテゴリから選ぶ
+            <Chevron />
+          </button>
 
-          <div>
-            <button onClick={() => toggle('scene')} style={expanded === 'scene' ? ghostBtnActive : ghostBtn}>
-              シーンから選ぶ
-              <Chevron open={expanded === 'scene'} />
-            </button>
-            {expanded === 'scene' && (
-              <div style={subPanelStyle}>
-                {SCENES.map(sc => {
-                  const count = sentences.filter(s => s.scene === sc).length
-                  if (count === 0) return null
-                  return (
-                    <button key={sc} onClick={() => start({ scene: sc })} style={subItemBtn}>
-                      <span>{sc}</span>
-                      <span style={{ color: 'var(--text-sub)', fontSize: 11 }}>{count}問</span>
-                    </button>
-                  )
-                })}
-              </div>
-            )}
-          </div>
+          <button onClick={() => setModal('scene')} style={ghostBtn}>
+            シーンから選ぶ
+            <Chevron />
+          </button>
 
         </div>
 
@@ -199,6 +213,24 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
           </a>
         </div>
       </div>
+
+      {/* ── Modals ── */}
+      <LevelModal
+        open={modal === 'level'}
+        onClose={() => setModal(null)}
+        onSelect={lv => selectAndStart({ level: lv })}
+      />
+      <CategoryModal
+        open={modal === 'category'}
+        onClose={() => setModal(null)}
+        onSelect={cat => selectAndStart({ category: cat })}
+      />
+      <SceneModal
+        open={modal === 'scene'}
+        onClose={() => setModal(null)}
+        onSelect={sc => selectAndStart({ scene: sc })}
+      />
+
     </div>
   )
 }
@@ -284,7 +316,7 @@ function MascotWithBubble() {
         background: 'var(--surface)', color: 'var(--text)',
         fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
         fontSize: 13, padding: '7px 16px',
-        borderRadius: 50, marginBottom: 10,
+        borderRadius: 50, marginBottom: 18,
         whiteSpace: 'nowrap', position: 'relative',
       }}>
         {text}
@@ -302,16 +334,218 @@ function MascotWithBubble() {
   )
 }
 
-/* ── Chevron icon ── */
-function Chevron({ open }) {
+/* ── Modal shell (shared animation + overlay) ── */
+function ModalShell({ open, title, onClose, children }) {
+  const [visible, setVisible] = useState(false)
+  const [animating, setAnimating] = useState(false)
+
+  useEffect(() => {
+    if (open) {
+      setAnimating(true)
+      requestAnimationFrame(() => setVisible(true))
+    } else {
+      setVisible(false)
+      const t = setTimeout(() => setAnimating(false), 200)
+      return () => clearTimeout(t)
+    }
+  }, [open])
+
+  if (!animating) return null
+
   return (
-    <svg
-      width={12} height={12} viewBox="0 0 12 12" fill="none"
-      style={{ transition: 'transform .2s', transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
+    <div
+      onClick={onClose}
+      style={{
+        position: 'fixed', inset: 0, zIndex: 100,
+        background: 'rgba(0,0,0,0.4)',
+        opacity: visible ? 1 : 0,
+        transition: 'opacity 0.2s ease',
+      }}
     >
-      <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
+      <div
+        onClick={e => e.stopPropagation()}
+        style={{
+          position: 'absolute', inset: 0,
+          background: 'var(--bg)',
+          display: 'flex', flexDirection: 'column',
+          overflow: 'hidden',
+        }}
+      >
+        {/* header */}
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          padding: '20px 24px 8px',
+          flexShrink: 0,
+        }}>
+          <span style={{
+            fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
+            fontSize: 14, letterSpacing: '0.5px', color: 'var(--text)',
+          }}>
+            {title}
+          </span>
+          <button
+            onClick={onClose}
+            style={{
+              background: 'none', border: 'none',
+              cursor: 'pointer', padding: 6,
+              color: 'var(--text-sub)', lineHeight: 0,
+            }}
+          >
+            <X size={24} strokeWidth={2} />
+          </button>
+        </div>
+
+        {/* scrollable content */}
+        <div style={{ overflowY: 'auto', flexGrow: 1, padding: '8px 16px 32px' }}>
+          {children}
+        </div>
+      </div>
+    </div>
   )
+}
+
+/* ── Level modal ── */
+function LevelModal({ open, onClose, onSelect }) {
+  return (
+    <ModalShell open={open} title="レベルから選ぶ" onClose={onClose}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        {LEVELS.map(lv => {
+          const meta = LEVEL_META[lv]
+          const cats = LEVEL_CATEGORIES[lv]
+          const mid = Math.ceil(cats.length / 2)
+          const line1 = cats.slice(0, mid).join('・')
+          const line2 = cats.slice(mid).join('・')
+          return (
+            <button
+              key={lv}
+              onClick={() => onSelect(lv)}
+              style={{
+                width: '100%', background: meta.bg,
+                border: 'none', borderRadius: 12,
+                padding: '18px 16px',
+                cursor: 'pointer', textAlign: 'left',
+                display: 'flex', alignItems: 'center', gap: 14,
+              }}
+            >
+              {/* level name */}
+              <div style={{ flexShrink: 0 }}>
+                <div style={{
+                  fontFamily: "'Paytone One', sans-serif",
+                  fontSize: 36, lineHeight: 1,
+                  color: 'var(--text)', letterSpacing: '-1px',
+                }}>
+                  {lv}
+                </div>
+              </div>
+
+              {/* subtext + category preview */}
+              <div style={{ flexGrow: 1, minWidth: 0 }}>
+                <div style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: 13, color: 'var(--text-sub)',
+                  letterSpacing: '0.3px',
+                }}>
+                  {meta.label}・{meta.count}問
+                </div>
+                <div style={{ fontSize: 11, color: 'var(--text-sub)', lineHeight: 1.6, fontFamily: "'Barlow', sans-serif" }}>
+                  <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{line1}</div>
+                  <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{line2}</div>
+                </div>
+              </div>
+
+              <ChevronRight size={16} color="var(--text-sub)" style={{ flexShrink: 0 }} />
+            </button>
+          )
+        })}
+      </div>
+    </ModalShell>
+  )
+}
+
+/* ── Category modal ── */
+function CategoryModal({ open, onClose, onSelect }) {
+  return (
+    <ModalShell open={open} title="カテゴリから選ぶ" onClose={onClose}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {CATEGORIES.map(cat => {
+          const Icon = CATEGORY_ICONS[cat]
+          const count = sentences.filter(s => s.category === cat).length
+          return (
+            <button
+              key={cat}
+              onClick={() => onSelect(cat)}
+              style={cardItemBtn}
+            >
+              <div style={iconBadge}>
+                {Icon && <Icon size={16} color="var(--text)" />}
+              </div>
+              <div style={{ flexGrow: 1, minWidth: 0, textAlign: 'left' }}>
+                <div style={{ fontSize: 14, color: 'var(--text)', fontFamily: "'Barlow', sans-serif" }}>{cat}</div>
+                <div style={{ fontSize: 11, color: 'var(--text-sub)', fontFamily: "'IBM Plex Mono', monospace", marginTop: 1 }}>{count}問</div>
+              </div>
+              <ChevronRight size={16} color="var(--text-sub)" style={{ flexShrink: 0 }} />
+            </button>
+          )
+        })}
+      </div>
+    </ModalShell>
+  )
+}
+
+/* ── Scene modal ── */
+function SceneModal({ open, onClose, onSelect }) {
+  const scenes = SCENES.filter(sc => sentences.some(s => s.scene === sc))
+  return (
+    <ModalShell open={open} title="シーンから選ぶ" onClose={onClose}>
+      <div style={{
+        display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8,
+      }}>
+        {scenes.map(sc => {
+          const Icon = SCENE_ICONS[sc]
+          const count = sentences.filter(s => s.scene === sc).length
+          return (
+            <button
+              key={sc}
+              onClick={() => onSelect(sc)}
+              style={{
+                background: 'var(--surface)', border: 'none', borderRadius: 12,
+                padding: '16px 12px',
+                cursor: 'pointer', textAlign: 'left',
+                display: 'flex', flexDirection: 'column', gap: 10,
+              }}
+            >
+              <div style={iconBadge}>
+                {Icon && <Icon size={16} color="var(--text)" />}
+              </div>
+              <div>
+                <div style={{ fontSize: 13, color: 'var(--text)', fontFamily: "'Barlow', sans-serif", fontWeight: 600 }}>{sc}</div>
+                <div style={{ fontSize: 11, color: 'var(--text-sub)', fontFamily: "'IBM Plex Mono', monospace", marginTop: 2 }}>{count}問</div>
+              </div>
+            </button>
+          )
+        })}
+      </div>
+    </ModalShell>
+  )
+}
+
+const cardItemBtn = {
+  width: '100%', background: 'var(--surface)', border: 'none', borderRadius: 12,
+  padding: '12px 14px',
+  cursor: 'pointer', textAlign: 'left',
+  display: 'flex', alignItems: 'center', gap: 12,
+}
+
+const iconBadge = {
+  width: 32, height: 32, borderRadius: 8,
+  background: 'var(--tab-bg)',
+  display: 'flex', alignItems: 'center', justifyContent: 'center',
+  flexShrink: 0,
+}
+
+/* ── Chevron icon (›) ── */
+function Chevron() {
+  return <ChevronRight size={16} color="var(--text-sub)" />
 }
 
 /* ── Styles ── */
@@ -319,31 +553,14 @@ const solidBtn = {
   width: '100%', padding: '15px 24px',
   background: 'var(--solid-bg)', border: 'none', color: 'var(--solid-text)',
   fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
-  fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.54px',
+  fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.54px',
   cursor: 'pointer', borderRadius: 50,
 }
 const ghostBtn = {
   width: '100%', padding: '13px 24px',
   background: 'var(--bg)', border: '2px solid var(--border)', color: 'var(--text)',
   fontFamily: "'IBM Plex Mono', monospace", fontWeight: 400,
-  fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.54px',
+  fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.54px',
   cursor: 'pointer', borderRadius: 50,
   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-}
-const ghostBtnActive = {
-  ...ghostBtn,
-  border: '2px solid var(--border-strong)',
-}
-const subPanelStyle = {
-  marginTop: 6,
-  border: '1px solid var(--border)',
-  borderRadius: 12,
-  overflow: 'hidden',
-}
-const subItemBtn = {
-  width: '100%', padding: '12px 24px',
-  background: 'var(--bg)', border: 'none', borderBottom: '1px solid var(--border)',
-  color: 'var(--text)', fontFamily: "'Barlow', sans-serif", fontSize: 14,
-  cursor: 'pointer', textAlign: 'left',
-  display: 'flex', justifyContent: 'space-between', alignItems: 'center',
 }

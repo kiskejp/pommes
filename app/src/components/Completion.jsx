@@ -38,7 +38,7 @@ export function Completion({ ok, total, onReset, isWeakMode, ngByCategory, ngIds
           background: 'var(--surface)', color: 'var(--text)',
           fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
           fontSize: 13, padding: '7px 16px',
-          borderRadius: 50, marginBottom: 10,
+          borderRadius: 50, marginBottom: 18,
           whiteSpace: 'nowrap', position: 'relative',
         }}>
           {msg}
