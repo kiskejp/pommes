@@ -113,8 +113,8 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
         <div className="logo" style={{ textAlign: 'center' }}>
           <div className="logo-title" style={{
             fontFamily: "'Paytone One', sans-serif",
-            fontSize: 56, letterSpacing: '-1px', color: 'var(--text)',
-            lineHeight: 1,
+            fontSize: 56, letterSpacing: '-1px', lineHeight: 1,
+            color: 'var(--text)',
           }}>
             Pommes
           </div>
@@ -153,20 +153,22 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
             </span>
           </button>
 
-          <button onClick={() => setModal('level')} style={ghostBtn}>
-            レベルから選ぶ
-            <Chevron />
-          </button>
-
-          <button onClick={() => setModal('category')} style={ghostBtn}>
-            カテゴリから選ぶ
-            <Chevron />
-          </button>
-
-          <button onClick={() => setModal('scene')} style={ghostBtn}>
-            シーンから選ぶ
-            <Chevron />
-          </button>
+          <div style={{ display: 'flex', gap: 8 }}>
+            {[
+              { label: 'レベル',    key: 'level' },
+              { label: 'カテゴリ',  key: 'category' },
+              { label: 'シーン',    key: 'scene' },
+            ].map(({ label, key }) => (
+              <button
+                key={key}
+                onClick={() => setModal(key)}
+                style={chipBtn}
+              >
+                {label}
+                <ChevronRight size={13} color="var(--text-sub)" />
+              </button>
+            ))}
+          </div>
 
         </div>
 
@@ -555,6 +557,14 @@ const solidBtn = {
   fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
   fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.54px',
   cursor: 'pointer', borderRadius: 50,
+}
+const chipBtn = {
+  flex: 1, padding: '10px 12px',
+  background: 'var(--surface)', border: 'none', color: 'var(--text)',
+  fontFamily: "'IBM Plex Mono', monospace", fontWeight: 400,
+  fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.54px',
+  cursor: 'pointer', borderRadius: 50,
+  display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 4,
 }
 const ghostBtn = {
   width: '100%', padding: '13px 24px',
