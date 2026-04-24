@@ -1,7 +1,6 @@
 // pages/TitleScreen.jsx
 import { useState, useEffect, useRef } from 'react'
 import {
-  ChevronRight, X,
   Link2, Pencil, HelpCircle, XCircle, Clock,
   MessageCircle, SlidersHorizontal, CheckCircle, Scissors,
   MapPin, Sparkles, BarChart2, GitMerge, Wand2, RefreshCw,
@@ -54,33 +53,36 @@ const LEVEL_META = {
   B1: { bg: 'var(--border)',   label: '中級',   count: sentences.filter(s => s.level === 'B1').length },
 }
 
-const LEVEL_CATEGORIES = {
-  A1: [...new Set(sentences.filter(s => s.level === 'A1').map(s => s.category))],
-  A2: [...new Set(sentences.filter(s => s.level === 'A2').map(s => s.category))],
-  B1: [...new Set(sentences.filter(s => s.level === 'B1').map(s => s.category))],
-}
 
 const LEVELS = ['A1', 'A2', 'B1']
 const CATEGORIES = [...new Set(sentences.map(s => s.category))]
 const SCENES = [...new Set(sentences.filter(s => s.scene).map(s => s.scene))]
 
 export function TitleScreen({ onStart, weakIds, studyRecord }) {
-  const [modal, setModal] = useState(null) // 'level' | 'category' | 'scene' | null
   const { themeId, setTheme } = useTheme()
   const weakCount = weakIds?.weakIds.length ?? 0
 
-  const start = (filter) => {
-    let filtered
-    if (!filter) {
-      filtered = sentences
-    } else if (filter.level) {
-      filtered = sentences.filter(s => s.level === filter.level)
-    } else if (filter.category) {
-      filtered = sentences.filter(s => s.category === filter.category)
-    } else {
-      filtered = sentences.filter(s => s.scene === filter.scene)
-    }
+  const [selLevel, setSelLevel] = useState(null)
+  const [selCategory, setSelCategory] = useState(null)
+  const [selScene, setSelScene] = useState(null)
+
+  const filtered = sentences.filter(s =>
+    (!selLevel    || s.level    === selLevel) &&
+    (!selCategory || s.category === selCategory) &&
+    (!selScene    || s.scene    === selScene)
+  )
+
+  const hasFilter = selLevel || selCategory || selScene
+
+  const handleStart = () => {
+    if (filtered.length === 0) return
     onStart(filtered)
+  }
+
+  const resetFilters = () => {
+    setSelLevel(null)
+    setSelCategory(null)
+    setSelScene(null)
   }
 
   const startWeak = () => {
@@ -89,17 +91,12 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
     onStart(weak, true)
   }
 
-  const selectAndStart = (filter) => {
-    setModal(null)
-    start(filter)
-  }
-
   return (
     <div className="title-screen" style={{
       background: 'var(--bg)', minHeight: '100vh',
       display: 'flex', flexDirection: 'column', alignItems: 'center',
       justifyContent: 'center', fontFamily: "'Barlow', sans-serif",
-      padding: '40px 24px',
+      padding: '40px 24px 120px',
     }}>
       <div className="title-content" style={{
         width: '100%', maxWidth: 400,
@@ -133,10 +130,6 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
         {/* ── Buttons ── */}
         <div className="start-buttons" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12 }}>
 
-          <button onClick={() => start(null)} style={solidBtn}>
-            すぐはじめる
-          </button>
-
           <button
             onClick={startWeak}
             disabled={weakCount === 0}
@@ -153,35 +146,23 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
             </span>
           </button>
 
-          <div style={{ display: 'flex', gap: 8 }}>
-            {[
-              { label: 'レベル',    key: 'level' },
-              { label: 'カテゴリ',  key: 'category' },
-              { label: 'シーン',    key: 'scene' },
-            ].map(({ label, key }) => (
-              <button
-                key={key}
-                onClick={() => setModal(key)}
-                style={chipBtn}
-              >
-                {label}
-                <ChevronRight size={13} color="var(--text-sub)" />
-              </button>
-            ))}
-          </div>
-
         </div>
+
+        {/* ── Filter scrolls ── */}
+        <LevelCards    selected={selLevel}    onSelect={lv  => setSelLevel(lv   === selLevel    ? null : lv)} />
+        <CategoryChips selected={selCategory} onSelect={cat => setSelCategory(cat === selCategory ? null : cat)} />
+        <SceneGrid     selected={selScene}    onSelect={sc  => setSelScene(sc   === selScene    ? null : sc)} />
 
         {/* ── Theme picker ── */}
         <div className="theme-picker" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
-          <div style={{
+          <div className="theme-picker__label" style={{
             fontFamily: "'IBM Plex Mono', monospace", fontSize: 10,
             textTransform: 'uppercase', letterSpacing: '1.5px',
             color: 'var(--text-muted)',
           }}>
             テーマ
           </div>
-          <div style={{ display: 'flex', gap: 10 }}>
+          <div className="theme-picker__swatches" style={{ display: 'flex', gap: 10 }}>
             {Object.entries(themes).map(([id, t]) => (
               <button
                 key={id}
@@ -203,7 +184,7 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
         </div>
 
         {/* ── Footer ── */}
-        <div style={{
+        <div className="footer" style={{
           display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
           fontFamily: "'IBM Plex Mono', monospace",
           fontSize: 10, color: 'var(--text-muted)', letterSpacing: '0.54px',
@@ -216,22 +197,50 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
         </div>
       </div>
 
-      {/* ── Modals ── */}
-      <LevelModal
-        open={modal === 'level'}
-        onClose={() => setModal(null)}
-        onSelect={lv => selectAndStart({ level: lv })}
-      />
-      <CategoryModal
-        open={modal === 'category'}
-        onClose={() => setModal(null)}
-        onSelect={cat => selectAndStart({ category: cat })}
-      />
-      <SceneModal
-        open={modal === 'scene'}
-        onClose={() => setModal(null)}
-        onSelect={sc => selectAndStart({ scene: sc })}
-      />
+      {/* ── Fixed bottom start bar ── */}
+      <div className="start-bar" style={{
+        position: 'fixed', bottom: 0, left: 0, right: 0,
+        padding: '32px 24px 12px',
+        paddingBottom: 'max(12px, env(safe-area-inset-bottom))',
+        background: 'linear-gradient(to bottom, transparent, var(--bg) 40%)',
+        display: 'flex', flexDirection: 'column', gap: 8,
+        zIndex: 50,
+        pointerEvents: 'none',
+      }}>
+        {hasFilter && (
+          <button
+            onClick={resetFilters}
+            style={{
+              background: 'none', border: 'none', cursor: 'pointer',
+              fontSize: 11, color: 'var(--text-muted)',
+              fontFamily: "'IBM Plex Mono', monospace",
+              letterSpacing: '0.5px', padding: '4px',
+              alignSelf: 'center',
+              marginTop: 24,
+              pointerEvents: 'auto',
+            }}
+          >
+            × フィルターをリセット
+          </button>
+        )}
+        <button
+          onClick={handleStart}
+          disabled={filtered.length === 0}
+          style={{
+            ...solidBtn,
+            marginTop: hasFilter ? 0 : 24,
+            pointerEvents: 'auto',
+            opacity: filtered.length === 0 ? 0.4 : 1,
+            cursor: filtered.length === 0 ? 'default' : 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          }}
+        >
+          <span>{hasFilter ? 'スタート' : 'すぐはじめる'}</span>
+          <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11 }}>
+            {filtered.length}問
+          </span>
+        </button>
+      </div>
 
     </div>
   )
@@ -336,206 +345,184 @@ function MascotWithBubble() {
   )
 }
 
-/* ── Modal shell (shared animation + overlay) ── */
-function ModalShell({ open, title, onClose, children }) {
-  const [visible, setVisible] = useState(false)
-  const [animating, setAnimating] = useState(false)
-
-  useEffect(() => {
-    if (open) {
-      setAnimating(true)
-      requestAnimationFrame(() => setVisible(true))
-    } else {
-      setVisible(false)
-      const t = setTimeout(() => setAnimating(false), 200)
-      return () => clearTimeout(t)
-    }
-  }, [open])
-
-  if (!animating) return null
-
+/* ── Shared filter section label ── */
+function FilterSection({ label, children }) {
   return (
-    <div
-      onClick={onClose}
-      style={{
-        position: 'fixed', inset: 0, zIndex: 100,
-        background: 'rgba(0,0,0,0.4)',
-        opacity: visible ? 1 : 0,
-        transition: 'opacity 0.2s ease',
-      }}
-    >
-      <div
-        onClick={e => e.stopPropagation()}
-        style={{
-          position: 'absolute', inset: 0,
-          background: 'var(--bg)',
-          display: 'flex', flexDirection: 'column',
-          overflow: 'hidden',
-        }}
-      >
-        {/* header */}
-        <div style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '20px 24px 8px',
-          flexShrink: 0,
-        }}>
-          <span style={{
-            fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
-            fontSize: 14, letterSpacing: '0.5px', color: 'var(--text)',
-          }}>
-            {title}
-          </span>
-          <button
-            onClick={onClose}
-            style={{
-              background: 'none', border: 'none',
-              cursor: 'pointer', padding: 6,
-              color: 'var(--text-sub)', lineHeight: 0,
-            }}
-          >
-            <X size={24} strokeWidth={2} />
-          </button>
-        </div>
-
-        {/* scrollable content */}
-        <div style={{ overflowY: 'auto', flexGrow: 1, padding: '8px 16px 32px' }}>
-          {children}
-        </div>
+    <div style={{ width: '100%' }}>
+      <div style={{
+        fontSize: 11, color: 'var(--text-muted)',
+        fontFamily: "'IBM Plex Mono', monospace",
+        letterSpacing: '0.8px', textTransform: 'uppercase',
+        marginBottom: 10,
+      }}>
+        {label}
       </div>
+      {children}
     </div>
   )
 }
 
-/* ── Level modal ── */
-function LevelModal({ open, onClose, onSelect }) {
+/* ── Level: 3 equal cards ── */
+function LevelCards({ selected, onSelect }) {
   return (
-    <ModalShell open={open} title="レベルから選ぶ" onClose={onClose}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+    <FilterSection label="レベル">
+      <div style={{ display: 'flex', gap: 10 }}>
         {LEVELS.map(lv => {
           const meta = LEVEL_META[lv]
-          const cats = LEVEL_CATEGORIES[lv]
-          const mid = Math.ceil(cats.length / 2)
-          const line1 = cats.slice(0, mid).join('・')
-          const line2 = cats.slice(mid).join('・')
+          const isSelected = selected === lv
           return (
             <button
               key={lv}
               onClick={() => onSelect(lv)}
               style={{
-                width: '100%', background: meta.bg,
-                border: 'none', borderRadius: 12,
-                padding: '18px 16px',
+                flex: 1,
+                background: isSelected ? 'var(--solid-bg)' : meta.bg,
+                border: 'none', borderRadius: 14,
+                padding: '18px 14px',
                 cursor: 'pointer', textAlign: 'left',
-                display: 'flex', alignItems: 'center', gap: 14,
+                display: 'flex', flexDirection: 'column', gap: 8,
+                transition: 'background .15s',
               }}
             >
-              {/* level name */}
-              <div style={{ flexShrink: 0 }}>
-                <div style={{
-                  fontFamily: "'Paytone One', sans-serif",
-                  fontSize: 36, lineHeight: 1,
-                  color: 'var(--text)', letterSpacing: '-1px',
-                }}>
-                  {lv}
-                </div>
+              <div style={{
+                fontFamily: "'Paytone One', sans-serif",
+                fontSize: 32, lineHeight: 1,
+                color: isSelected ? 'var(--solid-text)' : 'var(--text)',
+                letterSpacing: '-1px',
+              }}>
+                {lv}
               </div>
-
-              {/* subtext + category preview */}
-              <div style={{ flexGrow: 1, minWidth: 0 }}>
-                <div style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: 13, color: 'var(--text-sub)',
-                  letterSpacing: '0.3px',
-                }}>
-                  {meta.label}・{meta.count}問
-                </div>
-                <div style={{ fontSize: 11, color: 'var(--text-sub)', lineHeight: 1.6, fontFamily: "'Barlow', sans-serif" }}>
-                  <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{line1}</div>
-                  <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{line2}</div>
-                </div>
+              <div style={{
+                fontSize: 11, fontFamily: "'IBM Plex Mono', monospace",
+                color: isSelected ? 'var(--solid-text)' : 'var(--text-sub)',
+                opacity: isSelected ? 0.85 : 1,
+              }}>
+                {meta.label}
               </div>
-
-              <ChevronRight size={16} color="var(--text-sub)" style={{ flexShrink: 0 }} />
+              <div style={{
+                fontSize: 11, fontFamily: "'IBM Plex Mono', monospace",
+                color: isSelected ? 'var(--solid-text)' : 'var(--text-muted)',
+                opacity: isSelected ? 0.65 : 1,
+              }}>
+                {meta.count}問
+              </div>
             </button>
           )
         })}
       </div>
-    </ModalShell>
+    </FilterSection>
   )
 }
 
-/* ── Category modal ── */
-function CategoryModal({ open, onClose, onSelect }) {
+/* ── Category: wrapping chips with collapse ── */
+const CATEGORY_INITIAL_COUNT = 10
+
+function CategoryChips({ selected, onSelect }) {
+  const [expanded, setExpanded] = useState(false)
+  const visible = expanded ? CATEGORIES : CATEGORIES.slice(0, CATEGORY_INITIAL_COUNT)
+  const hiddenCount = CATEGORIES.length - CATEGORY_INITIAL_COUNT
+
   return (
-    <ModalShell open={open} title="カテゴリから選ぶ" onClose={onClose}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-        {CATEGORIES.map(cat => {
-          const Icon = CATEGORY_ICONS[cat]
-          const count = sentences.filter(s => s.category === cat).length
+    <FilterSection label="カテゴリ">
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+        {visible.map(cat => {
+          const isSelected = selected === cat
           return (
             <button
               key={cat}
               onClick={() => onSelect(cat)}
-              style={cardItemBtn}
+              style={{
+                padding: '6px 14px',
+                background: isSelected ? 'var(--solid-bg)' : 'var(--surface)',
+                border: 'none', borderRadius: 50,
+                cursor: 'pointer',
+                fontSize: 12, fontFamily: "'Barlow', sans-serif",
+                fontWeight: 600,
+                color: isSelected ? 'var(--solid-text)' : 'var(--text-sub)',
+                transition: 'background .15s',
+                whiteSpace: 'nowrap',
+              }}
             >
-              <div style={iconBadge}>
-                {Icon && <Icon size={16} color="var(--text)" />}
-              </div>
-              <div style={{ flexGrow: 1, minWidth: 0, textAlign: 'left' }}>
-                <div style={{ fontSize: 14, color: 'var(--text)', fontFamily: "'Barlow', sans-serif" }}>{cat}</div>
-                <div style={{ fontSize: 11, color: 'var(--text-sub)', fontFamily: "'IBM Plex Mono', monospace", marginTop: 1 }}>{count}問</div>
-              </div>
-              <ChevronRight size={16} color="var(--text-sub)" style={{ flexShrink: 0 }} />
+              {cat}
             </button>
           )
         })}
+        {!expanded && (
+          <button
+            onClick={() => setExpanded(true)}
+            style={{
+              padding: '6px 14px',
+              background: 'none',
+              border: '1.5px dashed var(--border)',
+              borderRadius: 50,
+              cursor: 'pointer',
+              fontSize: 12, fontFamily: "'IBM Plex Mono', monospace",
+              color: 'var(--text-muted)',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            +{hiddenCount}
+          </button>
+        )}
+        {expanded && (
+          <button
+            onClick={() => setExpanded(false)}
+            style={{
+              padding: '6px 14px',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              fontSize: 12, fontFamily: "'IBM Plex Mono', monospace",
+              color: 'var(--text-muted)',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            閉じる
+          </button>
+        )}
       </div>
-    </ModalShell>
+    </FilterSection>
   )
 }
 
-/* ── Scene modal ── */
-function SceneModal({ open, onClose, onSelect }) {
+/* ── Scene: 3-column grid ── */
+function SceneGrid({ selected, onSelect }) {
   const scenes = SCENES.filter(sc => sentences.some(s => s.scene === sc))
   return (
-    <ModalShell open={open} title="シーンから選ぶ" onClose={onClose}>
-      <div style={{
-        display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8,
-      }}>
+    <FilterSection label="シーン">
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gridAutoRows: '100px', gap: 10 }}>
         {scenes.map(sc => {
           const Icon = SCENE_ICONS[sc]
-          const count = sentences.filter(s => s.scene === sc).length
+          const isSelected = selected === sc
           return (
             <button
               key={sc}
               onClick={() => onSelect(sc)}
               style={{
-                background: 'var(--surface)', border: 'none', borderRadius: 12,
-                padding: '16px 12px',
+                background: isSelected ? 'var(--solid-bg)' : 'var(--surface)',
+                border: 'none', borderRadius: 12,
+                padding: '14px 10px',
                 cursor: 'pointer', textAlign: 'left',
-                display: 'flex', flexDirection: 'column', gap: 10,
+                display: 'flex', flexDirection: 'column', gap: 8,
+                transition: 'background .15s',
               }}
             >
-              <div style={iconBadge}>
-                {Icon && <Icon size={16} color="var(--text)" />}
+              <div style={{ ...iconBadge, background: isSelected ? 'rgba(255,255,255,0.15)' : 'var(--tab-bg)' }}>
+                {Icon && <Icon size={15} color={isSelected ? 'var(--solid-text)' : 'var(--text)'} />}
               </div>
-              <div>
-                <div style={{ fontSize: 13, color: 'var(--text)', fontFamily: "'Barlow', sans-serif", fontWeight: 600 }}>{sc}</div>
-                <div style={{ fontSize: 11, color: 'var(--text-sub)', fontFamily: "'IBM Plex Mono', monospace", marginTop: 2 }}>{count}問</div>
+              <div style={{
+                fontSize: 11, fontFamily: "'Barlow', sans-serif",
+                fontWeight: 600, lineHeight: 1.3,
+                color: isSelected ? 'var(--solid-text)' : 'var(--text)',
+              }}>
+                {sc}
               </div>
             </button>
           )
         })}
       </div>
-    </ModalShell>
+    </FilterSection>
   )
-}
-
-const cardItemBtn = {
-  width: '100%', background: 'var(--surface)', border: 'none', borderRadius: 12,
-  padding: '12px 14px',
-  cursor: 'pointer', textAlign: 'left',
-  display: 'flex', alignItems: 'center', gap: 12,
 }
 
 const iconBadge = {
@@ -545,11 +532,6 @@ const iconBadge = {
   flexShrink: 0,
 }
 
-/* ── Chevron icon (›) ── */
-function Chevron() {
-  return <ChevronRight size={16} color="var(--text-sub)" />
-}
-
 /* ── Styles ── */
 const solidBtn = {
   width: '100%', padding: '15px 24px',
@@ -557,14 +539,6 @@ const solidBtn = {
   fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
   fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.54px',
   cursor: 'pointer', borderRadius: 50,
-}
-const chipBtn = {
-  flex: 1, padding: '10px 12px',
-  background: 'var(--surface)', border: 'none', color: 'var(--text)',
-  fontFamily: "'IBM Plex Mono', monospace", fontWeight: 400,
-  fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.54px',
-  cursor: 'pointer', borderRadius: 50,
-  display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 4,
 }
 const ghostBtn = {
   width: '100%', padding: '13px 24px',
