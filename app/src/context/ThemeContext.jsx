@@ -27,10 +27,12 @@ export function ThemeProvider({ children }) {
     '--text-muted':   theme.textMuted,
     '--solid-bg':     theme.solidBg,
     '--solid-text':   theme.solidText,
+    '--selected-bg':  theme.selectedBg  ?? theme.solidBg,
+    '--selected-text':theme.selectedText ?? theme.solidText,
   }
 
   return (
-    <ThemeContext.Provider value={{ themeId, setTheme }}>
+    <ThemeContext.Provider value={{ themeId, setTheme, theme }}>
       <div style={{ ...cssVars, minHeight: '100vh' }}>
         {children}
       </div>

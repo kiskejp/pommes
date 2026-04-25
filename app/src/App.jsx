@@ -55,6 +55,7 @@ export default function App() {
   }, [])
 
   const handleExit = useCallback(() => {
+    window.scrollTo(0, 0)
     setFilteredSentences(null)
     setIsWeakMode(false)
   }, [])
@@ -200,7 +201,7 @@ function StudySession({ sentences, onExit, onRetryWrong, weakIds, isWeakMode, in
               display: 'inline-flex', alignItems: 'center', gap: 5,
               background: enabled ? 'var(--solid-bg)' : 'var(--surface)',
               color: enabled ? 'var(--solid-text)' : 'var(--text-muted)',
-              border: '2px solid var(--border)',
+              border: 'none',
               fontFamily: "'IBM Plex Mono', monospace",
               fontSize: 10, padding: '3px 10px',
               borderRadius: 50, cursor: 'pointer',
@@ -246,6 +247,7 @@ function StudySession({ sentences, onExit, onRetryWrong, weakIds, isWeakMode, in
           <>
             <div className="session-meta" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span className="meta-badge" style={{
+                display: 'inline-flex', alignItems: 'center',
                 fontFamily: "'IBM Plex Mono', monospace", fontSize: 10,
                 textTransform: 'uppercase', letterSpacing: '1.5px',
                 border: '1px solid var(--border)', padding: '3px 12px',

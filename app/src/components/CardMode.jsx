@@ -101,7 +101,7 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
               className="btn-bookmark"
               onClick={() => weakIds.toggle(current.id)}
               title={isWeak ? '苦手から外す' : '苦手に登録'}
-              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, color: 'var(--text)', lineHeight: 0 }}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, color: 'var(--text-sub)', lineHeight: 0, width: 36, height: 36, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
             >
               <Bookmark size={18} strokeWidth={1.8} fill={isWeak ? 'currentColor' : 'none'} />
             </button>
@@ -115,10 +115,15 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
             <button
               className={`btn-hint ${showHint ? 'btn-hint--active' : ''}`}
               onClick={toggleHint}
-              style={{ ...subBtn, color: showHint ? 'var(--text)' : 'var(--text-sub)', display: 'flex', alignItems: 'center' }}
+              title={showHint ? 'ヒントを隠す' : 'ヒントを表示'}
+              style={{
+                ...subBtn,
+                color: 'var(--text-sub)',
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                width: 36, height: 36, borderRadius: '50%', padding: 0,
+              }}
             >
-              <Lightbulb size={12} strokeWidth={2} style={{ marginRight: 5 }} />
-              {showHint ? 'ヒントを隠す' : 'ヒント'}
+              <Lightbulb size={18} strokeWidth={2} fill={showHint ? 'currentColor' : 'none'} />
             </button>
           </div>
         )}
@@ -176,7 +181,7 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
 
           <div>
             <button className="btn-reset" onClick={reset} style={{ ...subBtn, display: 'inline-flex', alignItems: 'center' }}>
-              <RotateCcw size={12} strokeWidth={2} style={{ marginRight: 5 }} />
+              <RotateCcw size={12} strokeWidth={2} style={{ marginRight: 5, position: 'relative', top: -1 }} />
               最初から
             </button>
           </div>
@@ -247,7 +252,7 @@ function RateBtn({ variant, onClick, children }) {
     <button className={`btn-rate btn-rate--${variant}`} onClick={onClick} style={{
       flex: 1, padding: '14px 10px',
       background: solid ? 'var(--solid-bg)' : 'var(--bg)',
-      border: '2px solid var(--border-strong)',
+      border: solid ? 'none' : '2px solid var(--border)',
       color: solid ? 'var(--solid-text)' : 'var(--text)',
       fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
       fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.54px',
@@ -310,7 +315,7 @@ function PauseStepper({ value, onChange }) {
 /* ── Styles ── */
 
 const cardStyle = {
-  background: 'var(--surface)', borderRadius: 16,
+  background: 'var(--surface)', borderRadius: 20,
   padding: '36px 32px', minHeight: 180,
 }
 const jpStyle = {

@@ -1,7 +1,7 @@
 // pages/TitleScreen.jsx
 import { useState, useEffect, useRef } from 'react'
 import {
-  Link2, Pencil, HelpCircle, XCircle, Clock,
+  Link2, Pencil, HelpCircle, XCircle, Clock, X,
   MessageCircle, SlidersHorizontal, CheckCircle, Scissors,
   MapPin, Sparkles, BarChart2, GitMerge, Wand2, RefreshCw,
   Link as LinkIcon, Infinity as InfinityIcon, Zap, BookOpen,
@@ -76,6 +76,7 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
 
   const handleStart = () => {
     if (filtered.length === 0) return
+    window.scrollTo(0, 0)
     onStart(filtered)
   }
 
@@ -149,9 +150,9 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
         </div>
 
         {/* ── Filter scrolls ── */}
-        <LevelCards    selected={selLevel}    onSelect={lv  => setSelLevel(lv   === selLevel    ? null : lv)} />
-        <CategoryChips selected={selCategory} onSelect={cat => setSelCategory(cat === selCategory ? null : cat)} />
-        <SceneGrid     selected={selScene}    onSelect={sc  => setSelScene(sc   === selScene    ? null : sc)} />
+        <LevelCards    selected={selLevel}    onSelect={lv  => setSelLevel(lv   === selLevel    ? null : lv)} label="Level" />
+        <CategoryChips selected={selCategory} onSelect={cat => setSelCategory(cat === selCategory ? null : cat)} label="Category" />
+        <SceneGrid     selected={selScene}    onSelect={sc  => setSelScene(sc   === selScene    ? null : sc)} label="Scene" />
 
         {/* ── Theme picker ── */}
         <div className="theme-picker" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
@@ -218,9 +219,11 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
               alignSelf: 'center',
               marginTop: 24,
               pointerEvents: 'auto',
+              display: 'inline-flex', alignItems: 'center', gap: 5,
             }}
           >
-            × フィルターをリセット
+            <X size={13} strokeWidth={2} />
+            フィルターをリセット
           </button>
         )}
         <button
@@ -253,8 +256,8 @@ function StudyStats({ record }) {
   const { streak = 1, todaySolved = 0, totalSolved = 0 } = record
 
   const items = [
-    { n: todaySolved, label: '今日', badge: streak > 1 ? `🔥 ${streak}日連続` : null },
-    { n: totalSolved, label: '累計', badge: null },
+    { n: todaySolved, label: 'Today', badge: streak > 1 ? `🔥 ${streak}日連続` : null },
+    { n: totalSolved, label: 'Total', badge: null },
   ]
 
   return (
@@ -363,21 +366,26 @@ function FilterSection({ label, children }) {
 }
 
 /* ── Level: 3 equal cards ── */
-function LevelCards({ selected, onSelect }) {
+function LevelCards({ selected, onSelect, label }) {
+  const { theme } = useTheme()
   return (
-    <FilterSection label="レベル">
+    <FilterSection label={label}>
       <div style={{ display: 'flex', gap: 10 }}>
         {LEVELS.map(lv => {
           const meta = LEVEL_META[lv]
           const isSelected = selected === lv
+          const levelColor = theme.levelColors?.[lv]
+          const cardBg = isSelected ? 'var(--selected-bg)' : (levelColor?.bg ?? meta.bg)
+          const textColor = isSelected ? 'var(--selected-text)' : 'var(--text)'
+          const subColor = isSelected ? 'var(--selected-text)' : 'var(--text)'
           return (
             <button
               key={lv}
               onClick={() => onSelect(lv)}
               style={{
                 flex: 1,
-                background: isSelected ? 'var(--solid-bg)' : meta.bg,
-                border: 'none', borderRadius: 14,
+                background: cardBg,
+                border: 'none', borderRadius: 20,
                 padding: '18px 14px',
                 cursor: 'pointer', textAlign: 'left',
                 display: 'flex', flexDirection: 'column', gap: 8,
@@ -387,21 +395,22 @@ function LevelCards({ selected, onSelect }) {
               <div style={{
                 fontFamily: "'Paytone One', sans-serif",
                 fontSize: 32, lineHeight: 1,
-                color: isSelected ? 'var(--solid-text)' : 'var(--text)',
+                color: textColor,
                 letterSpacing: '-1px',
               }}>
                 {lv}
               </div>
               <div style={{
                 fontSize: 11, fontFamily: "'IBM Plex Mono', monospace",
-                color: isSelected ? 'var(--solid-text)' : 'var(--text-sub)',
+                fontWeight: 600,
+                color: subColor,
                 opacity: isSelected ? 0.85 : 1,
               }}>
                 {meta.label}
               </div>
               <div style={{
                 fontSize: 11, fontFamily: "'IBM Plex Mono', monospace",
-                color: isSelected ? 'var(--solid-text)' : 'var(--text-muted)',
+                color: subColor,
                 opacity: isSelected ? 0.65 : 1,
               }}>
                 {meta.count}問
@@ -417,13 +426,13 @@ function LevelCards({ selected, onSelect }) {
 /* ── Category: wrapping chips with collapse ── */
 const CATEGORY_INITIAL_COUNT = 10
 
-function CategoryChips({ selected, onSelect }) {
+function CategoryChips({ selected, onSelect, label }) {
   const [expanded, setExpanded] = useState(false)
   const visible = expanded ? CATEGORIES : CATEGORIES.slice(0, CATEGORY_INITIAL_COUNT)
   const hiddenCount = CATEGORIES.length - CATEGORY_INITIAL_COUNT
 
   return (
-    <FilterSection label="カテゴリ">
+    <FilterSection label={label}>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
         {visible.map(cat => {
           const isSelected = selected === cat
@@ -433,12 +442,12 @@ function CategoryChips({ selected, onSelect }) {
               onClick={() => onSelect(cat)}
               style={{
                 padding: '6px 14px',
-                background: isSelected ? 'var(--solid-bg)' : 'var(--surface)',
+                background: isSelected ? 'var(--selected-bg)' : 'var(--surface)',
                 border: 'none', borderRadius: 50,
                 cursor: 'pointer',
                 fontSize: 12, fontFamily: "'Barlow', sans-serif",
                 fontWeight: 600,
-                color: isSelected ? 'var(--solid-text)' : 'var(--text-sub)',
+                color: isSelected ? 'var(--selected-text)' : 'var(--text)',
                 transition: 'background .15s',
                 whiteSpace: 'nowrap',
               }}
@@ -486,34 +495,40 @@ function CategoryChips({ selected, onSelect }) {
 }
 
 /* ── Scene: 3-column grid ── */
-function SceneGrid({ selected, onSelect }) {
+function SceneGrid({ selected, onSelect, label }) {
+  const { theme } = useTheme()
   const scenes = SCENES.filter(sc => sentences.some(s => s.scene === sc))
   return (
-    <FilterSection label="シーン">
+    <FilterSection label={label}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gridAutoRows: '100px', gap: 10 }}>
         {scenes.map(sc => {
           const Icon = SCENE_ICONS[sc]
           const isSelected = selected === sc
+          const sceneColor = theme.sceneColors?.[sc]
+          const cardBg = isSelected ? 'var(--selected-bg)' : 'var(--surface)'
+          const textColor = isSelected ? 'var(--selected-text)' : 'var(--text)'
+          const iconBg = isSelected ? 'rgba(255,255,255,0.15)' : (sceneColor?.bg ?? 'var(--tab-bg)')
+          const iconColor = isSelected ? 'var(--selected-text)' : (sceneColor?.text ?? 'var(--text)')
           return (
             <button
               key={sc}
               onClick={() => onSelect(sc)}
               style={{
-                background: isSelected ? 'var(--solid-bg)' : 'var(--surface)',
-                border: 'none', borderRadius: 12,
+                background: cardBg,
+                border: 'none', borderRadius: 20,
                 padding: '14px 10px',
-                cursor: 'pointer', textAlign: 'left',
-                display: 'flex', flexDirection: 'column', gap: 8,
+                cursor: 'pointer', textAlign: 'center',
+                display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
                 transition: 'background .15s',
               }}
             >
-              <div style={{ ...iconBadge, background: isSelected ? 'rgba(255,255,255,0.15)' : 'var(--tab-bg)' }}>
-                {Icon && <Icon size={15} color={isSelected ? 'var(--solid-text)' : 'var(--text)'} />}
+              <div style={{ ...iconBadge, background: iconBg }}>
+                {Icon && <Icon size={15} color={iconColor} />}
               </div>
               <div style={{
                 fontSize: 11, fontFamily: "'Barlow', sans-serif",
                 fontWeight: 600, lineHeight: 1.3,
-                color: isSelected ? 'var(--solid-text)' : 'var(--text)',
+                color: textColor,
               }}>
                 {sc}
               </div>
@@ -526,7 +541,7 @@ function SceneGrid({ selected, onSelect }) {
 }
 
 const iconBadge = {
-  width: 32, height: 32, borderRadius: 8,
+  width: 36, height: 36, borderRadius: '50%',
   background: 'var(--tab-bg)',
   display: 'flex', alignItems: 'center', justifyContent: 'center',
   flexShrink: 0,

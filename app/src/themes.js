@@ -1,5 +1,37 @@
 // src/themes.js
 export const themes = {
+  pastel: {
+    name: 'Pastel',
+    swatch: '#d8dbe1',
+    bg:          '#f8f9fa',
+    surface:     '#f0f1f3',
+    tabBg:       '#e8eaed',
+    border:      '#dde0e5',
+    borderStrong:'#6b7280',
+    text:        '#374151',
+    textSub:     '#6b7280',
+    textMuted:   '#9ca3af',
+    solidBg:     '#ddd6fe',
+    solidText:   '#000000',
+    selectedBg:  '#6b7280',
+    selectedText:'#ffffff',
+    levelColors: {
+      A1: { bg: '#ddd6fe', text: '#5b21b6' },
+      A2: { bg: '#bae6fd', text: '#0369a1' },
+      B1: { bg: '#d9f99d', text: '#4d7c0f' },
+    },
+    sceneColors: {
+      '日常生活':          { bg: '#d4f0e8', text: '#1a7a5a' },
+      '買い物':            { bg: '#e8d4f0', text: '#7a1a9a' },
+      '仕事・職場':        { bg: '#d4e4f0', text: '#1a4a7a' },
+      '観光・旅行':        { bg: '#d4eaf8', text: '#1a6a9a' },
+      '交通・移動':        { bg: '#f5f0d4', text: '#7a6a1a' },
+      'レストラン・カフェ': { bg: '#f5e8d4', text: '#8a5a1a' },
+      '病院・緊急':        { bg: '#f5d4d4', text: '#9a1a1a' },
+      '学校・勉強':        { bg: '#ddf0d4', text: '#2a7a1a' },
+      '自己紹介':          { bg: '#f5d4e8', text: '#9a1a6a' },
+    },
+  },
   pommes: {
     name: 'Pommes',
     swatch: '#d4a96a',
@@ -12,20 +44,6 @@ export const themes = {
     textSub:     '#8b6f47',
     textMuted:   '#c4a882',
     solidBg:     '#3d2a0e',
-    solidText:   '#ffffff',
-  },
-  figma: {
-    name: 'Figma',
-    swatch: '#000000',
-    bg:          '#ffffff',
-    surface:     '#f8f8f8',
-    tabBg:       '#f0f0f0',
-    border:      '#e8e8e8',
-    borderStrong:'#000000',
-    text:        '#000000',
-    textSub:     '#999999',
-    textMuted:   '#cccccc',
-    solidBg:     '#000000',
     solidText:   '#ffffff',
   },
   pop: {
@@ -58,4 +76,4 @@ export const themes = {
   },
 }
 
-export const defaultThemeId = 'pommes'
+export const defaultThemeId = 'pastel'
