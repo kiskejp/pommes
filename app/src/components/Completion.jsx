@@ -23,7 +23,7 @@ export function Completion({ ok, total, onReset, isWeakMode, ngByCategory, ngIds
   const btnBase = {
     width: '100%', padding: '15px 24px',
     fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
-    fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.54px',
+    fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.54px',
     cursor: 'pointer', borderRadius: 50,
     display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
   }

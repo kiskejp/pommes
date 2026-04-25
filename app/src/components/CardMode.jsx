@@ -255,7 +255,7 @@ function RateBtn({ variant, onClick, children }) {
       border: solid ? 'none' : '2px solid var(--border)',
       color: solid ? 'var(--solid-text)' : 'var(--text)',
       fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
-      fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.54px',
+      fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.54px',
       cursor: 'pointer', borderRadius: 50, transition: 'all .15s',
     }}>
       {children}
@@ -336,7 +336,7 @@ const revealBtnStyle = {
   width: '100%', padding: 18,
   background: 'var(--solid-bg)', border: 'none', color: 'var(--solid-text)',
   fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
-  fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.54px',
+  fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.54px',
   cursor: 'pointer', borderRadius: 50,
 }
 const secondaryBtn = {
