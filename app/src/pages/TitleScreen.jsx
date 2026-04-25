@@ -100,7 +100,7 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
       padding: '40px 24px 120px',
     }}>
       <div className="title-content" style={{
-        width: '100%', maxWidth: 400,
+        width: '100%', maxWidth: 640,
         display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 32,
       }}>
 
@@ -201,12 +201,16 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
       {/* ── Fixed bottom start bar ── */}
       <div className="start-bar" style={{
         position: 'fixed', bottom: 0, left: 0, right: 0,
-        padding: '32px 24px 12px',
-        paddingBottom: 'max(12px, env(safe-area-inset-bottom))',
+        display: 'flex', justifyContent: 'center',
         background: 'linear-gradient(to bottom, transparent, var(--bg) 40%)',
-        display: 'flex', flexDirection: 'column', gap: 8,
         zIndex: 50,
         pointerEvents: 'none',
+      }}>
+      <div style={{
+        width: '100%', maxWidth: 640,
+        padding: '32px 24px 12px',
+        paddingBottom: 'max(12px, env(safe-area-inset-bottom))',
+        display: 'flex', flexDirection: 'column', gap: 8,
       }}>
         {hasFilter && (
           <button
@@ -243,6 +247,7 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
             {filtered.length}問
           </span>
         </button>
+      </div>
       </div>
 
     </div>

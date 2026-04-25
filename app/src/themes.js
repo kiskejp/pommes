@@ -12,7 +12,7 @@ export const themes = {
     textSub:     '#6b7280',
     textMuted:   '#9ca3af',
     solidBg:     '#ddd6fe',
-    solidText:   '#000000',
+    solidText:   '#374151',
     selectedBg:  '#6b7280',
     selectedText:'#ffffff',
     levelColors: {

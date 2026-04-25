@@ -40,8 +40,8 @@ export function InputMode({ session, speak, speaking, addResult }) {
   return (
     <div className="input-mode" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
       <div className="card" style={{
-        background: 'var(--surface)', borderRadius: 16,
-        padding: '36px 32px',
+        background: 'var(--surface)', borderRadius: 20,
+        padding: 'clamp(20px, 4vw, 36px) clamp(16px, 4vw, 32px)',
       }}>
         <div className="card-label" style={{
           fontFamily: "'IBM Plex Mono', monospace", fontSize: 10,
@@ -64,9 +64,18 @@ export function InputMode({ session, speak, speaking, addResult }) {
         )}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 14 }}>
           <AudioButton speaking={speaking} onClick={() => speak(current.jp_yomi ?? current.jp, 'ja')} label="音声を聞く" style={{ marginTop: 0 }} />
-          <button className={`btn-hint ${showHint ? 'btn-hint--active' : ''}`} onClick={toggleHint} style={{ ...subBtn, color: showHint ? 'var(--text)' : 'var(--text-sub)' }}>
-            <Lightbulb size={12} strokeWidth={2} />
-            {showHint ? 'ヒントを隠す' : 'ヒント'}
+          <button
+            className={`btn-hint ${showHint ? 'btn-hint--active' : ''}`}
+            onClick={toggleHint}
+            title={showHint ? 'ヒントを隠す' : 'ヒントを表示'}
+            style={{
+              ...subBtn,
+              color: 'var(--text-sub)',
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              width: 36, height: 36, borderRadius: '50%', padding: 0,
+            }}
+          >
+            <Lightbulb size={18} strokeWidth={2} fill={showHint ? 'currentColor' : 'none'} />
           </button>
         </div>
       </div>

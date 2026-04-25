@@ -316,7 +316,7 @@ function PauseStepper({ value, onChange }) {
 
 const cardStyle = {
   background: 'var(--surface)', borderRadius: 20,
-  padding: '36px 32px', minHeight: 180,
+  padding: 'clamp(20px, 4vw, 36px) clamp(16px, 4vw, 32px)', minHeight: 180,
 }
 const jpStyle = {
   fontFamily: "'Barlow', sans-serif", fontWeight: 600,
