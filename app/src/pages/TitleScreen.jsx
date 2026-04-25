@@ -173,7 +173,7 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
                   width: 28, height: 28, borderRadius: '50%',
                   background: t.swatch,
                   border: themeId === id
-                    ? '3px solid var(--border-strong)'
+                    ? '2px solid var(--border-strong)'
                     : '2px solid var(--border)',
                   cursor: 'pointer', padding: 0,
                   boxShadow: themeId === id ? '0 0 0 2px var(--bg)' : 'none',

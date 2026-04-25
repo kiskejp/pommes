@@ -2,7 +2,7 @@
 export const themes = {
   pastel: {
     name: 'Pastel',
-    swatch: '#d8dbe1',
+    swatch: '#f0f1f3',
     bg:          '#f8f9fa',
     surface:     '#f0f1f3',
     tabBg:       '#e8eaed',

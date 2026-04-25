@@ -5,7 +5,7 @@ import { Mascot } from './Mascot'
 export function Completion({ ok, total, onReset, isWeakMode, ngByCategory, ngIds, sentences, onRetryWrong }) {
   const pct = total ? Math.round(ok / total * 100) : 0
   const msg = isWeakMode && pct === 100
-    ? '苦手問題を全部クリア！Alle Schwächen behoben!'
+    ? <>苦手問題を全部クリア！<br />Alle Schwächen behoben!</>
     : pct === 100 ? 'Perfekt! 完璧です。' : pct >= 70 ? 'Gut gemacht. よくできました。' : 'Nochmal. もう一度。'
 
   const worstCat = ngByCategory && Object.keys(ngByCategory).length > 1
@@ -128,7 +128,7 @@ export function Completion({ ok, total, onReset, isWeakMode, ngByCategory, ngIds
             ...btnBase,
             background: 'var(--bg)', border: '2px solid var(--border-strong)', color: 'var(--text)',
           }}>
-            <RotateCcw size={12} strokeWidth={2} />
+            <RotateCcw size={14} strokeWidth={2} style={{ position: 'relative', top: -1 }} />
             わからなかった問題をもう一度
           </button>
         )}
@@ -136,8 +136,7 @@ export function Completion({ ok, total, onReset, isWeakMode, ngByCategory, ngIds
           ...btnBase,
           background: 'var(--solid-bg)', border: '2px solid transparent', color: 'var(--solid-text)',
         }}>
-          <RotateCcw size={12} strokeWidth={2} />
-          もう一度
+          トップに戻る
         </button>
       </div>
     </div>
