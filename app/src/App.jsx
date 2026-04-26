@@ -9,6 +9,7 @@ import { useWeakIds }        from './hooks/useWeakIds'
 import { useOnlineStatus }   from './hooks/useOnlineStatus'
 import { useStudyRecord }    from './hooks/useStudyRecord'
 import { TitleScreen }       from './pages/TitleScreen'
+import { AppHeader }         from './components/AppHeader'
 import { ScoreBar }          from './components/ScoreBar'
 import { CardMode }          from './components/CardMode'
 import { InputMode }         from './components/InputMode'
@@ -75,7 +76,13 @@ export default function App() {
   )
 
   if (!filteredSentences) {
-    return <>{offlineBanner}<TitleScreen onStart={handleStart} weakIds={weakIds} studyRecord={record} /></>
+    return (
+      <>
+        {offlineBanner}
+        <AppHeader />
+        <TitleScreen onStart={handleStart} weakIds={weakIds} studyRecord={record} />
+      </>
+    )
   }
 
   return (

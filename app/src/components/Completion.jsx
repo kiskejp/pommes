@@ -128,7 +128,7 @@ export function Completion({ ok, total, onReset, isWeakMode, ngByCategory, ngIds
             ...btnBase,
             background: 'var(--bg)', border: '2px solid var(--border-strong)', color: 'var(--text)',
           }}>
-            <RotateCcw size={14} strokeWidth={2} style={{ position: 'relative', top: -1 }} />
+            <RotateCcw size={14} strokeWidth={2} style={{ display: 'block' }} />
             わからなかった問題をもう一度
           </button>
         )}

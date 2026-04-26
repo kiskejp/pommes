@@ -11,7 +11,6 @@ import {
 import sentences from '../data/sentences.json'
 import { PotatoMascot } from '../components/PotatoMascot'
 import { useTheme } from '../context/ThemeContext'
-import { themes } from '../themes'
 
 const CATEGORY_ICONS = {
   'sein動詞':      Link2,
@@ -48,9 +47,9 @@ const SCENE_ICONS = {
 }
 
 const LEVEL_META = {
-  A1: { bg: 'var(--surface)',  label: '初級',   count: sentences.filter(s => s.level === 'A1').length },
-  A2: { bg: 'var(--tab-bg)',   label: '初中級', count: sentences.filter(s => s.level === 'A2').length },
-  B1: { bg: 'var(--border)',   label: '中級',   count: sentences.filter(s => s.level === 'B1').length },
+  A1: { bg: 'var(--surface)',  label: '初級',   count: sentences.filter(s => s.level === 'A1').length, bars: 1 },
+  A2: { bg: 'var(--tab-bg)',   label: '初中級', count: sentences.filter(s => s.level === 'A2').length, bars: 2 },
+  B1: { bg: 'var(--border)',   label: '中級',   count: sentences.filter(s => s.level === 'B1').length, bars: 3 },
 }
 
 
@@ -59,7 +58,6 @@ const CATEGORIES = [...new Set(sentences.map(s => s.category))]
 const SCENES = [...new Set(sentences.filter(s => s.scene).map(s => s.scene))]
 
 export function TitleScreen({ onStart, weakIds, studyRecord }) {
-  const { themeId, setTheme } = useTheme()
   const weakCount = weakIds?.weakIds.length ?? 0
 
   const [selLevel, setSelLevel] = useState(null)
@@ -89,15 +87,16 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
   const startWeak = () => {
     const weak = sentences.filter(s => weakIds.weakIds.includes(s.id))
     if (weak.length === 0) return
+    window.scrollTo(0, 0)
     onStart(weak, true)
   }
 
   return (
     <div className="title-screen" style={{
-      background: 'var(--bg)', minHeight: '100vh',
+      background: 'var(--bg)', minHeight: 'calc(100vh - 52px)',
       display: 'flex', flexDirection: 'column', alignItems: 'center',
       justifyContent: 'center', fontFamily: "'Barlow', sans-serif",
-      padding: '40px 24px 120px',
+      padding: '24px 24px 120px',
     }}>
       <div className="title-content" style={{
         width: '100%', maxWidth: 640,
@@ -107,82 +106,13 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
         {/* ── Mascot ── */}
         <MascotWithBubble />
 
-        {/* ── Logo ── */}
-        <div className="logo" style={{ textAlign: 'center' }}>
-          <div className="logo-title" style={{
-            fontFamily: "'Paytone One', sans-serif",
-            fontSize: 56, letterSpacing: '-1px', lineHeight: 1,
-            color: 'var(--text)',
-          }}>
-            Pommes
-          </div>
-          <div className="logo-subtitle" style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: 14, letterSpacing: '1.5px', textTransform: 'uppercase',
-            color: 'var(--text-sub)', marginTop: 8,
-          }}>
-            瞬間ドイツ語作文
-          </div>
-        </div>
-
         {/* ── Study record ── */}
         <StudyStats record={studyRecord} />
-
-        {/* ── Buttons ── */}
-        <div className="start-buttons" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12 }}>
-
-          <button
-            onClick={startWeak}
-            disabled={weakCount === 0}
-            style={{
-              ...ghostBtn,
-              opacity: weakCount === 0 ? 0.4 : 1,
-              cursor: weakCount === 0 ? 'default' : 'pointer',
-              justifyContent: 'space-between',
-            }}
-          >
-            <span>苦手問題を復習</span>
-            <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: 'var(--text-sub)' }}>
-              {weakCount}問
-            </span>
-          </button>
-
-        </div>
 
         {/* ── Filter scrolls ── */}
         <LevelCards    selected={selLevel}    onSelect={lv  => setSelLevel(lv   === selLevel    ? null : lv)} label="Level" />
         <CategoryChips selected={selCategory} onSelect={cat => setSelCategory(cat === selCategory ? null : cat)} label="Category" />
         <SceneGrid     selected={selScene}    onSelect={sc  => setSelScene(sc   === selScene    ? null : sc)} label="Scene" />
-
-        {/* ── Theme picker ── */}
-        <div className="theme-picker" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
-          <div className="theme-picker__label" style={{
-            fontFamily: "'IBM Plex Mono', monospace", fontSize: 10,
-            textTransform: 'uppercase', letterSpacing: '1.5px',
-            color: 'var(--text-muted)',
-          }}>
-            テーマ
-          </div>
-          <div className="theme-picker__swatches" style={{ display: 'flex', gap: 10 }}>
-            {Object.entries(themes).map(([id, t]) => (
-              <button
-                key={id}
-                onClick={() => setTheme(id)}
-                title={t.name}
-                style={{
-                  width: 28, height: 28, borderRadius: '50%',
-                  background: t.swatch,
-                  border: themeId === id
-                    ? '2px solid var(--border-strong)'
-                    : '2px solid var(--border)',
-                  cursor: 'pointer', padding: 0,
-                  boxShadow: themeId === id ? '0 0 0 2px var(--bg)' : 'none',
-                  transition: 'all .15s',
-                }}
-              />
-            ))}
-          </div>
-        </div>
 
         {/* ── Footer ── */}
         <div className="footer" style={{
@@ -247,6 +177,21 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
             {filtered.length}問
           </span>
         </button>
+        {weakCount > 0 && (
+          <button
+            onClick={startWeak}
+            style={{
+              ...ghostBtn,
+              pointerEvents: 'auto',
+              justifyContent: 'space-between',
+            }}
+          >
+            <span>苦手問題を復習</span>
+            <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: 'var(--text-sub)' }}>
+              {weakCount}問
+            </span>
+          </button>
+        )}
       </div>
       </div>
 
@@ -261,35 +206,32 @@ function StudyStats({ record }) {
   const { streak = 1, todaySolved = 0, totalSolved = 0 } = record
 
   const items = [
-    { n: todaySolved, label: 'Today', badge: streak > 1 ? `🔥 ${streak}日連続` : null },
-    { n: totalSolved, label: 'Total', badge: null },
+    { n: streak,      label: 'Streak', icon: Zap,  iconColor: '#8b5cf6' },
+    { n: todaySolved, label: 'Today',  icon: null, iconColor: null },
+    { n: totalSolved, label: 'Total',  icon: null, iconColor: null },
   ]
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', gap: 40, padding: '8px 0' }}>
-      {items.map(({ n, label, badge }) => (
-        <div key={label} style={{ textAlign: 'center' }}>
-          <div style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: 10, color: 'var(--text-sub)',
-            letterSpacing: '0.3px', marginBottom: 4,
-            visibility: badge ? 'visible' : 'hidden',
-          }}>
-            {badge ?? 'placeholder'}
-          </div>
-          <div style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: 24, fontWeight: 600, color: 'var(--text)',
+    <div style={{
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      gap: 24, padding: '4px 0',
+      fontFamily: "'IBM Plex Mono', monospace",
+    }}>
+      {items.map(({ n, label, icon: Icon, iconColor }) => (
+        <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          {Icon && <Icon size={13} strokeWidth={2.5} style={{ color: iconColor, flexShrink: 0 }} />}
+          <span style={{
+            fontSize: 16, fontWeight: 600, color: 'var(--text)',
             letterSpacing: '-0.4px',
           }}>
             {n}
-          </div>
-          <div style={{
+          </span>
+          <span style={{
             fontSize: 10, textTransform: 'uppercase',
-            letterSpacing: '1.5px', color: 'var(--text-sub)', marginTop: 4,
+            letterSpacing: '1.2px', color: 'var(--text-sub)',
           }}>
             {label}
-          </div>
+          </span>
         </div>
       ))}
     </div>
@@ -383,6 +325,9 @@ function LevelCards({ selected, onSelect, label }) {
           const cardBg = isSelected ? 'var(--selected-bg)' : (levelColor?.bg ?? meta.bg)
           const textColor = isSelected ? 'var(--selected-text)' : 'var(--text)'
           const subColor = isSelected ? 'var(--selected-text)' : 'var(--text)'
+          const totalBars = Math.max(...Object.values(LEVEL_META).map(m => m.bars))
+          const barFill = isSelected ? 'rgba(255,255,255,0.9)' : (levelColor?.text ?? 'var(--text)')
+          const barEmpty = isSelected ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.1)'
           return (
             <button
               key={lv}
@@ -413,12 +358,27 @@ function LevelCards({ selected, onSelect, label }) {
               }}>
                 {meta.label}
               </div>
-              <div style={{
-                fontSize: 11, fontFamily: "'IBM Plex Mono', monospace",
-                color: subColor,
-                opacity: isSelected ? 0.65 : 1,
-              }}>
-                {meta.count}問
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                <span style={{
+                  fontSize: 11, fontFamily: "'IBM Plex Mono', monospace",
+                  color: subColor,
+                  opacity: isSelected ? 0.65 : 1,
+                }}>
+                  {meta.count}問
+                </span>
+                <div style={{ display: 'flex', alignItems: 'flex-end', gap: 2 }}>
+                  {Array.from({ length: totalBars }).map((_, i) => {
+                    const barH = 6 + i * 5
+                    return (
+                      <div key={i} style={{
+                        width: 7, height: barH, borderRadius: 2,
+                        background: i < meta.bars ? barFill : barEmpty,
+                        opacity: i < meta.bars ? 0.35 : 1,
+                        transition: 'background .15s',
+                      }} />
+                    )
+                  })}
+                </div>
               </div>
             </button>
           )
@@ -562,8 +522,8 @@ const solidBtn = {
 }
 const ghostBtn = {
   width: '100%', padding: '13px 24px',
-  background: 'var(--bg)', border: '2px solid var(--border)', color: 'var(--text)',
-  fontFamily: "'IBM Plex Mono', monospace", fontWeight: 400,
+  background: 'var(--surface)', border: 'none', color: 'var(--text)',
+  fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600,
   fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.54px',
   cursor: 'pointer', borderRadius: 50,
   display: 'flex', alignItems: 'center', justifyContent: 'space-between',

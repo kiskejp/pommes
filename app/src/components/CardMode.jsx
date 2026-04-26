@@ -180,8 +180,8 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
           </div>
 
           <div>
-            <button className="btn-reset" onClick={reset} style={{ ...subBtn, display: 'inline-flex', alignItems: 'center' }}>
-              <RotateCcw size={12} strokeWidth={2} style={{ marginRight: 5, position: 'relative', top: -1 }} />
+            <button className="btn-reset" onClick={reset} style={{ ...subBtn, display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+              <RotateCcw size={12} strokeWidth={2} style={{ display: 'block' }} />
               最初から
             </button>
           </div>
