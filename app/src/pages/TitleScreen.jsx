@@ -10,6 +10,7 @@ import {
 } from 'lucide-react'
 import sentences from '../data/sentences.json'
 import { PotatoMascot } from '../components/PotatoMascot'
+import { useRive } from '@rive-app/react-canvas'
 import { useTheme } from '../context/ThemeContext'
 
 const CATEGORY_ICONS = {
@@ -96,7 +97,7 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
       background: 'var(--bg)', minHeight: 'calc(100vh - 52px)',
       display: 'flex', flexDirection: 'column', alignItems: 'center',
       justifyContent: 'center', fontFamily: "'Barlow', sans-serif",
-      padding: '24px 24px 120px',
+      padding: `32px 24px ${weakCount > 0 ? 180 : 120}px`,
     }}>
       <div className="title-content" style={{
         width: '100%', maxWidth: 640,
@@ -238,6 +239,20 @@ function StudyStats({ record }) {
   )
 }
 
+/* ── Rive mascot ── */
+function RiveMascot({ size = 160 }) {
+  const { RiveComponent } = useRive({
+    src: '/pommes.riv',
+    autoplay: true,
+    background: 'transparent',
+  })
+  return (
+    <div style={{ width: size, height: size, position: 'relative' }}>
+      <RiveComponent style={{ width: '100%', height: '100%', display: 'block', background: 'transparent' }} />
+    </div>
+  )
+}
+
 /* ── Speech bubble + mascot ── */
 const GREETINGS = [
   'Hallo!',
@@ -290,7 +305,7 @@ function MascotWithBubble() {
           borderTop: '7px solid var(--surface)',
         }} />
       </div>
-      <PotatoMascot variant="blink-no-mouth" />
+      <RiveMascot size={160} />
     </div>
   )
 }
