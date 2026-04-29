@@ -242,7 +242,7 @@ function StudyStats({ record }) {
 /* ── Rive mascot ── */
 function RiveMascot({ size = 160 }) {
   const { RiveComponent } = useRive({
-    src: '/pommes.riv',
+    src: `${import.meta.env.BASE_URL}pommes.riv`,
     animations: ['idle', 'blink'],
     autoplay: true,
     background: 'transparent',
