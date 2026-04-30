@@ -133,7 +133,23 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
             <Label>Deutsch</Label>
             <div className="card-de" style={deStyle}>{current.de}</div>
             {!playing && (
-              <AudioButton speaking={speaking} onClick={() => speak(current.de, 'de')} label="Anhören" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <AudioButton speaking={speaking} onClick={() => speak(current.de, 'de')} label="Anhören" />
+                <button
+                  onClick={() => speak(current.de, 'de', undefined, 0.65)}
+                  style={{
+                    background: 'none', border: '1px solid var(--border)',
+                    color: 'var(--text-sub)',
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontSize: 10, fontWeight: 600,
+                    letterSpacing: '0.54px', textTransform: 'uppercase',
+                    padding: '3px 10px', borderRadius: 50, cursor: 'pointer',
+                    transition: 'all .15s',
+                  }}
+                >
+                  Slow
+                </button>
+              </div>
             )}
           </div>
         )}
@@ -178,6 +194,7 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <PauseStepper value={pauseDuration} onChange={onPauseDurationChange} />
           </div>
+
 
           <div>
             <button className="btn-reset" onClick={reset} style={{ ...subBtn, display: 'inline-flex', alignItems: 'center', gap: 5 }}>

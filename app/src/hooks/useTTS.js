@@ -29,14 +29,14 @@ export function useTTS() {
     return () => speechSynthesis.removeEventListener('voiceschanged', load)
   }, [])
 
-  const speak = (text, lang = 'de', onEnd) => {
+  const speak = (text, lang = 'de', onEnd, rate = 0.9) => {
     if (!window.speechSynthesis || !text) return
     speechSynthesis.cancel()
 
     const utt = new SpeechSynthesisUtterance(text)
     utt.voice  = lang === 'ja' ? voices.current.jp : voices.current.de
     utt.lang   = lang === 'ja' ? 'ja-JP' : 'de-DE'
-    utt.rate   = 0.9
+    utt.rate   = rate
 
     setSpeaking(true)
     utt.onend   = () => { setSpeaking(false); onEnd?.() }

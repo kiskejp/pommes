@@ -111,10 +111,10 @@ function StudySession({ sentences, onExit, onRetryWrong, weakIds, isWeakMode, in
 
   // speak() wrapper that respects jp/de on/off toggles.
   // When disabled, onEnd fires immediately so auto-play flow continues.
-  const smartSpeak = useCallback((text, lang, onEnd) => {
+  const smartSpeak = useCallback((text, lang, onEnd, rate) => {
     if (lang === 'ja' && !jpEnabled) { onEnd?.(); return }
     if (lang === 'de' && !deEnabled) { onEnd?.(); return }
-    speak(text, lang, onEnd)
+    speak(text, lang, onEnd, rate)
   }, [speak, jpEnabled, deEnabled])
 
   const autoPlay = useAutoPlay({ session, speak: smartSpeak, pauseDuration })
@@ -195,9 +195,10 @@ function StudySession({ sentences, onExit, onRetryWrong, weakIds, isWeakMode, in
       {/* ── Audio settings row ── */}
       {!done && <div className="audio-settings" style={{
         width: '100%', maxWidth: 640,
-        display: 'flex', justifyContent: 'flex-end', gap: 6,
+        display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 6,
         padding: '10px 24px 0',
       }}>
+        {/* JP / DE */}
         {[['jp', 'JP', jpEnabled], ['de', 'DE', deEnabled]].map(([key, label, enabled]) => (
           <button
             key={key}
