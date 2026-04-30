@@ -11,7 +11,7 @@ export function AudioButton({ onClick, speaking, label = '音声を聞く', styl
         display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
         background: 'none', border: 'none',
         color: 'var(--text-sub)',
-        width: 36, height: 36,
+        height: 36, padding: '0',
         cursor: 'pointer', borderRadius: '50%',
         marginTop: 14, transition: 'opacity .15s',
         opacity: speaking ? 0.4 : 1,

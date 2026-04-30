@@ -196,7 +196,7 @@ function StudySession({ sentences, onExit, onRetryWrong, weakIds, isWeakMode, in
       {!done && <div className="audio-settings" style={{
         width: '100%', maxWidth: 640,
         display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 6,
-        padding: '10px 24px 0',
+        padding: '16px 24px 0',
       }}>
         {/* JP / DE */}
         {[['jp', 'JP', jpEnabled], ['de', 'DE', deEnabled]].map(([key, label, enabled]) => (

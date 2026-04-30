@@ -133,10 +133,10 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
             <Label>Deutsch</Label>
             <div className="card-de" style={deStyle}>{current.de}</div>
             {!playing && (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <AudioButton speaking={speaking} onClick={() => speak(current.de, 'de')} label="Anhören" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 14 }}>
+                <AudioButton speaking={speaking} onClick={() => speak(current.de, 'de')} label="Anhören" style={{ marginTop: 0 }} />
                 <button
-                  onClick={() => speak(current.de, 'de', undefined, 0.65)}
+                  onClick={() => speak(current.de, 'de', undefined, 0.5)}
                   style={{
                     background: 'none', border: '1px solid var(--border)',
                     color: 'var(--text-sub)',
