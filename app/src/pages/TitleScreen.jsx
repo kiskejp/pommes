@@ -9,9 +9,8 @@ import {
   Cross, GraduationCap, User,
 } from 'lucide-react'
 import sentences from '../data/sentences.json'
-import { PotatoMascot } from '../components/PotatoMascot'
-import { useRive } from '@rive-app/react-canvas'
 import { useTheme } from '../context/ThemeContext'
+import { RiveMascot } from '../components/RiveMascot'
 
 const CATEGORY_ICONS = {
   'sein動詞':      Link2,
@@ -239,21 +238,6 @@ function StudyStats({ record }) {
   )
 }
 
-/* ── Rive mascot ── */
-function RiveMascot({ size = 160 }) {
-  const { RiveComponent } = useRive({
-    src: `${import.meta.env.BASE_URL}pommes.riv`,
-    animations: ['idle', 'blink'],
-    autoplay: true,
-    background: 'transparent',
-  })
-  return (
-    <div style={{ width: size, height: size, position: 'relative' }}>
-      <RiveComponent style={{ width: '100%', height: '100%', display: 'block', background: 'transparent' }} />
-    </div>
-  )
-}
-
 /* ── Speech bubble + mascot ── */
 const GREETINGS = [
   'Hallo!',
@@ -306,7 +290,7 @@ function MascotWithBubble() {
           borderTop: '7px solid var(--surface)',
         }} />
       </div>
-      <RiveMascot size={160} />
+      <RiveMascot size={160} animations={['idle', 'blink', 'arms_flap']} />
     </div>
   )
 }

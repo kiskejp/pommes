@@ -2,7 +2,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react'
 import { RotateCcw, Lightbulb, Play, Pause, Bookmark } from 'lucide-react'
 import { AudioButton } from './AudioButton'
-import { Mascot } from './Mascot'
+import { RiveMascot } from './RiveMascot'
 
 const MILESTONES = {
   10: 'Gut gemacht!',
@@ -217,7 +217,7 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
           zIndex: 1000,
           whiteSpace: 'nowrap',
         }}>
-          <Mascot variant={toast.variant === 'happy' ? 'happy-no-mouth' : toast.variant} animation={toast.variant === 'happy' ? 'bounce' : 'none'} size={48} />
+          <RiveMascot size={48} animations={toast.variant === 'happy' ? ['blink'] : ['bad']} />
           <span style={{
             fontFamily: "'IBM Plex Mono', monospace",
             fontWeight: 600, fontSize: 13,
