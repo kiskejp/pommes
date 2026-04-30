@@ -203,28 +203,39 @@ export function CardMode({ session, speak, speaking, autoPlay, pauseDuration, on
       {toast && (
         <div style={{
           position: 'fixed',
-          bottom: 32,
+          bottom: -60,  /* マスコットの足60px分を画面外へ */
           left: '50%',
-          transform: `translateX(-50%) translateY(${toast.phase === 'enter' ? 0 : 100}px)`,
-          opacity: toast.phase === 'enter' ? 1 : 0,
-          transition: 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease',
-          background: 'var(--surface)',
-          border: '2px solid var(--border)',
-          borderRadius: 50,
-          padding: '8px 20px 8px 10px',
-          display: 'flex', alignItems: 'center', gap: 8,
-          boxShadow: '0 4px 20px rgba(0,0,0,0.12)',
+          transform: `translateX(-50%) translateY(${toast.phase === 'enter' ? 0 : '100%'})`,
+          transition: 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+          display: 'flex', flexDirection: 'column', alignItems: 'center',
           zIndex: 1000,
-          whiteSpace: 'nowrap',
+          pointerEvents: 'none',
         }}>
-          <RiveMascot size={48} animations={toast.variant === 'happy' ? ['blink'] : ['bad']} />
-          <span style={{
+          {/* 吹き出し */}
+          <div style={{
+            background: 'var(--surface)',
+            borderRadius: 50,
+            padding: '8px 20px',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.12)',
             fontFamily: "'IBM Plex Mono', monospace",
             fontWeight: 600, fontSize: 13,
             color: 'var(--text)', letterSpacing: '0.54px',
+            whiteSpace: 'nowrap',
+            position: 'relative',
+            marginBottom: 10,
           }}>
             {toast.msg}
-          </span>
+            <span style={{
+              position: 'absolute', bottom: -7, left: '50%',
+              transform: 'translateX(-50%)',
+              width: 0, height: 0,
+              borderLeft: '6px solid transparent',
+              borderRight: '6px solid transparent',
+              borderTop: '7px solid var(--surface)',
+            }} />
+          </div>
+          {/* マスコット（足は画面外にはみ出す） */}
+          <RiveMascot size={160} scene={toast.variant === 'happy' ? 0 : 3} />
         </div>
       )}
 

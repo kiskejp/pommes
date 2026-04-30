@@ -30,7 +30,7 @@ export function Completion({ ok, total, onReset, isWeakMode, ngByCategory, ngIds
 
   return (
     <div className="completion" style={{
-      textAlign: 'center', padding: '72px 20px',
+      textAlign: 'center', padding: '32px 20px',
       display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16,
     }}>
       <div className="completion-mascot" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -51,8 +51,8 @@ export function Completion({ ok, total, onReset, isWeakMode, ngByCategory, ngIds
             borderTop: '7px solid var(--surface)',
           }} />
         </div>
-        <RiveMascot size={96}
-          animations={pct >= 80 ? ['jump', 'arms_raising'] : pct >= 50 ? ['blink'] : ['bad']}
+        <RiveMascot size={160}
+          scene={pct >= 80 ? 1 : pct >= 50 ? 2 : 3}
         />
       </div>
 

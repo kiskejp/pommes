@@ -290,7 +290,7 @@ function MascotWithBubble() {
           borderTop: '7px solid var(--surface)',
         }} />
       </div>
-      <RiveMascot size={160} animations={['idle', 'blink', 'arms_flap']} />
+      <RiveMascot size={160} scene={0} />
     </div>
   )
 }
@@ -410,7 +410,7 @@ function CategoryChips({ selected, onSelect, label }) {
                 background: isSelected ? 'var(--selected-bg)' : 'var(--surface)',
                 border: 'none', borderRadius: 50,
                 cursor: 'pointer',
-                fontSize: 12, fontFamily: "'Barlow', sans-serif",
+                fontSize: 13, fontFamily: "'Barlow', sans-serif",
                 fontWeight: 600,
                 color: isSelected ? 'var(--selected-text)' : 'var(--text)',
                 transition: 'background .15s',
@@ -491,7 +491,7 @@ function SceneGrid({ selected, onSelect, label }) {
                 {Icon && <Icon size={15} color={iconColor} />}
               </div>
               <div style={{
-                fontSize: 11, fontFamily: "'Barlow', sans-serif",
+                fontSize: 13, fontFamily: "'Barlow', sans-serif",
                 fontWeight: 600, lineHeight: 1.3,
                 color: textColor,
               }}>
