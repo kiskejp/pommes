@@ -151,8 +151,8 @@ export function InputMode({ session, speak, speaking, addResult }) {
               {feedback === 'ok' ? '正解' : '不正解'}
             </div>
             <div className="feedback-de" style={{
-              fontFamily: "'IBM Plex Mono', monospace", fontSize: 20,
-              fontWeight: 600, color: 'var(--text)', letterSpacing: '-0.26px',
+              fontFamily: "'Barlow', sans-serif", fontSize: 'clamp(22px, 4.5vw, 32px)',
+              fontWeight: 600, color: 'var(--text)', lineHeight: 1.4, letterSpacing: '-0.26px',
             }}>
               {current.de}
             </div>
