@@ -16,6 +16,14 @@ import { InputMode }         from './components/InputMode'
 import { Completion }        from './components/Completion'
 import allSentences          from './data/sentences.json'
 
+// Suppress Rive state machine errors that would otherwise crash React
+window.addEventListener('error', (e) => {
+  if (e.message?.includes('exceeded max iterations') || e.message?.includes('Blank Script')) {
+    e.preventDefault()
+    e.stopImmediatePropagation()
+  }
+}, true)
+
 // ── Debug mode (localhost only) ──
 const isLocalhost = ['localhost', '127.0.0.1'].includes(location.hostname)
 const debugParam  = isLocalhost ? new URLSearchParams(location.search).get('debug') : null

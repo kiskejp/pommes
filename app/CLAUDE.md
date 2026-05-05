@@ -23,9 +23,7 @@ pommes/
 ## ブランド
 
 - **アプリ名**: Pommes（ドイツ語でフライドポテトの意）
-- **マスコット**: じゃがいも（16×16ピクセルアートスタイル）
-  - 使用場面: TitleScreen（吹き出し付き浮遊）、Completion画面（バウンス）など
-  - `variant`: `normal` | `happy` | `happy-no-mouth` | `blink-no-mouth` | `thinking`
+- **マスコット**: Riveアニメーション（じゃがいも）→ 詳細は `RIVE.md`
 
 ## app/ — Web版
 
@@ -52,7 +50,7 @@ src/
     CardMode.jsx              # カードモード（見て答える）
     InputMode.jsx             # 入力モード（タイピング採点）
     Completion.jsx            # 完了画面
-    PotatoMascot.jsx          # SVGマスコット
+    RiveMascot.jsx            # Riveマスコットコンポーネント
     ScoreBar.jsx              # スコア表示
     AudioButton.jsx           # 音声再生ボタン
   hooks/
@@ -62,7 +60,6 @@ src/
     useStudyRecord.js         # 学習記録・連続日数（localStorage）
     useAutoPlay.js            # 自動再生（JP→pause→DE→pause→次へ）
     useAudioSettings.js       # JP/DE音声ON/OFF設定
-    useAutoPlay.js
   App.jsx
   main.jsx
 ```
@@ -103,12 +100,12 @@ src/
     useStudyRecord.js         # AsyncStorage に移植
     useAutoPlay.js            # Expo用に移植
   components/
-    Mascot.jsx                # react-native-svg でSVG実装・Animatedアニメーション付き
+    RiveMascot.jsx            # Riveマスコット（GitHub Pages から riv 取得）
     ScoreBar.jsx
   screens/
-    TitleScreen.jsx           # マスコット吹き出し・テーマ/モード切替
-    StudyScreen.jsx           # カードモード（自動再生・スコア3列）
-    InputScreen.jsx           # 入力モード（ウムラウトキー付き）
+    TitleScreen.jsx
+    StudyScreen.jsx
+    InputScreen.jsx
     CompletionScreen.jsx
 App.js
 ```
@@ -121,8 +118,7 @@ App.js
 | `window.speechSynthesis` | `expo-speech` (`Speech.speak/stop`) |
 | `div/button/p` | `View/TouchableOpacity/Text` |
 | CSS | `StyleSheet.create()` |
-| SVG（`<svg>`） | `react-native-svg`（`<Svg><Rect>`） |
-| CSSアニメーション | `Animated` API（`Animated.loop/sequence/timing`） |
+| CSSアニメーション | `Animated` API |
 
 ## 問題データの追加
 
@@ -155,3 +151,4 @@ App.js
 - `submitInput` は完全一致で採点（trim のみ、大文字小文字は区別する）
 - テーマはすべての画面に `theme` prop で渡す（Context不使用、expo版）
 - expo版の `useStudyRecord.addResult` は async（AsyncStorage）のため副作用に注意
+- Riveマスコットの詳細（scene値・遷移・罠）→ `RIVE.md`

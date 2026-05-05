@@ -52,7 +52,7 @@ export function Completion({ ok, total, onReset, isWeakMode, ngByCategory, ngIds
           }} />
         </div>
         <RiveMascot size={160}
-          scene={pct >= 80 ? 1 : pct >= 50 ? 2 : 3}
+          scene={pct >= 80 ? 1 : pct >= 50 ? 0 : 3}
         />
       </div>
 

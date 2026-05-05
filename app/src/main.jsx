@@ -17,6 +17,12 @@ import '@fontsource/barlow/700.css'
 import App from './App'
 import { ThemeProvider } from './context/ThemeContext'
 
+if (import.meta.env.DEV && 'serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations()
+    .then(registrations => registrations.forEach(registration => registration.unregister()))
+    .catch(() => {})
+}
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider>

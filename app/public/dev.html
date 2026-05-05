@@ -494,5 +494,138 @@
   renderStorage()
 </script>
 
+<!-- ══════════════════════════════════════════
+     スプラッシュカラー比較
+══════════════════════════════════════════ -->
+<style>
+  .splash-section { margin-top: 60px; }
+  .splash-section h2 {
+    color: #888; font-size: 9px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .splash-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+  }
+  .splash-card {
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 9/19.5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: transform .15s;
+    position: relative;
+  }
+  .splash-card:hover { transform: scale(1.02); }
+  .splash-card.selected { outline: 3px solid #fff; outline-offset: 3px; }
+  .splash-logo {
+    font-family: 'Paytone One', sans-serif;
+    font-size: 28px;
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+  .splash-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .splash-label {
+    position: absolute;
+    bottom: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1px;
+    opacity: 0.5;
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
+
+<div class="splash-section">
+  <h2>Splash Color Compare</h2>
+
+  <!-- テキストカラー切替 -->
+  <div style="display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap;" id="textColorPicker"></div>
+
+  <!-- 背景色グリッド -->
+  <div class="splash-grid" id="splashGrid"></div>
+</div>
+
+<script>
+  const BG_COLORS = [
+    { bg: '#fcd34d', name: 'Amber-300 ★', star: true },
+    { bg: '#FFCC00', name: 'Yellow' },
+    { bg: '#FFD60A', name: 'Bright Yellow' },
+    { bg: '#F5A623', name: 'Amber' },
+    { bg: '#FFEB80', name: 'Pale Yellow' },
+    { bg: '#FFF176', name: 'Lemon' },
+    { bg: '#E8B800', name: 'Gold' },
+    { bg: '#FF9500', name: 'Orange' },
+    { bg: '#1a1a1a', name: 'Black' },
+  ]
+
+  const TEXT_COLORS = [
+    { color: '#44403c', label: '#44403c  Stone-700 ★' },
+    { color: '#fffbeb', label: '#fffbeb  Amber-50 ★' },
+    { color: '#ffffff', label: '#ffffff  白 ★' },
+    { color: '#1a1a1a', label: '#1a1a1a  ほぼ黒' },
+    { color: '#333333', label: '#333333  ダークグレー' },
+    { color: '#4a3f00', label: '#4a3f00  ウォームブラウン' },
+    { color: '#555555', label: '#555555  ミディアムグレー' },
+  ]
+
+  let selectedBg   = '#fcd34d'
+  let selectedText = '#44403c'
+
+  function renderTextPicker() {
+    document.getElementById('textColorPicker').innerHTML = TEXT_COLORS.map(({ color, label }) => `
+      <button onclick="selectText('${color}')" style="
+        background: ${color === selectedText ? '#555' : '#2a2a2a'};
+        color: #ccc; border: ${color === selectedText ? '1px solid #fff' : '1px solid #444'};
+        font-family: monospace; font-size: 10px; padding: 4px 10px;
+        border-radius: 99px; cursor: pointer; white-space: nowrap;
+      ">
+        <span style="display:inline-block;width:10px;height:10px;background:${color};border:1px solid #555;border-radius:50%;margin-right:5px;vertical-align:middle;"></span>
+        ${label}
+      </button>
+    `).join('')
+  }
+
+  function renderSplash() {
+    document.getElementById('splashGrid').innerHTML = BG_COLORS.map(({ bg, name }) => `
+      <div class="splash-card ${bg === selectedBg ? 'selected' : ''}"
+           style="background:${bg}; color:${selectedText}"
+           onclick="selectBg('${bg}', '${name}')">
+        <div class="splash-logo">Pommes</div>
+        <div class="splash-sub">瞬間ドイツ語作文</div>
+        <div class="splash-label" style="color:${selectedText}">${name}<br>${bg}</div>
+      </div>
+    `).join('')
+  }
+
+  function selectBg(bg, name) {
+    selectedBg = bg
+    render()
+    navigator.clipboard?.writeText(`bg: ${bg}  text: ${selectedText}`)
+  }
+
+  function selectText(color) {
+    selectedText = color
+    render()
+    navigator.clipboard?.writeText(`bg: ${selectedBg}  text: ${color}`)
+  }
+
+  function render() { renderTextPicker(); renderSplash() }
+  render()
+</script>
+
 </body>
 </html>

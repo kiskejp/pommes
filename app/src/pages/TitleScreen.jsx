@@ -1,5 +1,5 @@
 // pages/TitleScreen.jsx
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, Component } from 'react'
 import {
   Link2, Pencil, HelpCircle, XCircle, Clock, X,
   MessageCircle, SlidersHorizontal, CheckCircle, Scissors,
@@ -250,13 +250,23 @@ const GREETINGS = [
   "Los geht's!",
 ]
 
+class RiveErrorBoundary extends Component {
+  constructor(props) { super(props); this.state = { hasError: false } }
+  static getDerivedStateFromError() { return { hasError: true } }
+  render() {
+    if (this.state.hasError) return <div style={{ width: this.props.size, height: this.props.size }} />
+    return this.props.children
+  }
+}
+
 function MascotWithBubble() {
   const [text, setText] = useState(() => GREETINGS[Math.floor(Math.random() * GREETINGS.length)])
   const [visible, setVisible] = useState(true)
-  const timerRef = useRef(null)
+  const [mascotScene, setMascotScene] = useState(0)
+  const [mascotKey, setMascotKey] = useState(0)
 
   useEffect(() => {
-    timerRef.current = setInterval(() => {
+    const id = setInterval(() => {
       setVisible(false)
       setTimeout(() => {
         setText(prev => {
@@ -266,7 +276,7 @@ function MascotWithBubble() {
         setVisible(true)
       }, 400)
     }, 5000)
-    return () => clearInterval(timerRef.current)
+    return () => clearInterval(id)
   }, [])
 
   return (
@@ -290,7 +300,18 @@ function MascotWithBubble() {
           borderTop: '7px solid var(--surface)',
         }} />
       </div>
-      <RiveMascot size={160} scene={0} />
+      <div
+        onPointerEnter={() => setMascotScene(2)}
+        onPointerLeave={() => {
+          setMascotScene(0)
+          setMascotKey(k => k + 1)
+        }}
+        style={{ cursor: 'pointer', userSelect: 'none' }}
+      >
+        <RiveErrorBoundary size={160}>
+          <RiveMascot key={mascotKey} size={160} scene={mascotScene} />
+        </RiveErrorBoundary>
+      </div>
     </div>
   )
 }
