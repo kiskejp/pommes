@@ -1,0 +1,2711 @@
+[
+  {
+    "id": 1,
+    "jp": "私は学生です。",
+    "de": "Ich bin Student.",
+    "hint": "主語 + bin + 職業名詞",
+    "level": "A1",
+    "category": "sein動詞",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 2,
+    "jp": "彼女は先生です。",
+    "de": "Sie ist Lehrerin.",
+    "hint": "sie + ist + 女性形",
+    "level": "A1",
+    "category": "sein動詞",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 3,
+    "jp": "今日は月曜日です。",
+    "de": "Heute ist Montag.",
+    "hint": "Heute + ist + 曜日",
+    "level": "A1",
+    "category": "sein動詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 13,
+    "jp": "私は疲れています。",
+    "de": "Ich bin müde.",
+    "hint": "sein + 形容詞",
+    "level": "A1",
+    "category": "sein動詞",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 14,
+    "jp": "彼は医者です。",
+    "de": "Er ist Arzt.",
+    "hint": "er + ist + 職業名詞（無冠詞）",
+    "level": "A1",
+    "category": "sein動詞",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 15,
+    "jp": "私たちは友達です。",
+    "de": "Wir sind Freunde.",
+    "hint": "wir + sind + 名詞複数形",
+    "level": "A1",
+    "category": "sein動詞",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 16,
+    "jp": "それは本です。",
+    "de": "Das ist ein Buch.",
+    "hint": "das + ist + 不定冠詞 + 名詞",
+    "level": "A1",
+    "category": "sein動詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 17,
+    "jp": "今日は寒いです。",
+    "de": "Es ist kalt.",
+    "hint": "天候表現：es ist + 形容詞",
+    "level": "A1",
+    "category": "sein動詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 18,
+    "jp": "私は準備ができています。",
+    "de": "Ich bin fertig.",
+    "hint": "sein + fertig",
+    "level": "A1",
+    "category": "sein動詞",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 19,
+    "jp": "彼女は若いです。",
+    "de": "Sie ist jung.",
+    "hint": "sie + ist + 形容詞",
+    "level": "A1",
+    "category": "sein動詞",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 20,
+    "jp": "私は病気です。",
+    "de": "Ich bin krank.",
+    "hint": "sein + 形容詞（体調）",
+    "level": "A1",
+    "category": "sein動詞",
+    "scene": "病院・緊急"
+  },
+  {
+    "id": 4,
+    "jp": "私はベルリンに住んでいます。",
+    "de": "Ich wohne in Berlin.",
+    "hint": "wohnen in + 都市名",
+    "level": "A1",
+    "category": "現在形",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 5,
+    "jp": "私はコーヒーが好きです。",
+    "de": "Ich mag Kaffee.",
+    "hint": "mögen の活用",
+    "level": "A1",
+    "category": "現在形",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 6,
+    "jp": "彼女はドイツ語を話します。",
+    "de": "Sie spricht Deutsch.",
+    "hint": "sprechen → spricht（語幹変化）",
+    "level": "A1",
+    "category": "現在形",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 21,
+    "jp": "私は水を飲みます。",
+    "de": "Ich trinke Wasser.",
+    "hint": "trinken の現在形活用",
+    "level": "A1",
+    "category": "現在形",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 22,
+    "jp": "彼女は音楽を聴きます。",
+    "de": "Sie hört Musik.",
+    "hint": "hören の現在形活用",
+    "level": "A1",
+    "category": "現在形",
+    "scene": "日常生活"
+  },
+  {
+    "id": 23,
+    "jp": "私は学校に行きます。",
+    "de": "Ich gehe in die Schule.",
+    "hint": "gehen + in + 4格（方向）",
+    "level": "A1",
+    "category": "現在形",
+    "scene": "学校・勉強"
+  },
+  {
+    "id": 24,
+    "jp": "私はパンを食べます。",
+    "de": "Ich esse Brot.",
+    "hint": "essen の語幹変化：ich esse",
+    "level": "A1",
+    "category": "現在形",
+    "scene": "日常生活"
+  },
+  {
+    "id": 25,
+    "jp": "彼は自転車で来ます。",
+    "de": "Er kommt mit dem Fahrrad.",
+    "hint": "mit + 3格（移動手段）",
+    "level": "A1",
+    "category": "現在形",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 26,
+    "jp": "私は6時に起きます。",
+    "de": "Ich stehe um sechs Uhr auf.",
+    "hint": "aufstehen（分離動詞）：auf は文末へ",
+    "level": "A1",
+    "category": "現在形",
+    "scene": "日常生活"
+  },
+  {
+    "id": 27,
+    "jp": "彼女はドイツに住んでいます。",
+    "de": "Sie wohnt in Deutschland.",
+    "hint": "wohnen + in + 国名",
+    "level": "A1",
+    "category": "現在形",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 28,
+    "jp": "私は毎日日本語を勉強します。",
+    "de": "Ich lerne jeden Tag Japanisch.",
+    "hint": "jeden Tag = 毎日（4格）",
+    "level": "A1",
+    "category": "現在形",
+    "scene": "学校・勉強"
+  },
+  {
+    "id": 29,
+    "jp": "あなたの名前は何ですか？",
+    "de": "Wie heißen Sie?",
+    "hint": "Wie + heißen（敬称 Sie）",
+    "level": "A1",
+    "category": "疑問文",
+    "scene": "自己紹介",
+    "jp_yomi": "あなたのなまえはなんですか？"
+  },
+  {
+    "id": 30,
+    "jp": "今何時ですか？",
+    "de": "Wie spät ist es?",
+    "hint": "Wie spät + ist es（時刻を聞く）",
+    "level": "A1",
+    "category": "疑問文",
+    "scene": "日常生活"
+  },
+  {
+    "id": 31,
+    "jp": "これはいくらですか？",
+    "de": "Was kostet das?",
+    "hint": "Was + kostet（値段を聞く）",
+    "level": "A1",
+    "category": "疑問文",
+    "scene": "買い物"
+  },
+  {
+    "id": 32,
+    "jp": "トイレはどこですか？",
+    "de": "Wo ist die Toilette?",
+    "hint": "Wo + ist（場所を聞く）",
+    "level": "A1",
+    "category": "疑問文",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 33,
+    "jp": "あなたは何歳ですか？",
+    "de": "Wie alt sind Sie?",
+    "hint": "Wie alt + sein（年齢を聞く）",
+    "level": "A1",
+    "category": "疑問文",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 34,
+    "jp": "あなたは何を飲みますか？",
+    "de": "Was trinken Sie?",
+    "hint": "Was + 動詞 + Sie（疑問詞疑問文）",
+    "level": "A1",
+    "category": "疑問文",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 35,
+    "jp": "あなたはドイツ語を話しますか？",
+    "de": "Sprechen Sie Deutsch?",
+    "hint": "動詞 + Sie（yes/no疑問文）",
+    "level": "A1",
+    "category": "疑問文",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 36,
+    "jp": "これは何ですか？",
+    "de": "Was ist das?",
+    "hint": "Was + ist + das",
+    "level": "A1",
+    "category": "疑問文",
+    "scene": "買い物"
+  },
+  {
+    "id": 37,
+    "jp": "私は疲れていません。",
+    "de": "Ich bin nicht müde.",
+    "hint": "nicht + 形容詞の否定",
+    "level": "A1",
+    "category": "否定文",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 38,
+    "jp": "彼女は学生ではありません。",
+    "de": "Sie ist keine Studentin.",
+    "hint": "keine + 女性名詞（職業の否定）",
+    "level": "A1",
+    "category": "否定文",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 39,
+    "jp": "私はコーヒーが好きではありません。",
+    "de": "Ich mag keinen Kaffee.",
+    "hint": "keinen + 男性名詞4格",
+    "level": "A1",
+    "category": "否定文",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 40,
+    "jp": "ここは静かではありません。",
+    "de": "Hier ist es nicht ruhig.",
+    "hint": "nicht + 形容詞の否定",
+    "level": "A1",
+    "category": "否定文",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 41,
+    "jp": "私はお腹が空いていません。",
+    "de": "Ich bin nicht hungrig.",
+    "hint": "sein の否定：nicht + 形容詞",
+    "level": "A1",
+    "category": "否定文",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 42,
+    "jp": "これは私の鞄ではありません。",
+    "de": "Das ist nicht meine Tasche.",
+    "hint": "nicht + 所有代名詞 + 名詞",
+    "level": "A1",
+    "category": "否定文",
+    "scene": "買い物"
+  },
+  {
+    "id": 43,
+    "jp": "私はドイツ語が話せません。",
+    "de": "Ich spreche kein Deutsch.",
+    "hint": "kein + 無冠詞名詞（言語）",
+    "level": "A1",
+    "category": "否定文",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 44,
+    "jp": "今日は授業がありません。",
+    "de": "Heute habe ich keinen Unterricht.",
+    "hint": "keinen + 男性名詞4格",
+    "level": "A1",
+    "category": "否定文",
+    "scene": "学校・勉強"
+  },
+  {
+    "id": 45,
+    "jp": "彼は車を持っていません。",
+    "de": "Er hat kein Auto.",
+    "hint": "kein + 中性名詞4格",
+    "level": "A1",
+    "category": "否定文",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 46,
+    "jp": "今、3時です。",
+    "de": "Es ist drei Uhr.",
+    "hint": "Es ist + 数字 + Uhr",
+    "level": "A1",
+    "category": "数字と時間",
+    "scene": "日常生活"
+  },
+  {
+    "id": 47,
+    "jp": "彼女は25歳です。",
+    "de": "Sie ist fünfundzwanzig Jahre alt.",
+    "hint": "複合数字：一の位 + und + 十の位",
+    "level": "A1",
+    "category": "数字と時間",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 48,
+    "jp": "コーヒーは2ユーロです。",
+    "de": "Der Kaffee kostet zwei Euro.",
+    "hint": "kostet + 金額（Euro は複数でも変化なし）",
+    "level": "A1",
+    "category": "数字と時間",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 49,
+    "jp": "電車は10分後に来ます。",
+    "de": "Der Zug kommt in zehn Minuten.",
+    "hint": "in + 数字 + Minuten（〜後に）",
+    "level": "A1",
+    "category": "数字と時間",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 50,
+    "jp": "私はリンゴを5個買います。",
+    "de": "Ich kaufe fünf Äpfel.",
+    "hint": "数字 + 複数形名詞（Apfel → Äpfel）",
+    "level": "A1",
+    "category": "数字と時間",
+    "scene": "買い物"
+  },
+  {
+    "id": 51,
+    "jp": "授業は9時に始まります。",
+    "de": "Der Unterricht beginnt um neun Uhr.",
+    "hint": "um + 時刻 + beginnen",
+    "level": "A1",
+    "category": "数字と時間",
+    "scene": "学校・勉強"
+  },
+  {
+    "id": 52,
+    "jp": "今日は12月3日です。",
+    "de": "Heute ist der dritte Dezember.",
+    "hint": "序数：3 → dritte（定冠詞 + -e）",
+    "level": "A1",
+    "category": "数字と時間",
+    "scene": "日常生活"
+  },
+  {
+    "id": 53,
+    "jp": "私は毎週3回運動します。",
+    "de": "Ich trainiere dreimal pro Woche.",
+    "hint": "〜mal = 〜回、pro Woche = 毎週",
+    "level": "A1",
+    "category": "数字と時間",
+    "scene": "日常生活"
+  },
+  {
+    "id": 54,
+    "jp": "ありがとうございます。",
+    "de": "Vielen Dank.",
+    "hint": "Vielen Dank = 丁寧なお礼",
+    "level": "A1",
+    "category": "慣用表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 55,
+    "jp": "どういたしまして。",
+    "de": "Bitte schön.",
+    "hint": "Bitte / Bitte sehr = どういたしまして",
+    "level": "A1",
+    "category": "慣用表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 56,
+    "jp": "すみません。",
+    "de": "Entschuldigung.",
+    "hint": "呼びかけ・謝罪の定型表現",
+    "level": "A1",
+    "category": "慣用表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 57,
+    "jp": "おはようございます。",
+    "de": "Guten Morgen.",
+    "hint": "朝の挨拶（Guten = 形容詞4格語尾）",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 58,
+    "jp": "おやすみなさい。",
+    "de": "Gute Nacht.",
+    "hint": "就寝前の挨拶",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 59,
+    "jp": "さようなら。",
+    "de": "Auf Wiedersehen.",
+    "hint": "改まった別れの挨拶",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 60,
+    "jp": "また明日。",
+    "de": "Bis morgen.",
+    "hint": "Bis + 時の表現（〜まで・〜にまた）",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 61,
+    "jp": "少し待ってください。",
+    "de": "Einen Moment, bitte.",
+    "hint": "定型表現：Einen Moment + bitte",
+    "level": "A1",
+    "category": "慣用表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 62,
+    "jp": "わかりません。",
+    "de": "Ich verstehe das nicht.",
+    "hint": "verstehen（理解する）の否定",
+    "level": "A1",
+    "category": "否定文",
+    "scene": "日常生活"
+  },
+  {
+    "id": 7,
+    "jp": "私は毎朝コーヒーを飲みます。",
+    "de": "Ich trinke jeden Morgen Kaffee.",
+    "hint": "jeden Morgen = 毎朝",
+    "level": "A2",
+    "category": "副詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 8,
+    "jp": "明日は雨が降ります。",
+    "de": "Morgen wird es regnen.",
+    "hint": "werden + 不定詞（未来形）",
+    "level": "A2",
+    "category": "未来形",
+    "scene": "日常生活"
+  },
+  {
+    "id": 9,
+    "jp": "あなたはどこ出身ですか？",
+    "de": "Woher kommen Sie?",
+    "hint": "Woher + kommen + Sie",
+    "level": "A1",
+    "category": "疑問文",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 10,
+    "jp": "私は昨日映画を見ました。",
+    "de": "Ich habe gestern einen Film gesehen.",
+    "hint": "haben + 過去分詞（現在完了）",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "日常生活"
+  },
+  {
+    "id": 63,
+    "jp": "私はドイツ語を話すことができます。",
+    "de": "Ich kann Deutsch sprechen.",
+    "hint": "können + 不定詞（可能）",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 64,
+    "jp": "彼女は今日来られません。",
+    "de": "Sie kann heute nicht kommen.",
+    "hint": "können の否定：nicht + 不定詞",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 65,
+    "jp": "薬を飲まなければなりません。",
+    "de": "Ich muss die Tabletten nehmen.",
+    "hint": "müssen + 不定詞（義務）",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "病院・緊急"
+  },
+  {
+    "id": 66,
+    "jp": "ここで待たなければなりません。",
+    "de": "Sie müssen hier warten.",
+    "hint": "müssen の敬称 Sie 形",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "病院・緊急"
+  },
+  {
+    "id": 67,
+    "jp": "私はパリに行きたいです。",
+    "de": "Ich möchte nach Paris fahren.",
+    "hint": "möchten + 不定詞（願望）・nach + 都市名",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 68,
+    "jp": "彼はもっと働きたいと思っています。",
+    "de": "Er will mehr arbeiten.",
+    "hint": "wollen + 不定詞（意志）",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 69,
+    "jp": "私たちはレストランに行きたいです。",
+    "de": "Wir wollen ins Restaurant gehen.",
+    "hint": "wollen + 不定詞・ins = in das",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 70,
+    "jp": "ここでは喫煙してはいけません。",
+    "de": "Sie dürfen hier nicht rauchen.",
+    "hint": "dürfen の否定（禁止）",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "病院・緊急"
+  },
+  {
+    "id": 71,
+    "jp": "彼女はピアノを弾くことができます。",
+    "de": "Sie kann Klavier spielen.",
+    "hint": "können + 不定詞・Klavier は冠詞なし",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 72,
+    "jp": "私は早く起きなければなりません。",
+    "de": "Ich muss früh aufstehen.",
+    "hint": "müssen + 分離動詞の不定詞",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 73,
+    "jp": "私は昨日働きました。",
+    "de": "Ich habe gestern gearbeitet.",
+    "hint": "haben + 過去分詞（規則動詞：ge-...-t）",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 74,
+    "jp": "彼女はもう食事を済ませました。",
+    "de": "Sie hat schon gegessen.",
+    "hint": "haben + 不規則過去分詞（essen → gegessen）",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 75,
+    "jp": "私たちは映画を見ました。",
+    "de": "Wir haben einen Film gesehen.",
+    "hint": "haben + 過去分詞（sehen → gesehen）",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "日常生活"
+  },
+  {
+    "id": 76,
+    "jp": "彼はベルリンへ行きました。",
+    "de": "Er ist nach Berlin gefahren.",
+    "hint": "sein + 過去分詞（移動：fahren → gefahren）",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 77,
+    "jp": "私は医者に行きました。",
+    "de": "Ich bin zum Arzt gegangen.",
+    "hint": "sein + 過去分詞（gehen → gegangen）",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "病院・緊急"
+  },
+  {
+    "id": 78,
+    "jp": "彼女は本を読みました。",
+    "de": "Sie hat ein Buch gelesen.",
+    "hint": "haben + 過去分詞（lesen → gelesen）",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "日常生活"
+  },
+  {
+    "id": 79,
+    "jp": "私はコーヒーを飲みました。",
+    "de": "Ich habe einen Kaffee getrunken.",
+    "hint": "haben + 過去分詞（trinken → getrunken）",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 80,
+    "jp": "電車が到着しました。",
+    "de": "Der Zug ist angekommen.",
+    "hint": "sein + 分離動詞の過去分詞（ankommen → angekommen）",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 81,
+    "jp": "私はメールを書きました。",
+    "de": "Ich habe eine E-Mail geschrieben.",
+    "hint": "haben + 過去分詞（schreiben → geschrieben）",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 82,
+    "jp": "彼女は薬を飲みました。",
+    "de": "Sie hat die Tabletten genommen.",
+    "hint": "haben + 過去分詞（nehmen → genommen）",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "病院・緊急"
+  },
+  {
+    "id": 83,
+    "jp": "後でかけ直します。",
+    "de": "Ich rufe später zurück.",
+    "hint": "zurückrufen（分離動詞）：zurück は文末へ",
+    "level": "A2",
+    "category": "分離動詞",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 84,
+    "jp": "店は9時に開きます。",
+    "de": "Das Geschäft macht um neun Uhr auf.",
+    "hint": "aufmachen（分離動詞）：auf は文末へ",
+    "level": "A2",
+    "category": "分離動詞",
+    "scene": "買い物"
+  },
+  {
+    "id": 85,
+    "jp": "彼女は会議に参加します。",
+    "de": "Sie nimmt an der Konferenz teil.",
+    "hint": "teilnehmen（分離動詞）：an + Dativ・teil は文末へ",
+    "level": "A2",
+    "category": "分離動詞",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 86,
+    "jp": "私は友人に電話をかけます。",
+    "de": "Ich rufe meinen Freund an.",
+    "hint": "anrufen（分離動詞）：an は文末へ・4格目的語",
+    "level": "A2",
+    "category": "分離動詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 87,
+    "jp": "電車は5分後に出発します。",
+    "de": "Der Zug fährt in fünf Minuten ab.",
+    "hint": "abfahren（分離動詞）：ab は文末へ",
+    "level": "A2",
+    "category": "分離動詞",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 88,
+    "jp": "私はコートを脱ぎます。",
+    "de": "Ich ziehe den Mantel aus.",
+    "hint": "ausziehen（分離動詞）：aus は文末へ・4格目的語",
+    "level": "A2",
+    "category": "分離動詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 89,
+    "jp": "彼は早く帰ります。",
+    "de": "Er kommt früh zurück.",
+    "hint": "zurückkommen（分離動詞）：zurück は文末へ",
+    "level": "A2",
+    "category": "分離動詞",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 90,
+    "jp": "薬を服用してください。",
+    "de": "Nehmen Sie die Tabletten ein.",
+    "hint": "einnehmen（分離動詞・命令形）：ein は文末へ",
+    "level": "A2",
+    "category": "分離動詞",
+    "scene": "病院・緊急"
+  },
+  {
+    "id": 91,
+    "jp": "銀行は駅の前にあります。",
+    "de": "Die Bank ist vor dem Bahnhof.",
+    "hint": "vor + Dativ（場所）",
+    "level": "A2",
+    "category": "前置詞",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 92,
+    "jp": "本をテーブルの上に置きます。",
+    "de": "Ich lege das Buch auf den Tisch.",
+    "hint": "auf + Akkusativ（方向）・legen = 置く",
+    "level": "A2",
+    "category": "前置詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 93,
+    "jp": "薬局は病院の隣にあります。",
+    "de": "Die Apotheke ist neben dem Krankenhaus.",
+    "hint": "neben + Dativ（場所）",
+    "level": "A2",
+    "category": "前置詞",
+    "scene": "病院・緊急"
+  },
+  {
+    "id": 94,
+    "jp": "私は東京出身です。",
+    "de": "Ich komme aus Tokio.",
+    "hint": "aus + Dativ（出身・起点）",
+    "level": "A2",
+    "category": "前置詞",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 95,
+    "jp": "彼女はオフィスへ向かっています。",
+    "de": "Sie geht ins Büro.",
+    "hint": "in + Akkusativ（方向）：ins = in das",
+    "level": "A2",
+    "category": "前置詞",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 96,
+    "jp": "私たちはバスで市内を通ります。",
+    "de": "Wir fahren mit dem Bus durch die Stadt.",
+    "hint": "durch + Akkusativ（通過）・mit + Dativ（手段）",
+    "level": "A2",
+    "category": "前置詞",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 97,
+    "jp": "会議室は3階にあります。",
+    "jp_yomi": "かいぎしつはさんかいにあります。",
+    "de": "Der Konferenzraum ist im dritten Stock.",
+    "hint": "in + Dativ（場所）：im = in dem・序数",
+    "level": "A2",
+    "category": "前置詞",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 98,
+    "jp": "スーパーは角を曲がったところにあります。",
+    "de": "Der Supermarkt ist um die Ecke.",
+    "hint": "um + Akkusativ（〜を回ったところ）",
+    "level": "A2",
+    "category": "前置詞",
+    "scene": "買い物"
+  },
+  {
+    "id": 99,
+    "jp": "疲れているので、早く寝ます。",
+    "de": "Ich gehe früh schlafen, weil ich müde bin.",
+    "hint": "weil 節：動詞は文末へ",
+    "level": "A2",
+    "category": "接続詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 100,
+    "jp": "彼女が来たら、電話してください。",
+    "de": "Wenn sie kommt, rufen Sie mich an.",
+    "hint": "wenn 節：動詞は文末・主節は倒置",
+    "level": "A2",
+    "category": "接続詞",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 101,
+    "jp": "私は彼がドイツ人だと思います。",
+    "de": "Ich denke, dass er Deutscher ist.",
+    "hint": "dass 節：動詞は文末へ",
+    "level": "A2",
+    "category": "接続詞",
+    "scene": "自己紹介",
+    "jp_yomi": "わたしはかれがどいつじんだとおもいます。"
+  },
+  {
+    "id": 102,
+    "jp": "お腹が空いているので、何か食べたいです。",
+    "de": "Ich möchte etwas essen, weil ich hungrig bin.",
+    "hint": "weil 節：動詞後置・möchten + 不定詞",
+    "level": "A2",
+    "category": "接続詞",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 103,
+    "jp": "具合が悪いので、医者に行きます。",
+    "de": "Ich gehe zum Arzt, weil ich krank bin.",
+    "hint": "weil 節：動詞後置・zum = zu dem",
+    "level": "A2",
+    "category": "接続詞",
+    "scene": "病院・緊急"
+  },
+  {
+    "id": 104,
+    "jp": "時間があれば、映画を見に行きます。",
+    "de": "Wenn wir Zeit haben, gehen wir ins Kino.",
+    "hint": "wenn 節：動詞後置・主節倒置（接続詞文頭）",
+    "level": "A2",
+    "category": "接続詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 105,
+    "jp": "彼女は仕事が好きだと言っています。",
+    "de": "Sie sagt, dass sie ihre Arbeit mag.",
+    "hint": "dass 節：動詞後置・sagen + dass",
+    "level": "A2",
+    "category": "接続詞",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 106,
+    "jp": "バスが遅れているのでタクシーで行きます。",
+    "de": "Ich fahre mit dem Taxi, weil der Bus Verspätung hat.",
+    "hint": "weil 節：動詞後置・Verspätung haben = 遅延している",
+    "level": "A2",
+    "category": "接続詞",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 107,
+    "jp": "私の兄は私より背が高いです。",
+    "de": "Mein Bruder ist größer als ich.",
+    "hint": "比較級：groß → größer（ウムラート変化）+ als",
+    "level": "A2",
+    "category": "比較級・最上級",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 108,
+    "jp": "このレストランはあちらより安いです。",
+    "de": "Dieses Restaurant ist billiger als jenes.",
+    "hint": "比較級：billig → billiger + als",
+    "level": "A2",
+    "category": "比較級・最上級",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 109,
+    "jp": "電車が一番速いです。",
+    "de": "Der Zug ist am schnellsten.",
+    "hint": "最上級：schnell → am schnellsten",
+    "level": "A2",
+    "category": "比較級・最上級",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 110,
+    "jp": "彼女はクラスで一番上手にドイツ語を話します。",
+    "de": "Sie spricht am besten Deutsch in der Klasse.",
+    "hint": "最上級（不規則）：gut → am besten",
+    "level": "A2",
+    "category": "比較級・最上級",
+    "scene": "自己紹介",
+    "jp_yomi": "かのじょはくらすでいちばんじょうずにどいつごをはなします。"
+  },
+  {
+    "id": 111,
+    "jp": "今日は昨日より暖かいです。",
+    "de": "Heute ist es wärmer als gestern.",
+    "hint": "比較級：warm → wärmer（ウムラート変化）+ als",
+    "level": "A2",
+    "category": "比較級・最上級",
+    "scene": "日常生活"
+  },
+  {
+    "id": 112,
+    "jp": "この薬が一番よく効きます。",
+    "de": "Dieses Medikament wirkt am besten.",
+    "hint": "最上級（不規則）：gut → am besten",
+    "level": "A2",
+    "category": "比較級・最上級",
+    "scene": "病院・緊急"
+  },
+  {
+    "id": 11,
+    "jp": "彼女が来たら電話します。",
+    "de": "Wenn sie kommt, rufe ich an.",
+    "hint": "wenn節 + 動詞後置",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 12,
+    "jp": "もっとゆっくり話してもらえますか？",
+    "de": "Könnten Sie bitte langsamer sprechen?",
+    "hint": "Konjunktiv II の丁寧表現",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 113,
+    "jp": "雨なのに彼女は自転車で来ました。",
+    "de": "Sie ist mit dem Fahrrad gekommen, obwohl es geregnet hat.",
+    "hint": "obwohl（〜にもかかわらず）：動詞は文末へ",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 114,
+    "jp": "病気なのに彼は仕事に行きました。",
+    "de": "Er ist zur Arbeit gegangen, obwohl er krank war.",
+    "hint": "obwohl節：動詞後置（war）・war = sein の過去形",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 115,
+    "jp": "上手に話せるよう、毎日練習しています。",
+    "de": "Ich übe jeden Tag, damit ich besser sprechen kann.",
+    "hint": "damit（〜するために）：動詞は文末・kann は最後",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "日常生活",
+    "jp_yomi": "じょうずにはなせるよう、まいにちれんしゅうしています。"
+  },
+  {
+    "id": 116,
+    "jp": "間に合うように早く出発しました。",
+    "de": "Ich bin früh abgefahren, damit ich pünktlich ankomme.",
+    "hint": "damit + 動詞後置・abfahren（分離動詞）の現在完了",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 117,
+    "jp": "彼が来るかどうかわかりません。",
+    "de": "Ich weiß nicht, ob er kommt.",
+    "hint": "ob（〜かどうか）：間接疑問文・動詞は文末",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 118,
+    "jp": "彼女がどこに住んでいるか知っていますか？",
+    "de": "Wissen Sie, wo sie wohnt?",
+    "hint": "wo（間接疑問）：動詞は文末・Wissen Sie = 〜を知っていますか",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 119,
+    "jp": "お金が足りないので別のホテルを探します。",
+    "de": "Ich suche ein anderes Hotel, da ich nicht genug Geld habe.",
+    "hint": "da（〜なので）：動詞後置・weil と同義（文語的）",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 120,
+    "jp": "彼は試験に合格するために一生懸命勉強しました。",
+    "de": "Er hat fleißig gelernt, damit er die Prüfung bestehen kann.",
+    "hint": "damit + 動詞後置・bestehen kann（können は最後）",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "学校・勉強"
+  },
+  {
+    "id": 121,
+    "jp": "時間があればもっと旅行するでしょう。",
+    "de": "Wenn ich Zeit hätte, würde ich mehr reisen.",
+    "hint": "Konjunktiv II：haben → hätte・würde + 不定詞",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 122,
+    "jp": "あなたの立場なら、どうしますか？",
+    "de": "Was würden Sie an meiner Stelle machen?",
+    "hint": "würden + 不定詞（丁寧な仮定）・an meiner Stelle = 私の立場で",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 123,
+    "jp": "もし私がお金持ちなら、大きな家を買うでしょう。",
+    "de": "Wenn ich reich wäre, würde ich ein großes Haus kaufen.",
+    "hint": "Konjunktiv II：sein → wäre・würde + 不定詞",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "日常生活"
+  },
+  {
+    "id": 124,
+    "jp": "窓を開けていただけますか？",
+    "de": "Könnten Sie bitte das Fenster öffnen?",
+    "hint": "Konjunktiv II：können → könnten（丁寧な依頼）",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "日常生活"
+  },
+  {
+    "id": 125,
+    "jp": "彼女はまるでドイツ人のように話します。",
+    "de": "Sie spricht, als ob sie Deutsche wäre.",
+    "hint": "als ob + Konjunktiv II（まるで〜のように）",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 126,
+    "jp": "もう少し待っていただけますか？",
+    "de": "Würden Sie bitte einen Moment warten?",
+    "hint": "Konjunktiv II：würden（丁寧な依頼）",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 127,
+    "jp": "私があなたなら、その仕事を断るでしょう。",
+    "de": "An Ihrer Stelle würde ich diese Arbeit ablehnen.",
+    "hint": "an Ihrer Stelle（あなたの立場なら）+ würde + 不定詞",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 128,
+    "jp": "昨日来ていたら彼に会えたのに。",
+    "de": "Wenn du gestern gekommen wärst, hättest du ihn getroffen.",
+    "hint": "Konjunktiv II 過去：wäre + Partizip II・hätte + Partizip II",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "日常生活"
+  },
+  {
+    "id": 129,
+    "jp": "この建物は1900年に建てられました。",
+    "de": "Dieses Gebäude wurde 1900 gebaut.",
+    "hint": "受動態：werden の過去形（wurde）+ Partizip II",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 130,
+    "jp": "ここではドイツ語が話されています。",
+    "de": "Hier wird Deutsch gesprochen.",
+    "hint": "受動態：werden の現在形（wird）+ Partizip II",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 131,
+    "jp": "患者は手術されました。",
+    "de": "Der Patient wurde operiert.",
+    "hint": "受動態：werden の過去形（wurde）+ Partizip II",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "病院・緊急"
+  },
+  {
+    "id": 132,
+    "jp": "書類はすでに送られています。",
+    "de": "Die Dokumente sind bereits geschickt worden.",
+    "hint": "受動態の現在完了：sein + Partizip II + worden",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 133,
+    "jp": "荷物はホテルに届けられます。",
+    "de": "Das Gepäck wird ins Hotel geliefert.",
+    "hint": "受動態：werden + Partizip II（現在）",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 134,
+    "jp": "新しい薬が開発されています。",
+    "de": "Ein neues Medikament wird entwickelt.",
+    "hint": "受動態：werden + Partizip II・ein neues Medikament（不定冠詞）",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "病院・緊急"
+  },
+  {
+    "id": 135,
+    "jp": "これは私が昨日買った本です。",
+    "de": "Das ist das Buch, das ich gestern gekauft habe.",
+    "hint": "関係代名詞 das（中性・4格）：関係節の動詞は文末",
+    "level": "B1",
+    "category": "関係代名詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 136,
+    "jp": "隣に住んでいる男性はドイツ人です。",
+    "jp_yomi": "となりにすんでいるだんせいはドイツじんです。",
+    "de": "Der Mann, der neben mir wohnt, ist Deutscher.",
+    "hint": "関係代名詞 der（男性・1格）",
+    "level": "B1",
+    "category": "関係代名詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 137,
+    "jp": "私が探しているレストランはここです。",
+    "de": "Das Restaurant, das ich suche, ist hier.",
+    "hint": "関係代名詞 das（中性・4格）",
+    "level": "B1",
+    "category": "関係代名詞",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 138,
+    "jp": "彼が働いている会社はとても大きいです。",
+    "de": "Die Firma, in der er arbeitet, ist sehr groß.",
+    "hint": "関係代名詞 der（女性・3格）：前置詞 in + Dativ",
+    "level": "B1",
+    "category": "関係代名詞",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 139,
+    "jp": "彼女が話しかけている女性は私の先生です。",
+    "de": "Die Frau, mit der sie spricht, ist meine Lehrerin.",
+    "hint": "関係代名詞 der（女性・3格）：mit + Dativ",
+    "level": "B1",
+    "category": "関係代名詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 140,
+    "jp": "彼女が作った料理はとてもおいしいです。",
+    "de": "Das Gericht, das sie gekocht hat, ist sehr lecker.",
+    "hint": "関係代名詞 das（中性・4格）・lecker = おいしい",
+    "level": "B1",
+    "category": "関係代名詞",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 141,
+    "jp": "ドイツ語を学ぶことは難しいです。",
+    "de": "Deutsch zu lernen ist schwierig.",
+    "hint": "zu不定詞が主語：動詞 zu + 不定詞",
+    "level": "B1",
+    "category": "zu不定詞",
+    "scene": "学校・勉強"
+  },
+  {
+    "id": 142,
+    "jp": "私は映画を見に行くつもりです。",
+    "de": "Ich habe vor, ins Kino zu gehen.",
+    "hint": "vorhaben + zu不定詞（〜するつもり）",
+    "level": "B1",
+    "category": "zu不定詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 143,
+    "jp": "彼女は医者になろうとしています。",
+    "de": "Sie versucht, Ärztin zu werden.",
+    "hint": "versuchen + zu不定詞（〜しようとする）",
+    "level": "B1",
+    "category": "zu不定詞",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 144,
+    "jp": "彼はドイツへ行く計画をしています。",
+    "de": "Er plant, nach Deutschland zu fahren.",
+    "hint": "planen + zu不定詞（〜する計画だ）",
+    "level": "B1",
+    "category": "zu不定詞",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 145,
+    "jp": "これをください。",
+    "de": "Ich nehme das.",
+    "hint": "nehmen で「〜にします・〜をください」= 購入を伝える表現",
+    "level": "A1",
+    "category": "現在形",
+    "scene": "買い物"
+  },
+  {
+    "id": 146,
+    "jp": "試着してもいいですか？",
+    "de": "Kann ich das anprobieren?",
+    "hint": "können + 分離動詞 anprobieren（試着する）",
+    "level": "A1",
+    "category": "疑問文",
+    "scene": "買い物"
+  },
+  {
+    "id": 147,
+    "jp": "袋をもらえますか？",
+    "de": "Kann ich eine Tüte haben?",
+    "hint": "Kann ich ... haben? = 〜をもらえますか",
+    "level": "A1",
+    "category": "疑問文",
+    "scene": "買い物"
+  },
+  {
+    "id": 148,
+    "jp": "別の色はありますか？",
+    "de": "Haben Sie das in einer anderen Farbe?",
+    "hint": "in + Dativ（Farbe は女性名詞）・anderen（格変化）",
+    "level": "A2",
+    "category": "前置詞",
+    "scene": "買い物"
+  },
+  {
+    "id": 149,
+    "jp": "カードで払えますか？",
+    "de": "Kann ich mit Karte bezahlen?",
+    "hint": "mit + Dativ（手段）・bezahlen = 支払う",
+    "level": "A1",
+    "category": "疑問文",
+    "scene": "買い物"
+  },
+  {
+    "id": 150,
+    "jp": "これを返品したいのですが。",
+    "de": "Ich möchte das zurückgeben.",
+    "hint": "zurückgeben（分離動詞）・möchten + 不定詞",
+    "level": "A2",
+    "category": "分離動詞",
+    "scene": "買い物"
+  },
+  {
+    "id": 151,
+    "jp": "駅まではどのくらいかかりますか？",
+    "de": "Wie lange dauert es bis zum Bahnhof?",
+    "hint": "Wie lange dauert es? = どのくらいかかりますか・bis zum = 〜まで",
+    "level": "A2",
+    "category": "疑問文",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 152,
+    "jp": "チェックインをお願いします。",
+    "de": "Ich möchte einchecken, bitte.",
+    "hint": "einchecken（外来語の分離動詞）・möchten + 不定詞",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 153,
+    "jp": "ここで写真を撮ってもいいですか？",
+    "de": "Darf ich hier fotografieren?",
+    "hint": "dürfen + 不定詞（許可を求める）",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 154,
+    "jp": "市内地図はありますか？",
+    "de": "Haben Sie einen Stadtplan?",
+    "hint": "Haben Sie ...? = 〜はありますか・einen（男性名詞4格）",
+    "level": "A2",
+    "category": "疑問文",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 155,
+    "jp": "博物館は何時に開きますか？",
+    "de": "Wann öffnet das Museum?",
+    "hint": "Wann + 動詞（開館時間を聞く）",
+    "level": "A2",
+    "category": "疑問文",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 156,
+    "jp": "症状が悪化したら、すぐに来てください。",
+    "de": "Wenn die Symptome schlimmer werden, kommen Sie bitte sofort.",
+    "hint": "wenn節 + 動詞後置・主節倒置（wenn文頭）",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "病院・緊急"
+  },
+  {
+    "id": 157,
+    "jp": "毎日この薬を飲むように言われました。",
+    "de": "Man hat mir gesagt, dass ich dieses Medikament jeden Tag nehmen muss.",
+    "hint": "dass節 + 動詞後置（muss は最末）・Man hat gesagt = 言われた",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "病院・緊急"
+  },
+  {
+    "id": 158,
+    "jp": "アレルギーの薬を処方していただけますか？",
+    "de": "Könnten Sie mir ein Medikament gegen Allergien verschreiben?",
+    "hint": "Konjunktiv II（könnten）・gegen + Akkusativ（〜に対して）",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "病院・緊急"
+  },
+  {
+    "id": 159,
+    "jp": "手術後は安静にしていなければなりません。",
+    "de": "Nach der Operation müssen Sie sich ausruhen.",
+    "hint": "nach + Dativ（〜の後）・sich ausruhen（再帰動詞）",
+    "level": "B1",
+    "category": "話法の助動詞",
+    "scene": "病院・緊急"
+  },
+  {
+    "id": 160,
+    "jp": "彼女はとても速く走れます。",
+    "de": "Sie kann sehr schnell laufen.",
+    "hint": "schnell（速く）副詞用法・sehr で強調",
+    "level": "A2",
+    "category": "副詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 161,
+    "jp": "昨日は一日中雨が降っていました。",
+    "de": "Gestern hat es den ganzen Tag geregnet.",
+    "hint": "gestern（昨日）文頭で倒置・den ganzen Tag（4格・期間）",
+    "level": "A2",
+    "category": "副詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 162,
+    "jp": "私はすでにその映画を見ました。",
+    "de": "Ich habe den Film schon gesehen.",
+    "hint": "schon（すでに）は助動詞の直後・過去分詞は文末",
+    "level": "A2",
+    "category": "副詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 163,
+    "jp": "彼はまだ来ていません。",
+    "de": "Er ist noch nicht gekommen.",
+    "hint": "noch nicht（まだ〜していない）・sein + gekommen（来る完了）",
+    "level": "A2",
+    "category": "副詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 164,
+    "jp": "私はもう疲れました。",
+    "de": "Ich bin schon müde.",
+    "hint": "schon（もう・すでに）・müde = 疲れた",
+    "level": "A2",
+    "category": "副詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 165,
+    "jp": "彼女はとても親切に助けてくれました。",
+    "de": "Sie hat mir sehr freundlich geholfen.",
+    "hint": "freundlich（親切に）副詞用法・helfen + Dativ（mir）",
+    "level": "A2",
+    "category": "副詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 166,
+    "jp": "私たちはめったにレストランに行きません。",
+    "de": "Wir gehen selten ins Restaurant.",
+    "hint": "selten（めったに〜ない）頻度副詞・ins = in das",
+    "level": "A2",
+    "category": "副詞",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 167,
+    "jp": "彼は毎朝早く起きます。",
+    "de": "Er steht jeden Morgen früh auf.",
+    "hint": "jeden Morgen（毎朝・4格）・früh aufstehen（分離動詞）",
+    "level": "A2",
+    "category": "副詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 168,
+    "jp": "私は最近ドイツ語をよく練習しています。",
+    "de": "Ich übe in letzter Zeit oft Deutsch.",
+    "hint": "in letzter Zeit（最近）・oft（よく・頻繁に）頻度副詞",
+    "level": "A2",
+    "category": "副詞",
+    "scene": "学校・勉強"
+  },
+  {
+    "id": 169,
+    "jp": "明日は晴れるでしょう。",
+    "de": "Morgen wird es sonnig sein.",
+    "hint": "未来形：werden + 不定詞・sonnig = 晴れた",
+    "level": "A2",
+    "category": "未来形",
+    "scene": "日常生活"
+  },
+  {
+    "id": 170,
+    "jp": "私は来年ドイツへ行くつもりです。",
+    "de": "Ich werde nächstes Jahr nach Deutschland fahren.",
+    "hint": "werden + 不定詞・nächstes Jahr（4格・時間表現）",
+    "level": "A2",
+    "category": "未来形",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 171,
+    "jp": "彼は医者になるでしょう。",
+    "de": "Er wird Arzt werden.",
+    "hint": "werden + Arzt werden・職業名詞は無冠詞",
+    "level": "A2",
+    "category": "未来形",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 172,
+    "jp": "私たちは来月引っ越します。",
+    "de": "Wir werden nächsten Monat umziehen.",
+    "hint": "werden + 分離動詞 umziehen（引っ越す）・nächsten Monat（4格）",
+    "level": "A2",
+    "category": "未来形",
+    "scene": "日常生活"
+  },
+  {
+    "id": 173,
+    "jp": "パーティーはきっと楽しいでしょう。",
+    "de": "Die Party wird sicher Spaß machen.",
+    "hint": "sicher（きっと）・Spaß machen = 楽しい（慣用）",
+    "level": "A2",
+    "category": "未来形",
+    "scene": "日常生活"
+  },
+  {
+    "id": 174,
+    "jp": "彼女はすぐに戻ってきます。",
+    "de": "Sie wird gleich zurückkommen.",
+    "hint": "werden + 分離動詞 zurückkommen・gleich = すぐに",
+    "level": "A2",
+    "category": "未来形",
+    "scene": "日常生活"
+  },
+  {
+    "id": 175,
+    "jp": "この仕事はとても大変になるでしょう。",
+    "de": "Diese Arbeit wird sehr schwer sein.",
+    "hint": "werden + Adjektiv + sein（状態の未来）",
+    "level": "A2",
+    "category": "未来形",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 176,
+    "jp": "お腹が空きました。",
+    "de": "Ich habe Hunger.",
+    "hint": "Hunger haben（慣用：空腹だ）・名詞は無冠詞",
+    "level": "A1",
+    "category": "慣用表現",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 177,
+    "jp": "喉が渇きました。",
+    "de": "Ich habe Durst.",
+    "hint": "Durst haben（慣用：喉が渇いた）・名詞は無冠詞",
+    "level": "A1",
+    "category": "慣用表現",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 178,
+    "jp": "時間はありますか？",
+    "de": "Haben Sie Zeit?",
+    "hint": "Zeit haben（慣用：時間がある）・名詞は無冠詞",
+    "level": "A1",
+    "category": "慣用表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 179,
+    "jp": "急いでいます。",
+    "de": "Ich habe es eilig.",
+    "hint": "es eilig haben（慣用：急いでいる）・es は形式目的語",
+    "level": "A2",
+    "category": "慣用表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 180,
+    "jp": "彼女は風邪を引いています。",
+    "de": "Sie hat eine Erkältung.",
+    "hint": "eine Erkältung haben（慣用：風邪を引いている）・Erkältung = 風邪（女性）",
+    "level": "A2",
+    "category": "慣用表現",
+    "scene": "病院・緊急"
+  },
+  {
+    "id": 181,
+    "jp": "気分が悪いです。",
+    "de": "Mir ist schlecht.",
+    "hint": "Mir ist schlecht（慣用：気分が悪い）・mir = Dativ",
+    "level": "A2",
+    "category": "慣用表現",
+    "scene": "病院・緊急"
+  },
+  {
+    "id": 182,
+    "jp": "よい週末を！",
+    "de": "Schönes Wochenende!",
+    "hint": "Schönes（中性4格・弱変化）省略的表現・Wochenende = 週末",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 183,
+    "jp": "お大事に。",
+    "de": "Gute Besserung!",
+    "hint": "Gute Besserung!（慣用：お大事に・回復を願う）",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "病院・緊急"
+  },
+  {
+    "id": 184,
+    "jp": "よい旅を！",
+    "de": "Gute Reise!",
+    "hint": "Gute Reise!（良い旅を・出発時の挨拶）",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 185,
+    "jp": "来週また！",
+    "de": "Bis nächste Woche!",
+    "hint": "Bis + 時の表現（〜にまた）・nächste Woche = 来週",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 186,
+    "jp": "彼女は早く帰宅せざるを得ません。",
+    "de": "Sie ist gezwungen, früh nach Hause zu fahren.",
+    "hint": "gezwungen sein + zu不定詞（〜せざるを得ない）・nach Hause = 帰宅",
+    "level": "B1",
+    "category": "zu不定詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 187,
+    "jp": "彼はその仕事を断ることができませんでした。",
+    "de": "Er war nicht in der Lage, die Arbeit abzulehnen.",
+    "hint": "in der Lage sein + zu不定詞（〜できる）・ablehnen分離→abzulehnen",
+    "level": "B1",
+    "category": "zu不定詞",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 188,
+    "jp": "私はドイツ語が上手になるために毎日練習しています。",
+    "de": "Ich übe jeden Tag, um besser Deutsch zu sprechen.",
+    "hint": "um ... zu不定詞（〜するために）目的を表す",
+    "level": "B1",
+    "category": "zu不定詞",
+    "scene": "学校・勉強",
+    "jp_yomi": "わたしはどいつごがじょうずになるためにまいにちれんしゅうしています。"
+  },
+  {
+    "id": 189,
+    "jp": "この本はとても読みやすいです。",
+    "de": "Dieses Buch ist leicht zu lesen.",
+    "hint": "leicht zu不定詞（〜しやすい）・sein + Adjektiv + zu不定詞",
+    "level": "B1",
+    "category": "zu不定詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 190,
+    "jp": "今日は昨日より暑いです。",
+    "de": "Heute ist es heißer als gestern.",
+    "hint": "比較級 heißer（heiß + er）・als = 〜より",
+    "level": "A2",
+    "category": "比較級・最上級",
+    "scene": "日常生活"
+  },
+  {
+    "id": 191,
+    "jp": "このホテルはあのホテルより安いです。",
+    "de": "Dieses Hotel ist billiger als das andere.",
+    "hint": "比較級 billiger（billig + er）・das andere = 他のもの",
+    "level": "A2",
+    "category": "比較級・最上級",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 192,
+    "jp": "この試験はあの試験より難しいです。",
+    "de": "Diese Prüfung ist schwieriger als jene.",
+    "hint": "比較級：schwierig → schwieriger、als（〜より）",
+    "level": "A2",
+    "category": "比較級・最上級",
+    "scene": "学校・勉強"
+  },
+  {
+    "id": 193,
+    "jp": "夏は一番暑い季節です。",
+    "de": "Der Sommer ist die heißeste Jahreszeit.",
+    "hint": "最上級 heißeste（定冠詞付き弱変化・女性1格）",
+    "level": "A2",
+    "category": "比較級・最上級",
+    "scene": "日常生活"
+  },
+  {
+    "id": 194,
+    "jp": "この車は日本で製造されています。",
+    "de": "Dieses Auto wird in Japan hergestellt.",
+    "hint": "現在受動態：werden + Partizip II・herstellen → hergestellt",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "日常生活"
+  },
+  {
+    "id": 195,
+    "jp": "その手紙は昨日送られました。",
+    "de": "Der Brief wurde gestern geschickt.",
+    "hint": "過去受動態：wurde + Partizip II・schicken → geschickt",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 196,
+    "jp": "この橋は100年前に建てられました。",
+    "de": "Diese Brücke wurde vor 100 Jahren gebaut.",
+    "hint": "過去受動態：wurde + Partizip II・vor + Dativ（〜前に）",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 197,
+    "jp": "会議は延期されました。",
+    "de": "Die Besprechung wurde verschoben.",
+    "hint": "過去受動態：wurde + Partizip II・verschieben（延期する）→ verschoben",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 198,
+    "jp": "彼女が話している言語はフランス語です。",
+    "de": "Die Sprache, die sie spricht, ist Französisch.",
+    "hint": "関係代名詞 die（女性・4格）・Sprache = 女性名詞",
+    "level": "B1",
+    "category": "関係代名詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 199,
+    "jp": "私が住んでいる街は小さいです。",
+    "de": "Die Stadt, in der ich wohne, ist klein.",
+    "hint": "関係代名詞 der（女性・3格）：in + Dativ",
+    "level": "B1",
+    "category": "関係代名詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 200,
+    "jp": "彼が買った車はとても高かったです。",
+    "de": "Das Auto, das er gekauft hat, war sehr teuer.",
+    "hint": "関係代名詞 das（中性・4格）・現在完了 gekauft hat",
+    "level": "B1",
+    "category": "関係代名詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 201,
+    "jp": "私が会った人はとても親切でした。",
+    "de": "Die Person, die ich getroffen habe, war sehr freundlich.",
+    "hint": "関係代名詞 die（女性・4格）・treffen → getroffen",
+    "level": "B1",
+    "category": "関係代名詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 202,
+    "jp": "調子はどうですか？",
+    "de": "Wie geht's?",
+    "hint": "Wie geht es dir? の短縮形・友達同士のカジュアルな挨拶",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 203,
+    "jp": "元気です、ありがとう！あなたは？",
+    "de": "Gut, danke! Und du?",
+    "hint": "Und du?（友達）/ Und Ihnen?（丁寧）・返答の定番フレーズ",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 204,
+    "jp": "了解！",
+    "de": "Alles klar!",
+    "hint": "alles（すべて）+ klar（明確）= OK・了解の口語表現",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 205,
+    "jp": "問題ありません。",
+    "de": "Kein Problem.",
+    "hint": "kein + 名詞で否定・Problem = 問題（中性名詞）",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 206,
+    "jp": "気にしないでください。",
+    "de": "Macht nichts.",
+    "hint": "machen + nichts = 何でもない・相手を気遣う慣用表現",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 207,
+    "jp": "わかりません。",
+    "de": "Ich weiß nicht.",
+    "hint": "wissen（知る）の1人称現在：ich weiß（不規則）",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 208,
+    "jp": "その通りです！",
+    "de": "Genau!",
+    "hint": "genau = まさに・ちょうど・そのとおり。相槌として頻用",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 209,
+    "jp": "なるほど。",
+    "de": "Ach so.",
+    "hint": "ach（ああ）+ so（そう）= 納得・理解の感嘆表現",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 210,
+    "jp": "またね！",
+    "de": "Tschüss!",
+    "hint": "カジュアルなお別れの挨拶・Auf Wiedersehen の砕けた表現",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 211,
+    "jp": "やあ、どう？",
+    "de": "Na?",
+    "hint": "短い問いかけ・Wie geht's? の最もカジュアルな形",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 212,
+    "jp": "それはどういう意味ですか？",
+    "de": "Was bedeutet das?",
+    "hint": "bedeuten（意味する）・das = それ（指示代名詞）",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 213,
+    "jp": "もう一度言ってもらえますか？",
+    "de": "Kannst du das wiederholen?",
+    "hint": "können + 不定詞・wiederholen（繰り返す）= 分離しない動詞",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 214,
+    "jp": "質問があります。",
+    "de": "Ich habe eine Frage.",
+    "hint": "eine Frage haben（質問がある）・Frage = 女性名詞",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 215,
+    "jp": "もう一度おっしゃっていただけますか？",
+    "de": "Wie bitte?",
+    "hint": "聞き返すときの丁寧な表現・bitte は添えることで丁寧さを示す",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 216,
+    "jp": "もちろんです！",
+    "de": "Natürlich!",
+    "hint": "natürlich = 自然に・当然・もちろん。快諾の返答",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 217,
+    "jp": "私は明日早く起きなければなりません。",
+    "de": "Ich muss morgen früh aufstehen.",
+    "hint": "müssen（〜しなければならない）+ 分離動詞 aufstehen（起きる）",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 218,
+    "jp": "あなたはもっと休むべきです。",
+    "de": "Du solltest mehr ausruhen.",
+    "hint": "sollen の接続法II形 solltest = 〜すべき・丁寧な助言",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 219,
+    "jp": "週末に一緒に映画を見に行けます。",
+    "de": "Wir können am Wochenende zusammen ins Kino gehen.",
+    "hint": "können（〜できる）+ 不定詞・am Wochenende（週末に）",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 220,
+    "jp": "彼はここでタバコを吸ってはいけません。",
+    "de": "Er darf hier nicht rauchen.",
+    "hint": "dürfen の否定 nicht dürfen =〜してはいけない（禁止）",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 221,
+    "jp": "私はドイツへ一人で旅行したいです。",
+    "de": "Ich möchte alleine nach Deutschland reisen.",
+    "hint": "möchte（〜したい・mögen の接続法II）+ 不定詞・alleine = 一人で",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 222,
+    "jp": "彼女はそのプロジェクトを一人で担当できます。",
+    "de": "Sie kann das Projekt alleine übernehmen.",
+    "hint": "können + 不定詞・übernehmen（引き受ける）= 分離しない前綴り über-",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 223,
+    "jp": "その本を読みました。",
+    "de": "Ich habe das Buch gelesen.",
+    "hint": "haben + Partizip II（lesen → gelesen）・他動詞は haben 支配",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "日常生活"
+  },
+  {
+    "id": 224,
+    "jp": "彼はミュンヘンへ行きました。",
+    "de": "Er ist nach München gefahren.",
+    "hint": "移動動詞は sein 支配（fahren → gefahren）",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 225,
+    "jp": "私たちはパーティーをとても楽しみました。",
+    "de": "Wir haben die Party sehr genossen.",
+    "hint": "genießen（楽しむ）→ genossen・haben 支配の混合変化",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "日常生活"
+  },
+  {
+    "id": 226,
+    "jp": "電車に乗り遅れてしまいました。",
+    "de": "Ich habe den Zug verpasst.",
+    "hint": "verpassen → verpasst・前綴り ver- は非分離・haben 支配",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 227,
+    "jp": "彼女は今日仕事を休みました。",
+    "de": "Sie hat heute nicht gearbeitet.",
+    "hint": "arbeiten → gearbeitet・nicht で否定・haben 支配",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 228,
+    "jp": "今朝早く目が覚めました。",
+    "de": "Ich bin heute Morgen früh aufgewacht.",
+    "hint": "aufwachen（目が覚める）→ aufgewacht・sein 支配の分離動詞",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "日常生活"
+  },
+  {
+    "id": 229,
+    "jp": "明日電話します。",
+    "de": "Ich rufe dich morgen an.",
+    "hint": "anrufen（電話する）→ rufe...an・前綴り an が文末へ移動",
+    "level": "A2",
+    "category": "分離動詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 230,
+    "jp": "電車は8時に出発します。",
+    "de": "Der Zug fährt um 8 Uhr ab.",
+    "hint": "abfahren（出発する）→ fährt...ab・um + 時刻（4格）",
+    "level": "A2",
+    "category": "分離動詞",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 231,
+    "jp": "この書類にご記入ください。",
+    "de": "Bitte füllen Sie das Formular aus.",
+    "hint": "ausfüllen（記入する）→ füllen...aus・Formular = 書類（中性名詞）",
+    "level": "A2",
+    "category": "分離動詞",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 232,
+    "jp": "映画は何時に始まりますか？",
+    "de": "Wann fängt der Film an?",
+    "hint": "anfangen（始まる）→ fängt...an・wann = いつ（疑問副詞）",
+    "level": "A2",
+    "category": "分離動詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 233,
+    "jp": "明日は何時に帰ってきますか？",
+    "de": "Wann kommst du morgen zurück?",
+    "hint": "zurückkommen（帰ってくる）→ kommst...zurück・分離前綴り zurück-",
+    "level": "A2",
+    "category": "分離動詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 234,
+    "jp": "長時間働いたので疲れています。",
+    "de": "Ich bin müde, weil ich lange gearbeitet habe.",
+    "hint": "weil（〜なので）= 副文・動詞は副文の文末に移動",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 235,
+    "jp": "難しかったけれど、やり遂げました。",
+    "de": "Obwohl es schwierig war, habe ich es geschafft.",
+    "hint": "obwohl（〜にもかかわらず）= 副文先行時は主文が動詞倒置",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 236,
+    "jp": "到着したらすぐに連絡します。",
+    "de": "Sobald ich ankomme, melde ich mich.",
+    "hint": "sobald（〜するやいなや）= 副文・sich melden = 連絡する（再帰動詞）",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 237,
+    "jp": "会議は10時に始まることを知っています。",
+    "de": "Ich weiß, dass die Besprechung um 10 Uhr beginnt.",
+    "hint": "dass（〜ということ）= 副文・動詞は文末・Besprechung = 会議（女性名詞）",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 238,
+    "jp": "電車が遅れたので、会議に遅刻しました。",
+    "de": "Da der Zug Verspätung hatte, kam ich zu spät zur Besprechung.",
+    "hint": "da（〜なので）= 副文先行時は主文が動詞倒置・zu spät kommen = 遅刻する",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 239,
+    "jp": "天気がよければ、明日観光に行きましょう。",
+    "de": "Wenn das Wetter gut ist, gehen wir morgen auf Sightseeing.",
+    "hint": "wenn（もし〜なら）= 条件副文・副文先行で主文は動詞倒置",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 240,
+    "jp": "もっとドイツ語を話す機会があればいいのですが。",
+    "de": "Ich wünschte, ich hätte mehr Gelegenheiten, Deutsch zu sprechen.",
+    "hint": "wünschen + Konj.II・hätte（haben の接続法II）・Gelegenheit = 機会",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "日常生活"
+  },
+  {
+    "id": 241,
+    "jp": "お金がもっとあれば、世界一周旅行をするのに。",
+    "de": "Wenn ich mehr Geld hätte, würde ich eine Weltreise machen.",
+    "hint": "hätte（haben の接続法II）+ würde + 不定詞・反実仮想の定番構文",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 242,
+    "jp": "手伝っていただけますか？",
+    "de": "Könnten Sie mir helfen?",
+    "hint": "können の接続法II形 könnten・Ihnen → mir（3格）・丁寧な依頼",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "日常生活"
+  },
+  {
+    "id": 243,
+    "jp": "早く始められれば助かるのですが。",
+    "de": "Es wäre hilfreich, wenn wir früher anfangen könnten.",
+    "hint": "wäre（sein の接続法II）+ wenn + könnten（können の接続法II）",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 244,
+    "jp": "天気がよければ、ハイキングに行くのに。",
+    "de": "Wenn das Wetter besser wäre, würden wir wandern gehen.",
+    "hint": "wäre（sein の接続法II）+ würden + 不定詞・besser = gut の比較級",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 245,
+    "jp": "ご親切にしていただければ幸いです。",
+    "de": "Das wäre sehr freundlich von Ihnen.",
+    "hint": "wäre（sein の接続法II）・von Ihnen = あなたの・丁寧な感謝・依頼表現",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "日常生活"
+  },
+  {
+    "id": 246,
+    "jp": "会議は月曜日に延期されました。",
+    "de": "Die Sitzung wurde auf Montag verschoben.",
+    "hint": "werden + Partizip II（verschieben → verschoben）・auf + 4格（日付）",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 247,
+    "jp": "報告書は金曜日までに提出されなければなりません。",
+    "de": "Der Bericht muss bis Freitag abgegeben werden.",
+    "hint": "müssen + Partizip II + werden（受動＋話法助動詞）・abgeben = 提出する",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 248,
+    "jp": "このホテルは1920年に建てられました。",
+    "de": "Dieses Hotel wurde 1920 gebaut.",
+    "hint": "werden + Partizip II（bauen → gebaut）・年号は前置詞なし",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 249,
+    "jp": "チケットはオンラインで購入できます。",
+    "de": "Die Tickets können online gekauft werden.",
+    "hint": "können + Partizip II + werden（受動＋話法助動詞）・kaufen → gekauft",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 250,
+    "jp": "ここではドイツ語が話されています。",
+    "de": "Hier wird Deutsch gesprochen.",
+    "hint": "現在受動態：werden + Partizip II（sprechen → gesprochen）・無冠詞",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "日常生活"
+  },
+  {
+    "id": 251,
+    "jp": "いくらですか？",
+    "de": "Wie viel kostet das?",
+    "hint": "kosten（〜の値段がする）・das = それ（指示代名詞）",
+    "level": "A1",
+    "category": "疑問文",
+    "scene": "買い物"
+  },
+  {
+    "id": 252,
+    "jp": "これをください。",
+    "de": "Das nehme ich.",
+    "hint": "nehmen（買う・取る）の1人称現在・会計時の定番表現",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "買い物"
+  },
+  {
+    "id": 253,
+    "jp": "もう少し安いものはありますか？",
+    "de": "Haben Sie etwas Günstigeres?",
+    "hint": "etwas + 形容詞比較級（無語尾）・günstig（安い）の比較級 günstiger",
+    "level": "A2",
+    "category": "比較級・最上級",
+    "scene": "買い物"
+  },
+  {
+    "id": 254,
+    "jp": "試着してもいいですか？",
+    "de": "Darf ich das anprobieren?",
+    "hint": "dürfen + 分離動詞 anprobieren（試着する）",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "買い物"
+  },
+  {
+    "id": 255,
+    "jp": "レシートをいただけますか？",
+    "de": "Kann ich eine Quittung bekommen?",
+    "hint": "können + 不定詞・Quittung = レシート（女性名詞）",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "買い物"
+  },
+  {
+    "id": 256,
+    "jp": "クレジットカードで払えますか？",
+    "de": "Kann ich mit Kreditkarte bezahlen?",
+    "hint": "mit + Dativ（手段）・bezahlen = 支払う・können + 不定詞",
+    "level": "A1",
+    "category": "話法の助動詞",
+    "scene": "買い物"
+  },
+  {
+    "id": 257,
+    "jp": "このサイズはありますか？",
+    "de": "Haben Sie das in dieser Größe?",
+    "hint": "in + Dativ（状態・形）・Größe = サイズ（女性名詞）",
+    "level": "A2",
+    "category": "疑問文",
+    "scene": "買い物"
+  },
+  {
+    "id": 258,
+    "jp": "これを2つください。",
+    "de": "Ich nehme zwei davon.",
+    "hint": "davon（そのうちの）= da + von・数量表現の定番フレーズ",
+    "level": "A2",
+    "category": "数字と時間",
+    "scene": "買い物"
+  },
+  {
+    "id": 259,
+    "jp": "駅まで何分かかりますか？",
+    "de": "Wie lange dauert es bis zum Bahnhof?",
+    "hint": "dauern（かかる）・bis zum（〜まで）= bis + zu + dem（Dativ）",
+    "level": "A1",
+    "category": "疑問文",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 260,
+    "jp": "次の電車は何時ですか？",
+    "de": "Wann fährt der nächste Zug?",
+    "hint": "nächst-（次の）+ Zug（男性名詞）・abfahren の省略形",
+    "level": "A1",
+    "category": "疑問文",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 261,
+    "jp": "電車は3番線から出発します。",
+    "de": "Der Zug fährt von Gleis drei ab.",
+    "hint": "abfahren（出発する）分離動詞・Gleis = 番線（中性名詞）",
+    "level": "A1",
+    "category": "分離動詞",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 262,
+    "jp": "どこで乗り換えればいいですか？",
+    "de": "Wo muss ich umsteigen?",
+    "hint": "müssen + 分離動詞 umsteigen（乗り換える）",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 263,
+    "jp": "バスはもう到着しましたか？",
+    "de": "Ist der Bus schon angekommen?",
+    "hint": "ankommen（到着する）sein 支配・Partizip II: angekommen・schon = もう",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 264,
+    "jp": "タクシーを呼んでください。",
+    "de": "Bitte rufen Sie ein Taxi an.",
+    "hint": "anrufen → rufen...an（分離動詞）・ein Taxi（4格）",
+    "level": "A1",
+    "category": "分離動詞",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 265,
+    "jp": "空港まで行ってもらえますか？",
+    "de": "Können Sie mich zum Flughafen fahren?",
+    "hint": "können + 不定詞・zum（zu + dem）Flughafen・mich = 私を（4格）",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 266,
+    "jp": "ベルリンまで1枚ください。",
+    "de": "Einmal nach Berlin, bitte.",
+    "hint": "einmal（1枚・1回）+ nach + 地名・窓口での定番表現",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 267,
+    "jp": "予約をしたいのですが。",
+    "de": "Ich würde gerne einen Tisch reservieren.",
+    "hint": "würde + 不定詞（丁寧な依頼）・einen Tisch（男性・4格）",
+    "level": "A2",
+    "category": "接続法II",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 268,
+    "jp": "本日のおすすめは何ですか？",
+    "de": "Was empfehlen Sie heute?",
+    "hint": "empfehlen（勧める）不規則変化：empfiehlst/empfiehlt",
+    "level": "A2",
+    "category": "疑問文",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 269,
+    "jp": "ビールをもう一杯もらえますか？",
+    "de": "Kann ich noch ein Bier haben?",
+    "hint": "noch ein（もう一つ）・Bier は中性名詞・können + 不定詞",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 270,
+    "jp": "お会計をお願いします。",
+    "de": "Die Rechnung, bitte.",
+    "hint": "Rechnung（請求書・お会計）女性名詞・bitte を添えて丁寧に",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 271,
+    "jp": "別々に払います。",
+    "de": "Wir zahlen getrennt, bitte.",
+    "hint": "getrennt zahlen（別々に払う）・getrennt は副詞（分けて）",
+    "level": "A2",
+    "category": "会話・挨拶表現",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 272,
+    "jp": "これは頼んでいません。",
+    "de": "Das habe ich nicht bestellt.",
+    "hint": "bestellen（注文する）→ bestellt・haben 支配・nicht で否定",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 273,
+    "jp": "アレルギーがあります。",
+    "de": "Ich habe eine Allergie.",
+    "hint": "eine Allergie haben（慣用）・Allergie = 女性名詞",
+    "level": "A2",
+    "category": "慣用表現",
+    "scene": "レストラン・カフェ"
+  },
+  {
+    "id": 274,
+    "jp": "私は大学で経済学を勉強しています。",
+    "de": "Ich studiere Wirtschaftswissenschaften an der Universität.",
+    "hint": "studieren（大学で学ぶ）・an der Universität（場所・Dativ）",
+    "level": "A1",
+    "category": "現在形",
+    "scene": "学校・勉強"
+  },
+  {
+    "id": 275,
+    "jp": "今日は授業が3つあります。",
+    "de": "Ich habe heute drei Kurse.",
+    "hint": "drei Kurse（複数・4格）・Kurs = 授業・コース",
+    "level": "A1",
+    "category": "現在形",
+    "scene": "学校・勉強"
+  },
+  {
+    "id": 276,
+    "jp": "試験に合格しました。",
+    "de": "Ich habe die Prüfung bestanden.",
+    "hint": "bestehen（合格する）→ bestanden・haben 支配・die Prüfung（女性・4格）",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "学校・勉強"
+  },
+  {
+    "id": 277,
+    "jp": "レポートを書かなければなりません。",
+    "de": "Ich muss einen Bericht schreiben.",
+    "hint": "müssen + 不定詞・einen Bericht（男性・4格）",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "学校・勉強"
+  },
+  {
+    "id": 278,
+    "jp": "先生の言っていることが理解できません。",
+    "de": "Ich verstehe den Lehrer nicht.",
+    "hint": "verstehen（理解する）・den Lehrer（男性・4格）・nicht で否定",
+    "level": "A1",
+    "category": "現在形",
+    "scene": "学校・勉強"
+  },
+  {
+    "id": 279,
+    "jp": "図書館で一緒に勉強しませんか？",
+    "de": "Sollen wir zusammen in der Bibliothek lernen?",
+    "hint": "sollen（〜しましょうか）+ 不定詞・in der Bibliothek（Dativ）",
+    "level": "A2",
+    "category": "話法の助動詞",
+    "scene": "学校・勉強"
+  },
+  {
+    "id": 280,
+    "jp": "辞書でその単語を調べました。",
+    "de": "Ich habe das Wort im Wörterbuch nachgeschlagen.",
+    "hint": "nachschlagen（調べる）分離動詞 → nachgeschlagen・im = in + dem",
+    "level": "A2",
+    "category": "現在完了",
+    "scene": "学校・勉強"
+  },
+  {
+    "id": 281,
+    "jp": "お誕生日おめでとう！",
+    "de": "Herzlichen Glückwunsch zum Geburtstag!",
+    "hint": "herzlich（心から）+ Glückwunsch（お祝い）・zum = zu + dem",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 282,
+    "jp": "ご無沙汰しています。",
+    "de": "Lange nicht gesehen!",
+    "hint": "lange nicht（長い間〜ない）+ gesehen（sehen の過去分詞）省略表現",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 283,
+    "jp": "良い一日をお過ごしください！",
+    "de": "Einen schönen Tag noch!",
+    "hint": "einen schönen Tag（4格・形容詞付き）・noch（さらに・まだ）",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活",
+    "jp_yomi": "よいいちにちをおすごしください！"
+  },
+  {
+    "id": 284,
+    "jp": "お気をつけて！",
+    "de": "Pass auf dich auf!",
+    "hint": "aufpassen（気をつける）分離動詞・auf dich（再帰・4格）命令形",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "日常生活"
+  },
+  {
+    "id": 285,
+    "jp": "お会いできて嬉しいです。",
+    "de": "Schön, Sie kennenzulernen.",
+    "hint": "schön + zu + 不定詞（形容詞 + zu 不定詞）・初対面の定番表現",
+    "level": "A1",
+    "category": "会話・挨拶表現",
+    "scene": "自己紹介"
+  },
+  {
+    "id": 286,
+    "jp": "彼女は日本語だけでなく中国語も話せます。",
+    "de": "Sie kann nicht nur Japanisch, sondern auch Chinesisch sprechen.",
+    "hint": "nicht nur A, sondern auch B（AだけでなくBも）・相関接続詞",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "日常生活"
+  },
+  {
+    "id": 287,
+    "jp": "会議は長かったが、とても有益でした。",
+    "de": "Die Besprechung war zwar lang, aber sehr informativ.",
+    "hint": "zwar...aber（〜ではあるが）・informativ = 有益な",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 288,
+    "jp": "電車に乗る前に切符を買ってください。",
+    "de": "Bitte kaufen Sie ein Ticket, bevor Sie in den Zug einsteigen.",
+    "hint": "bevor（〜する前に）= 副文・einsteigen（乗り込む）分離動詞",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "交通・移動"
+  },
+  {
+    "id": 289,
+    "jp": "彼はドイツ語が上手なので通訳ができます。",
+    "de": "Da er gut Deutsch spricht, kann er dolmetschen.",
+    "hint": "da（〜なので）副文先行→主文が動詞倒置・dolmetschen = 通訳する",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "仕事・職場",
+    "jp_yomi": "かれはどいつごがじょうずなのでつうやくができます。"
+  },
+  {
+    "id": 290,
+    "jp": "観光客が増えているため、ホテルが満室です。",
+    "de": "Weil immer mehr Touristen kommen, sind die Hotels ausgebucht.",
+    "hint": "weil（〜なので）副文先行→主文が動詞倒置・ausgebucht = 満室",
+    "level": "B1",
+    "category": "接続詞",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 291,
+    "jp": "もっと早く来ればよかった。",
+    "de": "Ich wäre gerne früher gekommen.",
+    "hint": "接続法IIの過去：wäre + Partizip II・gerne = 喜んで",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "日常生活"
+  },
+  {
+    "id": 292,
+    "jp": "あなたの立場だったら別の決断をしていたでしょう。",
+    "de": "An Ihrer Stelle hätte ich eine andere Entscheidung getroffen.",
+    "hint": "an jds. Stelle（〜の立場なら）・hätte + Partizip II = 過去の反実仮想",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 293,
+    "jp": "道を教えていただけますか？",
+    "de": "Könnten Sie mir den Weg erklären?",
+    "hint": "könnten（können の接続法II）・den Weg erklären = 道を説明する",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 294,
+    "jp": "私があなたならそのオファーを受け入れるでしょう。",
+    "de": "Wenn ich Sie wäre, würde ich das Angebot annehmen.",
+    "hint": "wäre（sein の接続法II）+ würde + 不定詞・annehmen = 受け入れる（分離）",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 295,
+    "jp": "時間がもっとあれば観光地を全部回れるのに。",
+    "de": "Wenn wir mehr Zeit hätten, könnten wir alle Sehenswürdigkeiten besuchen.",
+    "hint": "hätten + könnten（両方接続法II）・Sehenswürdigkeit = 観光地",
+    "level": "B1",
+    "category": "接続法II",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 296,
+    "jp": "新しい支店がベルリンに開設されました。",
+    "de": "Eine neue Filiale wurde in Berlin eröffnet.",
+    "hint": "werden + Partizip II（eröffnen → eröffnet）・Filiale = 支店（女性）",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 297,
+    "jp": "この絵は17世紀に描かれたと言われています。",
+    "de": "Dieses Bild soll im 17. Jahrhundert gemalt worden sein.",
+    "hint": "sollen + Partizip II + worden sein（伝聞の受動完了）・malen = 描く",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "観光・旅行"
+  },
+  {
+    "id": 298,
+    "jp": "この製品は全世界で販売されています。",
+    "de": "Dieses Produkt wird weltweit verkauft.",
+    "hint": "現在受動態：werden + Partizip II（verkaufen → verkauft）・weltweit = 全世界で",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "仕事・職場"
+  },
+  {
+    "id": 299,
+    "jp": "そのコンサートは中止されました。",
+    "de": "Das Konzert wurde abgesagt.",
+    "hint": "werden + Partizip II（absagen → abgesagt）・absagen = キャンセルする",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "日常生活"
+  },
+  {
+    "id": 300,
+    "jp": "新しい橋が来年完成する予定です。",
+    "de": "Die neue Brücke soll nächstes Jahr fertiggestellt werden.",
+    "hint": "sollen + Partizip II + werden（予定の受動）・fertigstellen = 完成させる",
+    "level": "B1",
+    "category": "受動態",
+    "scene": "観光・旅行"
+  }
+]

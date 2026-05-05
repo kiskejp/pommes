@@ -17,5 +17,4 @@ npm-debug.log*
 .env.local
 
 # Portfolio: ローカル開発用（GitHubには公開しない）
-expo/
 design/
