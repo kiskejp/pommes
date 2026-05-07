@@ -13,6 +13,7 @@ import {
   Cross, GraduationCap, User, X,
 } from 'lucide-react-native'
 import { RiveMascot } from '../components/RiveMascot'
+import { HowToModal } from '../components/HowToModal'
 import { Fonts } from '../fonts'
 import sentences from '../data/sentences.json'
 
@@ -261,6 +262,7 @@ export function TitleScreen({ onStart, weakIds, studyRecord, theme: t, themes, o
   const [selLevel,    setSelLevel]    = useState(null)
   const [selCategory, setSelCategory] = useState(null)
   const [selScene,    setSelScene]    = useState(null)
+  const [showHelp,    setShowHelp]    = useState(false)
 
   const weakCount = weakIds?.weakIds.length ?? 0
 
@@ -290,6 +292,16 @@ export function TitleScreen({ onStart, weakIds, studyRecord, theme: t, themes, o
 
   return (
     <View style={[styles.root, { backgroundColor: t.bg }]}>
+      {/* Help button — top right */}
+      <TouchableOpacity
+        onPress={() => setShowHelp(true)}
+        style={styles.helpBtn}
+      >
+        <HelpCircle size={20} strokeWidth={2} color={t.textSub} />
+      </TouchableOpacity>
+
+      <HowToModal visible={showHelp} onClose={() => setShowHelp(false)} theme={t} />
+
       <ScrollView
         contentContainerStyle={[styles.scroll, { paddingBottom: weakCount > 0 ? 180 : 140 }]}
         showsVerticalScrollIndicator={false}
@@ -398,6 +410,12 @@ export function TitleScreen({ onStart, weakIds, studyRecord, theme: t, themes, o
 
 const styles = StyleSheet.create({
   root:   { flex: 1 },
+  helpBtn: {
+    position: 'absolute', top: 12, right: 16,
+    zIndex: 10,
+    width: 36, height: 36, borderRadius: 18,
+    alignItems: 'center', justifyContent: 'center',
+  },
   scroll: {
     alignItems: 'center',
     paddingHorizontal: 20,
