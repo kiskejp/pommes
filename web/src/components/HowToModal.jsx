@@ -113,16 +113,6 @@ export function HowToModal({ onClose }) {
           ))}
         </div>
 
-        {/* フッター */}
-        <div style={{
-          marginTop: 28,
-          fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: 10, color: 'var(--text-muted)',
-          letterSpacing: '0.5px', textTransform: 'uppercase',
-          textAlign: 'center',
-        }}>
-          Level · A1 / A2 / B1 &nbsp;·&nbsp; {/* sentences.length */}Sätze
-        </div>
       </div>
 
       <style>{`
