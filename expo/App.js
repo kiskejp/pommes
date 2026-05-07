@@ -178,15 +178,18 @@ function PommesSplash({ fontsLoaded, onWaveComplete }) {
   return (
     <View style={splash.container}>
       <StatusBar style="dark" />
-      <Rive
-        url={RIVE_URL}
-        animationName="arms_wave"
-        autoplay={true}
-        fit={Fit.Contain}
-        style={{ width: 180, height: 180 }}
-        onStop={handleWaveEnd}
-        onLoopEnd={handleWaveEnd}
-      />
+      {/* 下余白をクリップしてロゴとの間隔を詰める */}
+      <View style={{ width: 180, height: 150, overflow: 'hidden', alignItems: 'center' }}>
+        <Rive
+          url={RIVE_URL}
+          animationName="arms_wave"
+          autoplay={true}
+          fit={Fit.Contain}
+          style={{ width: 180, height: 180 }}
+          onStop={handleWaveEnd}
+          onLoopEnd={handleWaveEnd}
+        />
+      </View>
       <View style={{ alignItems: 'center' }}>
         <Text style={[splash.logo, fontsLoaded && { fontFamily: Fonts.paytone }]}>Pommes</Text>
         <Text style={[splash.sub, fontsLoaded && { fontFamily: Fonts.monoReg }]}>瞬間ドイツ語作文</Text>
@@ -201,7 +204,7 @@ const splash = StyleSheet.create({
     backgroundColor: '#fffdf7',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 16,
+    gap: 0,
   },
   logo: {
     fontSize: 40,
