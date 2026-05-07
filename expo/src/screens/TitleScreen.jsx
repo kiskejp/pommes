@@ -186,7 +186,9 @@ function CategoryChips({ selected, onSelect, theme: t }) {
                 { backgroundColor: isSelected ? t.selectedBg : t.surface },
               ]}
             >
-              <Text style={[
+              <Text
+                numberOfLines={1}
+                style={[
                 styles.chipText,
                 { color: isSelected ? t.selectedText : t.text, fontFamily: Fonts.barlowSemi },
               ]}>
