@@ -215,6 +215,11 @@ function CategoryChips({ selected, onSelect, theme: t }) {
   )
 }
 
+// シーン名の表示ラベル（改行位置を調整したいもの）
+const SCENE_LABEL = {
+  'レストラン・カフェ': 'レストラン・\nカフェ',
+}
+
 /* ── SceneGrid ── */
 function SceneGrid({ selected, onSelect, theme: t }) {
   const scenes = SCENES.filter(sc => sentences.some(s => s.scene === sc))
@@ -239,7 +244,7 @@ function SceneGrid({ selected, onSelect, theme: t }) {
                 {Icon && <Icon size={15} color={iconCol} />}
               </View>
               <Text style={[styles.sceneLabel, { color: textCol, fontFamily: Fonts.barlowSemi }]}>
-                {sc}
+                {SCENE_LABEL[sc] ?? sc}
               </Text>
             </TouchableOpacity>
           )
