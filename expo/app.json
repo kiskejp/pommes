@@ -16,11 +16,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.kiskejp.pommes",
-      "icon": {
-        "light": "./assets/icon.png",
-        "dark": "./assets/icon.png",
-        "tinted": "./assets/icon.png"
-      },
+      "icon": "./assets/AppIcon.icon",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "CFBundleDevelopmentRegion": "ja"
