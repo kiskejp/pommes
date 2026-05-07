@@ -1,7 +1,8 @@
 // components/HowToModal.jsx
+import { useEffect, useRef } from 'react'
 import {
   Modal, View, Text, TouchableOpacity, TouchableWithoutFeedback,
-  StyleSheet, ScrollView,
+  StyleSheet, ScrollView, Animated,
 } from 'react-native'
 import { X, Eye, Keyboard, Zap } from 'lucide-react-native'
 import { Fonts } from '../fonts'
@@ -25,20 +26,40 @@ const STEPS = [
 ]
 
 export function HowToModal({ visible, onClose, theme: t }) {
+  const backdropOpacity = useRef(new Animated.Value(0)).current
+  const sheetTranslateY = useRef(new Animated.Value(300)).current
+
+  useEffect(() => {
+    if (visible) {
+      Animated.parallel([
+        Animated.timing(backdropOpacity,  { toValue: 1, duration: 200, useNativeDriver: true }),
+        Animated.timing(sheetTranslateY,  { toValue: 0, duration: 250, useNativeDriver: true }),
+      ]).start()
+    } else {
+      backdropOpacity.setValue(0)
+      sheetTranslateY.setValue(300)
+    }
+  }, [visible])
+
   return (
     <Modal
       visible={visible}
       transparent
-      animationType="slide"
+      animationType="none"
       onRequestClose={onClose}
     >
-      {/* 背景タップで閉じる */}
+      {/* 背景：フェードイン */}
       <TouchableWithoutFeedback onPress={onClose}>
-        <View style={styles.backdrop} />
+        <Animated.View style={[styles.backdrop, { opacity: backdropOpacity }]} />
       </TouchableWithoutFeedback>
 
-      {/* シート */}
-      <View style={[styles.sheet, { backgroundColor: t.bg }]}>
+      {/* シート：スライドアップ */}
+      <Animated.View
+        style={[
+          styles.sheet,
+          { backgroundColor: t.bg, transform: [{ translateY: sheetTranslateY }] },
+        ]}
+      >
         {/* ヘッダー */}
         <View style={styles.header}>
           <Text style={[styles.title, { color: t.text, fontFamily: Fonts.paytone }]}>
@@ -72,17 +93,19 @@ export function HowToModal({ visible, onClose, theme: t }) {
             ))}
           </View>
         </ScrollView>
-      </View>
+      </Animated.View>
     </Modal>
   )
 }
 
 const styles = StyleSheet.create({
   backdrop: {
-    flex: 1,
+    ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(0,0,0,0.4)',
   },
   sheet: {
+    position: 'absolute',
+    bottom: 0, left: 0, right: 0,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     paddingHorizontal: 28,

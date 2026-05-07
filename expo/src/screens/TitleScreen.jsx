@@ -474,8 +474,10 @@ const styles = StyleSheet.create({
   /* Category chips */
   chipWrap: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   chip: {
-    paddingVertical: 6, paddingHorizontal: 14,
-    borderRadius: 50,
+    height: 34,
+    paddingHorizontal: 14,
+    borderRadius: 17,
+    alignItems: 'center', justifyContent: 'center',
   },
   chipText: { fontSize: 13, fontWeight: '600' },
 
