@@ -10,14 +10,15 @@
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#fffdf7"
     },
 
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.kiskejp.pommes",
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "CFBundleDevelopmentRegion": "ja"
       }
     },
     "android": {

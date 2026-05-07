@@ -1,9 +1,13 @@
 // components/AppHeader.jsx
+import { useState } from 'react'
+import { HelpCircle } from 'lucide-react'
 import { themes } from '../themes'
 import { useTheme } from '../context/ThemeContext'
+import { HowToModal } from './HowToModal'
 
 export function AppHeader() {
   const { themeId, setTheme } = useTheme()
+  const [showHelp, setShowHelp] = useState(false)
 
   return (
     <header className="app-header-top" style={{
@@ -26,26 +30,46 @@ export function AppHeader() {
         Pommes
       </div>
 
-      {/* Theme picker */}
-      <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-        {Object.entries(themes).map(([id, t]) => (
-          <button
-            key={id}
-            onClick={() => setTheme(id)}
-            title={t.name}
-            style={{
-              width: 24, height: 24, borderRadius: '50%',
-              background: t.swatch,
-              border: themeId === id
-                ? '2px solid var(--border-strong)'
-                : '2px solid var(--border)',
-              cursor: 'pointer', padding: 0,
-              boxShadow: themeId === id ? '0 0 0 2px var(--bg)' : 'none',
-              transition: 'all .15s',
-            }}
-          />
-        ))}
+      {/* Right controls */}
+      <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+        {/* Theme picker */}
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+          {Object.entries(themes).map(([id, t]) => (
+            <button
+              key={id}
+              onClick={() => setTheme(id)}
+              title={t.name}
+              style={{
+                width: 24, height: 24, borderRadius: '50%',
+                background: t.swatch,
+                border: themeId === id
+                  ? '2px solid var(--border-strong)'
+                  : '2px solid var(--border)',
+                cursor: 'pointer', padding: 0,
+                boxShadow: themeId === id ? '0 0 0 2px var(--bg)' : 'none',
+                transition: 'all .15s',
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Help button */}
+        <button
+          onClick={() => setShowHelp(true)}
+          title="使い方"
+          style={{
+            background: 'none', border: 'none',
+            color: 'var(--text-sub)', cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            width: 32, height: 32, borderRadius: '50%',
+            padding: 0,
+          }}
+        >
+          <HelpCircle size={18} strokeWidth={2} />
+        </button>
       </div>
+
+      {showHelp && <HowToModal onClose={() => setShowHelp(false)} />}
     </header>
   )
 }
