@@ -531,7 +531,7 @@ const styles = StyleSheet.create({
   solidBtnCount: { fontSize: 11 },
   ghostBtn: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-    borderRadius: 50, paddingVertical: 13, paddingHorizontal: 24,
+    borderRadius: 50, paddingVertical: 16, paddingHorizontal: 24,
   },
   ghostBtnText:  { fontSize: 14, fontWeight: '600', letterSpacing: 0.54, textTransform: 'uppercase' },
   ghostBtnCount: { fontSize: 11 },
