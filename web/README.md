@@ -1,4 +1,6 @@
-# 瞬間Deutsch作文
+# Pommes — 瞬間ドイツ語作文
+
+[![App Storeからダウンロード](https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp)](https://apps.apple.com/us/app/pommes/id6766652125)
 
 どんどん話すための瞬間ドイツ語作文トレーニングアプリ。
 
