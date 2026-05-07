@@ -198,7 +198,7 @@ function PommesSplash({ fontsLoaded, onWaveComplete }) {
 const splash = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fffdf7',
     alignItems: 'center',
     justifyContent: 'center',
     gap: 16,
