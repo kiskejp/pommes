@@ -121,6 +121,18 @@ export function TitleScreen({ onStart, weakIds, studyRecord }) {
           fontSize: 10, color: 'var(--text-muted)', letterSpacing: '0.54px',
           textTransform: 'uppercase',
         }}>
+          <a
+            href="https://apps.apple.com/us/app/pommes/id6766652125"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: 'inline-block' }}
+          >
+            <img
+              src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp"
+              alt="App Storeからダウンロード"
+              style={{ width: 130, height: 'auto' }}
+            />
+          </a>
           <span>{sentences.length} Sätze · A1–B1</span>
           <a href="privacy.html" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>
             プライバシーポリシー
