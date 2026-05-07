@@ -9,14 +9,14 @@
 
 ```
 pommes/
-├── app/          ← Web版（Vite + React SPA）★メイン開発
+├── web/          ← Web版（Vite + React SPA）★メイン開発
 ├── expo/         ← モバイル版（Expo + React Native）★開発中
 └── design/       ← デザインファイル
 ```
 
 **開発ルール:**
-- 新機能は `app/` で先に開発・確認してから `expo/` に反映する
-- `sentences.json` は `app/src/data/` がマスター、`expo/src/data/` にコピーして使用
+- 新機能は `web/` で先に開発・確認してから `expo/` に反映する
+- `sentences.json` は `web/src/data/` がマスター、`expo/src/data/` にコピーして使用
 - git commit は機能単位でこまめに行う
 - **git操作はすべて `pommes/` ディレクトリから行う**（リポジトリルートが `pommes/` のため）
 
@@ -25,12 +25,12 @@ pommes/
 - **アプリ名**: Pommes（ドイツ語でフライドポテトの意）
 - **マスコット**: Riveアニメーション（じゃがいも）→ 詳細は `RIVE.md`
 
-## app/ — Web版
+## web/ — Web版
 
 ### 起動
 
 ```
-cd app/
+cd web/
 npm run dev   → http://localhost:5173
 npm run build
 npm run preview
@@ -91,10 +91,10 @@ npx expo start
 
 ```
 src/
-  data/sentences.json        # app/からコピー
-  themes.js                  # app/と同内容
+  data/sentences.json        # web/からコピー
+  themes.js                  # web/と同内容
   hooks/
-    useSession.js             # app/と同一（変更なし）
+    useSession.js             # web/と同一（変更なし）
     useTTS.js                 # expo-speech に移植
     useWeakIds.js             # AsyncStorage に移植
     useStudyRecord.js         # AsyncStorage に移植
@@ -110,9 +110,9 @@ src/
 App.js
 ```
 
-### app/ → expo/ 移植ポイント
+### web/ → expo/ 移植ポイント
 
-| app/ | expo/ |
+| web/ | expo/ |
 |------|-------|
 | `localStorage` | `AsyncStorage` |
 | `window.speechSynthesis` | `expo-speech` (`Speech.speak/stop`) |
@@ -122,7 +122,7 @@ App.js
 
 ## 問題データの追加
 
-`app/src/data/sentences.json` にオブジェクトを追記するだけ。
+`web/src/data/sentences.json` にオブジェクトを追記するだけ。
 
 ```json
 {

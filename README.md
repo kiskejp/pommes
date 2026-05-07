@@ -19,18 +19,18 @@
 ## 開発
 
 ```bash
-cd app/
+cd web/
 npm install
 npm run dev   # http://localhost:5173
 ```
 
-詳細は [`app/README.md`](app/README.md) を参照。
+詳細は [`web/README.md`](web/README.md) を参照。
 
 ## 構成
 
 ```
 pommes/
-├── app/     — Web版（Vite + React）→ GitHub Pages
+├── web/     — Web版（Vite + React）→ GitHub Pages
 ├── expo/    — iOS版（Expo + React Native）→ App Store
 └── design/  — デザインファイル
 ```
