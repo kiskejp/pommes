@@ -88,11 +88,6 @@ function MascotWithBubble({ theme: t }) {
     return () => clearInterval(id)
   }, [opacity])
 
-  const goIdle = () => {
-    clearTimeout(wiggleTimer.current)
-    setScene(0)
-  }
-
   return (
     <View style={styles.mascotWrapper}>
       <Animated.View style={[styles.bubble, { backgroundColor: t.surface, opacity }]}>
@@ -101,11 +96,11 @@ function MascotWithBubble({ theme: t }) {
       </Animated.View>
       <Pressable
         onLongPress={() => {
-          setScene(2)
           clearTimeout(wiggleTimer.current)
-          wiggleTimer.current = setTimeout(goIdle, 4000)
+          setScene(2)
+          // ScrollView内ではonPressOutが不安定なのでタイマーのみでidle復帰
+          wiggleTimer.current = setTimeout(() => setScene(0), 3500)
         }}
-        onPressOut={goIdle}
         delayLongPress={400}
       >
         <RiveMascot size={160} scene={scene} />
