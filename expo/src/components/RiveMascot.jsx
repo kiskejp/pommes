@@ -25,7 +25,7 @@ export function RiveMascot({ size = 96, scene = 0 }) {
         url={RIVE_URL}
         stateMachineName="Main"
         autoplay={true}
-        fit={Fit.Cover}
+        fit={Fit.Contain}
         style={{
           width: size,
           height: size + 16,

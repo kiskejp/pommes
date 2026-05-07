@@ -72,6 +72,7 @@ function MascotWithBubble({ theme: t }) {
   const [text, setText] = useState(() => GREETINGS[Math.floor(Math.random() * GREETINGS.length)])
   const [scene, setScene] = useState(0)
   const opacity = useRef(new Animated.Value(1)).current
+  const wiggleTimer = useRef(null)
 
   useEffect(() => {
     const cycle = () => {
@@ -87,6 +88,11 @@ function MascotWithBubble({ theme: t }) {
     return () => clearInterval(id)
   }, [opacity])
 
+  const goIdle = () => {
+    clearTimeout(wiggleTimer.current)
+    setScene(0)
+  }
+
   return (
     <View style={styles.mascotWrapper}>
       <Animated.View style={[styles.bubble, { backgroundColor: t.surface, opacity }]}>
@@ -94,8 +100,12 @@ function MascotWithBubble({ theme: t }) {
         <View style={[styles.bubbleTail, { borderTopColor: t.surface }]} />
       </Animated.View>
       <Pressable
-        onLongPress={() => setScene(2)}
-        onPressOut={() => setScene(0)}
+        onLongPress={() => {
+          setScene(2)
+          clearTimeout(wiggleTimer.current)
+          wiggleTimer.current = setTimeout(goIdle, 4000)
+        }}
+        onPressOut={goIdle}
         delayLongPress={400}
       >
         <RiveMascot size={160} scene={scene} />
