@@ -8,12 +8,19 @@
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
+      "image": "./assets/splash-dot.png",
+      "resizeMode": "contain",
       "backgroundColor": "#fffdf7"
     },
 
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.kiskejp.pommes",
+      "icon": {
+        "light": "./assets/icon.png",
+        "dark": "./assets/icon.png",
+        "tinted": "./assets/icon.png"
+      },
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "CFBundleDevelopmentRegion": "ja"
