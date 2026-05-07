@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import {
   View, Text, TouchableOpacity, ScrollView, StyleSheet,
-  Animated, Linking,
+  Animated, Linking, Pressable,
 } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import {
@@ -70,6 +70,7 @@ const CATEGORY_INITIAL_COUNT = 10
 /* ── MascotWithBubble ── */
 function MascotWithBubble({ theme: t }) {
   const [text, setText] = useState(() => GREETINGS[Math.floor(Math.random() * GREETINGS.length)])
+  const [scene, setScene] = useState(0)
   const opacity = useRef(new Animated.Value(1)).current
 
   useEffect(() => {
@@ -92,7 +93,13 @@ function MascotWithBubble({ theme: t }) {
         <Text style={[styles.bubbleText, { color: t.text, fontFamily: Fonts.monoSemi }]}>{text}</Text>
         <View style={[styles.bubbleTail, { borderTopColor: t.surface }]} />
       </Animated.View>
-      <RiveMascot size={160} scene={0} />
+      <Pressable
+        onLongPress={() => setScene(2)}
+        onPressOut={() => setScene(0)}
+        delayLongPress={400}
+      >
+        <RiveMascot size={160} scene={scene} />
+      </Pressable>
     </View>
   )
 }
