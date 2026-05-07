@@ -525,7 +525,7 @@ const styles = StyleSheet.create({
   resetText: { fontSize: 11, letterSpacing: 0.5 },
   solidBtn: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-    borderRadius: 50, paddingVertical: 15, paddingHorizontal: 24,
+    borderRadius: 50, paddingVertical: 16, paddingHorizontal: 24,
   },
   solidBtnText:  { fontSize: 14, fontWeight: '600', letterSpacing: 0.54, textTransform: 'uppercase' },
   solidBtnCount: { fontSize: 11 },
