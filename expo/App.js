@@ -179,7 +179,7 @@ function PommesSplash({ fontsLoaded, onWaveComplete }) {
     <View style={splash.container}>
       <StatusBar style="dark" />
       {/* 下余白をクリップしてロゴとの間隔を詰める */}
-      <View style={{ width: 180, height: 180, overflow: 'hidden', alignItems: 'center', marginBottom: -12 }}>
+      <View style={{ width: 180, height: 180, overflow: 'hidden', alignItems: 'center' }}>
         <Rive
           url={RIVE_URL}
           animationName="arms_wave"
