@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Pommes TTS Preview</title>
+<style>
+  body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; background: #fffdf7; color: #44403c; }
+  h1 { font-size: 20px; margin-bottom: 24px; }
+  .row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #e5e0d8; }
+  .id { width: 40px; font-size: 11px; color: #999; font-family: monospace; flex-shrink: 0; }
+  .texts { flex: 1; }
+  .jp { font-size: 14px; }
+  .de { font-size: 13px; color: #6b7280; margin-top: 2px; }
+  button { padding: 4px 12px; border-radius: 20px; border: 1.5px solid #d4a96a; background: #fff; color: #44403c; cursor: pointer; font-size: 12px; white-space: nowrap; }
+  button:hover { background: #d4a96a; color: #fff; }
+  button.playing { background: #d4a96a; color: #fff; }
+  .filter { margin-bottom: 20px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .filter button { border-color: #ccc; }
+  .filter button.active { background: #44403c; color: #fff; border-color: #44403c; }
+</style>
+</head>
+<body>
+<h1>🥔 Pommes TTS Preview</h1>
+<div class="filter">
+  <button class="active" onclick="setLevel('all')">全て</button>
+  <button onclick="setLevel('A1')">A1</button>
+  <button onclick="setLevel('A2')">A2</button>
+  <button onclick="setLevel('B1')">B1</button>
+</div>
+<div id="list"></div>
+
+<script>
+let sentences = [];
+let currentAudio = null;
+let currentBtn = null;
+let activeLevel = 'all';
+
+fetch('/src/data/sentences.json')
+  .then(r => r.json())
+  .then(data => { sentences = data; render(); });
+
+function setLevel(lv) {
+  activeLevel = lv;
+  document.querySelectorAll('.filter button').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  render();
+}
+
+function render() {
+  const filtered = activeLevel === 'all' ? sentences : sentences.filter(s => s.level === activeLevel);
+  document.getElementById('list').innerHTML = filtered.map(s => `
+    <div class="row">
+      <div class="id">${String(s.id).padStart(3,'0')}</div>
+      <div class="texts">
+        <div class="jp">${s.jp}</div>
+        <div class="de">${s.de}</div>
+      </div>
+      <button onclick="play(${s.id},'ja',this)">🇯🇵 JP</button>
+      <button onclick="play(${s.id},'de',this)">🇩🇪 DE</button>
+    </div>
+  `).join('');
+}
+
+function play(id, lang, btn) {
+  if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+  if (currentBtn) { currentBtn.classList.remove('playing'); }
+  const url = `/audio/${lang}/q${String(id).padStart(3,'0')}.mp3`;
+  const audio = new Audio(url);
+  audio.play();
+  audio.onended = () => btn.classList.remove('playing');
+  currentAudio = audio;
+  currentBtn = btn;
+  btn.classList.add('playing');
+}
+</script>
+</body>
+</html>
